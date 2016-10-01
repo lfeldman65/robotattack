@@ -23,12 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (weak, nonatomic) IBOutlet ADBannerView *iAdOutlet;
-
 @property (weak, nonatomic) IBOutlet UILabel *webAddress;
 
-@property (nonatomic, assign) BOOL bannerIsVisible;
-@property (strong, nonatomic) ADBannerView *adView;
 
 @property (nonatomic) Shop *ourNewShop;
 

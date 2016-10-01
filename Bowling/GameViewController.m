@@ -11,26 +11,10 @@
 
 @implementation GameViewController
 
-int iAdHeight;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
-        self.iAdOutlet.hidden = YES;
-    } else {
-        self.iAdOutlet.hidden = NO;
-    }
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        
-        iAdHeight = 66;
-    }
-    else {
-        
-        iAdHeight = 50;
-    }
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -62,7 +46,7 @@ int iAdHeight;
     
     // Game Center
     
-    [[GameCenterManager sharedManager] setDelegate:self];
+ //   [[GameCenterManager sharedManager] setDelegate:self];
     BOOL available = [[GameCenterManager sharedManager] checkGameCenterAvailability];
     if (available) {
         NSLog(@"available");
@@ -110,19 +94,12 @@ int iAdHeight;
     self.webAddress.font = [UIFont fontWithName: @"Noteworthy" size: .06*sWidth];
     self.webAddress.center = CGPointMake(sWidth/2, .96*sHeight);
     
-    [self.iAdOutlet setFrame:CGRectMake(0, sHeight - iAdHeight, sWidth, iAdHeight)];
-    
 
 }
 
 - (void)shoppingDone:(NSNotification *)notification {
     
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
-        self.iAdOutlet.hidden = YES;
-    } else {
-        self.iAdOutlet.hidden = NO;
-    }
-    
+
 }
 
 - (Shop *)ourNewShop {
@@ -172,7 +149,6 @@ int iAdHeight;
     self.titleLabel.hidden = YES;
     self.lastGameLabel.hidden = YES;
     self.bgImage.hidden = YES;
-    self.iAdOutlet.hidden = YES;
     self.webAddress.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -213,12 +189,6 @@ int iAdHeight;
         self.titleLabel.hidden = NO;
         self.lastGameLabel.hidden = NO;
         self.bgImage.hidden = NO;
-        
-        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
-            self.iAdOutlet.hidden = YES;
-        } else {
-            self.iAdOutlet.hidden = NO;
-        }
         
         self.webAddress.hidden = NO;
         
@@ -297,8 +267,9 @@ int iAdHeight;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
-        self.iAdOutlet.hidden = YES;
+
     }
+
     
 }
 
@@ -385,29 +356,6 @@ int iAdHeight;
     }];
 }
 
-
-#pragma mark - iAd
-
--(void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    
-    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1];
-        [banner setAlpha:1];
-        [UIView commitAnimations];
-      //  NSLog(@"here");
-    }
-}
-
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1];
-    [banner setAlpha:0];
-    [UIView commitAnimations];
-    
-}
 
 
 - (void)didReceiveMemoryWarning
