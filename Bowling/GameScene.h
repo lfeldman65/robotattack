@@ -12,16 +12,18 @@
 
 @property (strong, nonatomic) NSTimer *blockTimer;
 @property (strong, nonatomic) NSTimer *superBlockTimer;
-@property (strong, nonatomic) SKSpriteNode *paddle;
-@property (strong, nonatomic) SKSpriteNode *ball;
-@property (strong, nonatomic) SKSpriteNode *block;
-@property (strong, nonatomic) SKNode *bottom;
-@property (nonatomic) SKLabelNode *blocksHitLabel;
+@property (strong, nonatomic) SKSpriteNode *skullNode;
+@property (strong, nonatomic) SKSpriteNode *ballNode;
+@property (strong, nonatomic) SKSpriteNode *diamondNode;
+@property (strong, nonatomic) SKSpriteNode *obstacleNode;
+
+@property (nonatomic) SKLabelNode *turnNumberLabel;
 @property (nonatomic) SKLabelNode *livesLabel;
-@property (nonatomic) NSString *paddleString;
-@property (nonatomic) NSString *blockString;
-@property (nonatomic) NSString *superBlockString;
+@property (nonatomic) NSString *skullString;
+@property (nonatomic) NSString *obstacleString;
 @property (nonatomic) NSString *ballString;
+@property (nonatomic) NSString *diamondString;
+
 
 @property (nonatomic) CGPoint touchPoint;
 //@property (nonatomic) CGPoint lastPoint;

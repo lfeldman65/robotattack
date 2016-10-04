@@ -7,27 +7,16 @@
 //  Test 2
 
 #import "GameScene.h"
-#define blockSpeed -40.0
 #define maxSpeed 600
-#define speedScale 1.0
+#define speedScale 150.0
 #define stopSpeed 10.0
 
-static NSString* ballCategoryName = @"ball";
-static NSString* paddleCategoryName = @"paddle";
-static NSString* blockCategoryName = @"block";
-static NSString* blockNodeCategoryName = @"blockNode";
-static NSString* superBlockCategoryName = @"superBlockNode";
-
 static const uint32_t ballCategory  = 0x1 << 0;
-static const uint32_t bottomCategory = 0x1 << 1;
-static const uint32_t blockCategory = 0x1 << 2;
-static const uint32_t paddleCategory = 0x1 << 3;
-static const uint32_t superBlockCategory = 0x1 << 4;
-
+static const uint32_t skullCategory  = 0x1 << 1;
+static const uint32_t diamondCategory = 0x1 << 2;
+static const uint32_t obstacleCategory = 0x1 << 3;
 
 @interface GameScene()
-
-@property (nonatomic) BOOL isFingerOnPaddle;
 
 @end
 
@@ -35,20 +24,16 @@ static inline CGPoint rwSub(CGPoint a, CGPoint b) {
     return CGPointMake(a.x - b.x, a.y - b.y);
 }
 
-
 @implementation GameScene
 
-@synthesize paddle;
-@synthesize ball;
-@synthesize block;
-@synthesize bottom;
 
-int blocksHit;
+int turnNumber;
 int livesRemaining;
 double initBallX;
 double initBallY;
-bool gameStarted;
-bool targetHit;
+bool firstTouchEnded;
+int numDiamondsHit;
+bool skullHit;
 
 -(id)initWithSize:(CGSize)size {
     
@@ -57,37 +42,35 @@ bool targetHit;
         initBallX = 0.5*self.frame.size.width;
         initBallY = 0.1*self.frame.size.height;
 
-        blocksHit = 0;
+        turnNumber = 0;
         livesRemaining = 4;
-        gameStarted = false;
-        targetHit = false;
+        firstTouchEnded = false;
+        skullHit = false;
+        numDiamondsHit = 0;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             
-            self.paddleString = @"paddleiPad.png";
-            self.blockString = @"blockiPad.png";
-            self.superBlockString = @"superBlockiPad.png";
+            self.obstacleString = @"blockiPad.png";
             self.ballString = @"balliPad.png";
+            self.diamondString = @"diamond.png";
             
             if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
                 
-                self.paddleString = @"paddleiPadWide.png";
+             //   self.paddleString = @"paddleiPadWide.png";
                 
             }
-            
         }
         else {
             
-            self.paddleString = @"paddleiPhone.png";
-            self.blockString = @"blockiPhone.png";
-            self.superBlockString = @"superBlockiPhone.png";
+            self.obstacleString = @"blockiPhone.png";
             self.ballString = @"balliPhone.png";
+            self.diamondString = @"diamondiPhone.png";
+            self.skullString = @"blackHoleiPhone.png";
 
             
             if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
                 
-                self.paddleString = @"paddleiPhoneWide.png";
-
+              //  self.paddleString = @"paddleiPhoneWide.png";
             }
             
         }
@@ -96,70 +79,40 @@ bool targetHit;
         background.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
        // [self addChild:background];
         
-        self.blocksHitLabel = [SKLabelNode labelNodeWithFontNamed:@"Noteworthy"];
-        self.blocksHitLabel.position = CGPointMake(.5*self.frame.size.width, .9*self.frame.size.height);
-        self.blocksHitLabel.fontColor = [UIColor cyanColor];
-        self.blocksHitLabel.fontSize = .06*self.frame.size.width;
-        self.blocksHitLabel.zPosition = 1;
-        [self addChild:self.blocksHitLabel];
-        self.blocksHitLabel.text = [NSString stringWithFormat:@"Turns: %d", blocksHit];
+        self.turnNumberLabel = [SKLabelNode labelNodeWithFontNamed:@"Noteworthy"];
+        self.turnNumberLabel.position = CGPointMake(.5*self.frame.size.width, .9*self.frame.size.height);
+        self.turnNumberLabel.fontColor = [UIColor cyanColor];
+        self.turnNumberLabel.fontSize = .06*self.frame.size.width;
+        self.turnNumberLabel.zPosition = 1;
+        [self addChild:self.turnNumberLabel];
+        self.turnNumberLabel.text = [NSString stringWithFormat:@"Turns: %d", turnNumber];
         
     //    self.blockTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(dropBlock) userInfo:nil repeats:YES];
         
         self.physicsWorld.gravity = CGVectorMake(0.0f, -0.0f);
         
         //Create a physics body that borders the screen
+        
         SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         self.physicsBody = borderBody;
         self.physicsBody.friction = 0.0f;
         self.physicsBody.restitution = 1.0f;
         
         // Ball
-        ball = [SKSpriteNode spriteNodeWithImageNamed: self.ballString];
-        ball.name = ballCategoryName;
-        ball.position = CGPointMake(initBallX, initBallY);
-        ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
-        ball.physicsBody.friction = 0.0f;
-        //  ball.physicsBody.restitution = 1.2f;
-        ball.physicsBody.linearDamping = 0.5f;
-        ball.physicsBody.allowsRotation = YES;
-        ball.physicsBody.affectedByGravity = NO;
-        ball.physicsBody.density = 10.0;
-
-        [self addChild:ball];
+        
+        [self addBall];
         
         // Obstacles
         
-        [self addObstacle];
+        [self addObstacles];
         
-        // Targets
+        // Diamonds
         
-        [self addTarget];
+        [self addDiamonds:1];
         
-     //   [ball.physicsBody applyImpulse:CGVectorMake(5.0f, (arc4random() % 15) + 3.0)];
+        // Skulls
         
-        paddle = [[SKSpriteNode alloc] initWithImageNamed: self.paddleString];
-        paddle.name = paddleCategoryName;
-        paddle.position = CGPointMake(CGRectGetMidX(self.frame), .5*paddle.frame.size.height);
-      //  [self addChild:paddle];
-        paddle.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:paddle.frame.size];
-        paddle.physicsBody.restitution = 1.0f;
-        paddle.physicsBody.friction = 0.4f;
-        paddle.physicsBody.density = 100000.0;
-        paddle.physicsBody.allowsRotation = NO;
-
-        paddle.physicsBody.dynamic = YES;  // If no, ball can get pushed off screen!
-        
-        CGRect bottomRect = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1);
-        bottom = [SKNode node];
-        bottom.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:bottomRect];
-     //   [self addChild:bottom];
-        
-        bottom.physicsBody.categoryBitMask = bottomCategory;
-        ball.physicsBody.categoryBitMask = ballCategory;
-        paddle.physicsBody.categoryBitMask = paddleCategory;
-        
-        ball.physicsBody.contactTestBitMask = bottomCategory | blockCategory | superBlockCategory | paddleCategory;
+        [self addSkulls];
         
         self.physicsWorld.contactDelegate = self;
 
@@ -184,79 +137,144 @@ bool targetHit;
     
   //  NSLog(@"tap down = %f %f", self.firstPoint.x, self.firstPoint.y);
    // NSLog(@"origin = %f %f", self.lastPoint.x, self.lastPoint.y);
-    NSLog(@"tapVector = %f %f", tapVector.x, tapVector.y);
     
-    self.ballVelocityX = speedScale*tapVector.x;
-    self.ballVelocityY = -speedScale*tapVector.y;
+    double magnitude = sqrt(tapVector.x * tapVector.x + tapVector.y * tapVector.y);
     
-    [ball.physicsBody applyImpulse:CGVectorMake(self.ballVelocityX, self.ballVelocityY)];
+    NSLog(@"tapVector = %f %f", tapVector.x/magnitude, tapVector.y/magnitude);
+
+    self.ballVelocityX = speedScale*tapVector.x/magnitude;
+    self.ballVelocityY = -speedScale*tapVector.y/magnitude;
+
+    [self.ballNode.physicsBody applyImpulse:CGVectorMake(self.ballVelocityX, self.ballVelocityY)];
     
-    blocksHit++;
-    self.blocksHitLabel.text = [NSString stringWithFormat:@"Turns: %d", blocksHit];;
+    turnNumber++;
+    self.turnNumberLabel.text = [NSString stringWithFormat:@"Turns: %d", turnNumber];
     
-    gameStarted = true;
+    firstTouchEnded = true;
     
 }
 
 -(void)initBallPosition
 {
-    ball.position = CGPointMake(initBallX, initBallY);
-    ball.physicsBody.velocity = CGVectorMake(0, 0);
+    self.ballNode.position = CGPointMake(initBallX, initBallY);
+    self.ballNode.physicsBody.velocity = CGVectorMake(0, 0);
     [self.view setUserInteractionEnabled:YES];
 }
 
+-(void)addBall
+{
+    self.ballNode = [SKSpriteNode spriteNodeWithImageNamed: self.ballString];
+    self.ballNode.name = @"ball";
+    self.ballNode.position = CGPointMake(initBallX, initBallY);
+    self.ballNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ballNode.frame.size.width/2];
+    self.ballNode.physicsBody.friction = 0.0f;
+    self.ballNode.physicsBody.linearDamping = 0.5f;
+    self.ballNode.physicsBody.allowsRotation = YES;
+    self.ballNode.physicsBody.affectedByGravity = NO;
+    self.ballNode.physicsBody.density = 10.0;
+    self.ballNode.physicsBody.dynamic = YES;                        // If no, ball can get pushed off screen!
+    self.ballNode.physicsBody.categoryBitMask = ballCategory;
+  //  self.ballNode.physicsBody.contactTestBitMask =  ballCategory | diamondCategory | skullCategory;
+    [self addChild:self.ballNode];
+}
 
--(void)addObstacle {
+-(void)addObstacles {
     
-    SKSpriteNode *superBlock = [SKSpriteNode spriteNodeWithImageNamed: self.superBlockString];
+    self.obstacleNode = [SKSpriteNode spriteNodeWithImageNamed: self.obstacleString];
     
-    int minX = superBlock.size.width / 2;
-    int maxX = self.frame.size.width - superBlock.size.width / 2;
+    int minX = self.obstacleNode.size.width / 2;
+    int maxX = self.frame.size.width - self.obstacleNode.size.width / 2;
     int rangeX = maxX - minX;
     int actualXStart = (arc4random() % rangeX) + minX;
     
-    superBlock.position = CGPointMake(.5*self.frame.size.width, .5*self.frame.size.height);
-    superBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:superBlock.frame.size];
-    superBlock.physicsBody.allowsRotation = NO;
-    superBlock.physicsBody.friction = 0.0f;
-    superBlock.physicsBody.velocity = CGVectorMake(0, 0);
-    superBlock.name = superBlockCategoryName;
-    superBlock.physicsBody.categoryBitMask = superBlockCategory;
-    superBlock.physicsBody.contactTestBitMask = bottomCategory | paddleCategory;
-    superBlock.physicsBody.affectedByGravity = NO;
-    superBlock.physicsBody.density = 10000.0;
-    superBlock.physicsBody.restitution = 1.0;
-    [self addChild:superBlock];
+    self.obstacleNode.position = CGPointMake(.5*self.frame.size.width, .5*self.frame.size.height);
+    self.obstacleNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.obstacleNode.frame.size];
+    self.obstacleNode.physicsBody.allowsRotation = NO;
+    self.obstacleNode.physicsBody.friction = 0.0f;
+    self.obstacleNode.physicsBody.velocity = CGVectorMake(0, 0);
+    self.obstacleNode.name = @"obstacle";
+    self.obstacleNode.physicsBody.categoryBitMask = obstacleCategory;
+    self.obstacleNode.physicsBody.contactTestBitMask = obstacleCategory;
+    self.obstacleNode.physicsBody.affectedByGravity = NO;
+    self.obstacleNode.physicsBody.density = 10000.0;
+    self.obstacleNode.physicsBody.restitution = 1.0;
+    [self addChild:self.obstacleNode];
     
 }
 
--(void)addTarget {
+-(void)addDiamonds:(int)count {
     
-    SKSpriteNode *regBlock = [SKSpriteNode spriteNodeWithImageNamed: self.ballString];
+    for (int i = 0; i < count; i++) {
+        
+        int minX = self.diamondNode.size.width / 2;
+        int maxX = self.frame.size.width - self.diamondNode.size.height / 2;
+        int rangeX = maxX - minX;
+        int actualXStart = (arc4random() % rangeX) + minX;
+        
+        int minY = self.diamondNode.size.width / 2;
+        int maxY = self.frame.size.height - self.diamondNode.size.height / 2;
+        int rangeY = maxY - minY;
+        int actualYStart = (arc4random() % rangeY) + minY;
+        
+        self.diamondNode = [SKSpriteNode spriteNodeWithImageNamed: self.diamondString];
+        self.diamondNode.position = CGPointMake(0.8*self.frame.size.width, 0.8*self.frame.size.height);
+        self.diamondNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.diamondNode.frame.size.width/2];
+        self.diamondNode.physicsBody.allowsRotation = NO;
+        self.diamondNode.physicsBody.friction = 0.0f;
+        self.diamondNode.physicsBody.velocity = CGVectorMake(0, 0);
+        self.diamondNode.name = @"diamond";
+        self.diamondNode.physicsBody.categoryBitMask = diamondCategory;
+        self.diamondNode.physicsBody.contactTestBitMask = ballCategory;
+        self.diamondNode.physicsBody.affectedByGravity = NO;
+        self.diamondNode.physicsBody.density = .001;
+        [self addChild:self.diamondNode];
+        
+        self.diamondNode = [SKSpriteNode spriteNodeWithImageNamed: self.diamondString];
+        self.diamondNode.position = CGPointMake(0.2*self.frame.size.width, 0.4*self.frame.size.height);
+        self.diamondNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.diamondNode.frame.size.width/2];
+        self.diamondNode.physicsBody.allowsRotation = NO;
+        self.diamondNode.physicsBody.friction = 0.0f;
+        self.diamondNode.physicsBody.velocity = CGVectorMake(0, 0);
+        self.diamondNode.name = @"diamond";
+        self.diamondNode.physicsBody.categoryBitMask = diamondCategory;
+        self.diamondNode.physicsBody.contactTestBitMask = ballCategory;
+        self.diamondNode.physicsBody.affectedByGravity = NO;
+        self.diamondNode.physicsBody.density = .001;
+        [self addChild:self.diamondNode];
+
+    }
     
-    int minX = regBlock.size.width / 2;
-    int maxX = self.frame.size.width - regBlock.size.width / 2;
-    int rangeX = maxX - minX;
-    int actualXStart = (arc4random() % rangeX) + minX;
+}
+
+-(void)addSkulls
+{
+    self.skullNode = [[SKSpriteNode alloc] initWithImageNamed: self.skullString];
+    self.skullNode.name = @"skull";
+    self.skullNode.position = CGPointMake(0.2*self.frame.size.width, 0.9*self.frame.size.height);
+    self.skullNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.skullNode.frame.size];
+    self.skullNode.physicsBody.friction = 0.0f;
+    self.skullNode.physicsBody.density = 10000;
+    self.skullNode.physicsBody.allowsRotation = NO;
+    self.skullNode.physicsBody.categoryBitMask = skullCategory;
+    self.skullNode.physicsBody.contactTestBitMask = ballCategory;
+    [self addChild:self.skullNode];
     
-    regBlock.position = CGPointMake(0.8*self.frame.size.width, 0.8*self.frame.size.height);
-    regBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:regBlock.frame.size];
-    regBlock.physicsBody.allowsRotation = NO;
-    regBlock.physicsBody.friction = 0.0f;
-    regBlock.physicsBody.velocity = CGVectorMake(0, 0);
-    regBlock.name = blockCategoryName;
-    regBlock.physicsBody.categoryBitMask = blockCategory;
-    regBlock.physicsBody.contactTestBitMask = ballCategory;
-    regBlock.physicsBody.affectedByGravity = NO;
-    regBlock.physicsBody.density = .01;
-    [self addChild:regBlock];
-    
+    self.skullNode = [[SKSpriteNode alloc] initWithImageNamed: self.skullString];
+    self.skullNode.name = @"skull";
+    self.skullNode.position = CGPointMake(0.8*self.frame.size.width, 0.1*self.frame.size.height);
+    self.skullNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.skullNode.frame.size];
+    self.skullNode.physicsBody.friction = 0.0f;
+    self.skullNode.physicsBody.density = 10000;
+    self.skullNode.physicsBody.allowsRotation = NO;
+    self.skullNode.physicsBody.categoryBitMask = skullCategory;
+    self.skullNode.physicsBody.contactTestBitMask = ballCategory;
+    [self addChild:self.skullNode];
 }
 
 
 /*
 -(void)addRowOfBlocks {
-    
+ 
     int numberOfBlocks = 3;
     int blockWidth = [SKSpriteNode spriteNodeWithImageNamed: self.blockString].size.width;
     float padding = 20.0f;
@@ -295,84 +313,40 @@ bool targetHit;
         secondBody = contact.bodyA;
     }
     
-    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == bottomCategory) {
-
-        livesRemaining--;
-        
-        if(livesRemaining <= 0) {
-
-         //   [self gameOver];
-        
-        }
-    }
-    
-    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == paddleCategory) {
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == skullCategory) {
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isSoundOn"]) {
             
             [self runAction:[SKAction playSoundFileNamed:@"pop.mp3" waitForCompletion:NO]];
-            
         }
-
-        if (ball.position.x > paddle.position.x + .3*paddle.size.width) {
-            
-            NSLog(@"right");
-            [ball.physicsBody applyImpulse:CGVectorMake(30.0f, 0.0f)];
-
+        for (SKNode* node in self.children) {
+            if ([node.name isEqual:@"diamond"]) {
+                [node removeFromParent];
+            }
         }
-        
-        if (ball.position.x < paddle.position.x - .3*paddle.size.width) {
-            
-            NSLog(@"left");
-            [ball.physicsBody applyImpulse:CGVectorMake(-30.0f, 0.0f)];
-            
-        }
-        
+        numDiamondsHit = 0;
+        [self addDiamonds:1];
+        [self initBallPosition];
     }
 
-    
-    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == blockCategory) {
-        
+    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == diamondCategory) {
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isSoundOn"]) {
             
             [self runAction:[SKAction playSoundFileNamed:@"pop.mp3" waitForCompletion:NO]];
 
         }
-        targetHit = true;
+        numDiamondsHit++;
+        NSLog(@"number of diamonds hit = %d", numDiamondsHit);
         [secondBody.node removeFromParent];
         
-     //   blocksHit++;
-     //   NSString *blockString = [NSString stringWithFormat:@"Turns: %d", blocksHit];
-     //   self.blocksHitLabel.text = blockString;
+     //   NSString *blockString = [NSString stringWithFormat:@"Turns: %d", turnNumber];
+     //   self.turnNumberLabel.text = blockString;
 
     }
     
-    if (firstBody.categoryBitMask == bottomCategory && secondBody.categoryBitMask == blockCategory) {
-
-    //    [self gameOver];
-        
-    }
     
-    if (firstBody.categoryBitMask == blockCategory && secondBody.categoryBitMask == paddleCategory) {
-        
-    //    [self gameOver];
-        
-    }
-    
-    if (firstBody.categoryBitMask == bottomCategory && secondBody.categoryBitMask == superBlockCategory) {
-        
-    //    [self gameOver];
-        
-    }
-    
-    if (firstBody.categoryBitMask == paddleCategory && secondBody.categoryBitMask == superBlockCategory) {
-        
-    //    [self gameOver];
-        
-    }
-    
-    if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == superBlockCategory) {
+  //  if (firstBody.categoryBitMask == ballCategory && secondBody.categoryBitMask == superBlockCategory) {
         
     /*    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isSoundOn"]) {
             
@@ -381,7 +355,7 @@ bool targetHit;
         }
         [secondBody.node removeFromParent];
         [ball.physicsBody applyImpulse:CGVectorMake(0.0f, -5.0f)];
-        blocksHit++;
+        turnNumber++;
         
         int numberOfBricksBefore = 0;
         for (SKNode* node in self.children) {
@@ -391,23 +365,23 @@ bool targetHit;
         }
 
         for (SKNode* node in self.children) {
-            if ([node.name isEqual: blockCategoryName] || [node.name isEqual: superBlockCategoryName]) {
+            if ([node.name isEqual: blockCategoryName] || [node.name isEqual: obstacleCategoryName]) {
                 [node removeFromParent];
             }
         }
         
         int numberOfBricksAfter = 0;
         for (SKNode* node in self.children) {
-            if ([node.name isEqual: blockCategoryName] || [node.name isEqual: superBlockCategoryName]) {
+            if ([node.name isEqual: blockCategoryName] || [node.name isEqual: obstacleCategoryName]) {
                 numberOfBricksAfter++;
             }
         }
         
-        blocksHit = blocksHit + numberOfBricksBefore - numberOfBricksAfter;
-        NSString *blockString = [NSString stringWithFormat:@"Turns: %d", blocksHit];
-        self.blocksHitLabel.text = blockString; */
+        turnNumber = turnNumber + numberOfBricksBefore - numberOfBricksAfter;
+        NSString *blockString = [NSString stringWithFormat:@"Turns: %d", turnNumber];
+        self.turnNumberLabel.text = blockString; */
         
-    }
+ //   }
 }
 
 
@@ -415,7 +389,7 @@ bool targetHit;
     
     [self.blockTimer invalidate];
     [self.superBlockTimer invalidate];
-    [[NSUserDefaults standardUserDefaults] setInteger:blocksHit forKey:@"lastGameScore"];
+    [[NSUserDefaults standardUserDefaults] setInteger:turnNumber forKey:@"lastGameScore"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOverNotification" object:self];
@@ -424,7 +398,7 @@ bool targetHit;
     
 }
 
-
+/*
 -(BOOL) isGameWon {
     int numberOfBricks = 0;
     for (SKNode* node in self.children) {
@@ -434,30 +408,39 @@ bool targetHit;
     }
     return numberOfBricks <= 0;  // if numberOfBricks <= 0, return true
 }
+ */
 
 -(void)update:(CFTimeInterval)currentTime {
     
     /* Called before each frame is rendered */
-    SKNode* ball2 = [self childNodeWithName: ballCategoryName];
+    SKNode* ball2 = [self childNodeWithName:@"ball"];
 
     float speed = sqrt(ball2.physicsBody.velocity.dx*ball2.physicsBody.velocity.dx + ball2.physicsBody.velocity.dy * ball2.physicsBody.velocity.dy);
     
   //  NSLog(@"speed = %f", speed);
     
-    if (gameStarted == true)
+    if (firstTouchEnded == true)
     {
         if (speed < stopSpeed)
         {
-            gameStarted = false;
+            firstTouchEnded = false;
             [self initBallPosition];
             
-            if (targetHit)
-            {
-                [self addTarget];
-                targetHit = false;
-                blocksHit = 0;
-                self.blocksHitLabel.text = @"Turns: 0";
+            for (SKNode* node in self.children) {
+                if ([node.name isEqual:@"diamond"]) {
+                    [node removeFromParent];
+                }
             }
+            
+            [self addDiamonds:1];
+            
+            if (numDiamondsHit == 2)
+            {
+                turnNumber = 0;
+                self.turnNumberLabel.text = [NSString stringWithFormat:@"Turns: %d", turnNumber];
+            }
+            
+            numDiamondsHit = 0;
         }
     }
     
