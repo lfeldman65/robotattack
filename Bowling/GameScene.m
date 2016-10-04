@@ -20,9 +20,6 @@ static const uint32_t obstacleCategory = 0x1 << 3;
 
 @end
 
-static inline CGPoint rwSub(CGPoint a, CGPoint b) {
-    return CGPointMake(a.x - b.x, a.y - b.y);
-}
 
 @implementation GameScene
 
@@ -133,17 +130,21 @@ bool skullHit;
     [self.view setUserInteractionEnabled:NO];
     CGPoint initPoint = CGPointMake(0.5*self.frame.size.width, 0.9*self.frame.size.height);
     
-    CGPoint tapVector = rwSub(self.touchPoint, initPoint);
+    CGPoint tapVector = [self differenceVector:self.touchPoint point2:initPoint];
+    
+    //rwSub(self.touchPoint, initPoint);
     
   //  NSLog(@"tap down = %f %f", self.firstPoint.x, self.firstPoint.y);
    // NSLog(@"origin = %f %f", self.lastPoint.x, self.lastPoint.y);
     
-    double magnitude = sqrt(tapVector.x * tapVector.x + tapVector.y * tapVector.y);
+  //  double magnitude = sqrt(tapVector.x * tapVector.x + tapVector.y * tapVector.y);
     
-    NSLog(@"tapVector = %f %f", tapVector.x/magnitude, tapVector.y/magnitude);
+    double mag = [self vectorMagnitude:tapVector];
+    
+    NSLog(@"tapVector = %f %f", tapVector.x/mag, tapVector.y/mag);
 
-    self.ballVelocityX = speedScale*tapVector.x/magnitude;
-    self.ballVelocityY = -speedScale*tapVector.y/magnitude;
+    self.ballVelocityX = speedScale*tapVector.x/mag;
+    self.ballVelocityY = -speedScale*tapVector.y/mag;
 
     [self.ballNode.physicsBody applyImpulse:CGVectorMake(self.ballVelocityX, self.ballVelocityY)];
     
@@ -208,14 +209,12 @@ bool skullHit;
         
         int minX = self.diamondNode.size.width / 2;
         int maxX = self.frame.size.width - self.diamondNode.size.height / 2;
-        int rangeX = maxX - minX;
-        int actualXStart = (arc4random() % rangeX) + minX;
+        int actualX = [self random:minX max:maxX];
         
         int minY = self.diamondNode.size.width / 2;
         int maxY = self.frame.size.height - self.diamondNode.size.height / 2;
-        int rangeY = maxY - minY;
-        int actualYStart = (arc4random() % rangeY) + minY;
-        
+        int actualY = [self random:minY max:maxY];
+
         self.diamondNode = [SKSpriteNode spriteNodeWithImageNamed: self.diamondString];
         self.diamondNode.position = CGPointMake(0.8*self.frame.size.width, 0.8*self.frame.size.height);
         self.diamondNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.diamondNode.frame.size.width/2];
@@ -493,5 +492,32 @@ bool skullHit;
         
     }
 }
+
+-(double)distance:(CGPoint)point1 point2:(CGPoint)point2
+{
+    double distance = sqrt((point1.x - point2.x)*(point1.x - point2.x) + (point1.y - point2.y)*(point1.y - point2.y));
+    return distance;
+}
+
+
+-(CGPoint)differenceVector:(CGPoint)point1 point2:(CGPoint)point2
+{
+    CGPoint vector = CGPointMake(point1.x - point2.x, point1.y - point2.y);
+    return vector;
+}
+
+-(double)vectorMagnitude:(CGPoint)vector;
+{
+    double mag = sqrt(vector.x * vector.x + vector.y * vector.y);
+    return mag;
+}
+
+-(int)random:(int)min max:(int)max
+{
+    int range = max - min;
+    int random = (arc4random() % range) + min;
+    return random;
+}
+
 
 @end
