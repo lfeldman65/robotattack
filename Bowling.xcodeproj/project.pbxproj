@@ -51,6 +51,8 @@
 		11C1BF251B1E1B5400DF06A0 /* iconlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 11C1BF241B1E1B5400DF06A0 /* iconlarge.png */; };
 		11C1BF271B1E2BC600DF06A0 /* assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 11C1BF261B1E2BC600DF06A0 /* assets.atlas */; };
 		11E153CB1B16B25C00619239 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E153CA1B16B25C00619239 /* SettingsViewController.m */; };
+		514D2A161DBEA57C00A96118 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A151DBEA57C00A96118 /* CollectionViewController.m */; };
+		514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A181DBEA59900A96118 /* CollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,10 @@
 		11C1BF261B1E2BC600DF06A0 /* assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = assets.atlas; sourceTree = "<group>"; };
 		11E153C91B16B25C00619239 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		11E153CA1B16B25C00619239 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		514D2A141DBEA57C00A96118 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		514D2A151DBEA57C00A96118 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		514D2A171DBEA59900A96118 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		514D2A181DBEA59900A96118 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +154,7 @@
 			children = (
 				11C1BEF31B179AF300DF06A0 /* StoreKit.framework */,
 				110E80C21B168D0900DF989C /* iAd.framework */,
-				110E80751B161B4000DF989C /* Bowling */,
+				110E80751B161B4000DF989C /* Golden Trail */,
 				110E80941B161B4100DF989C /* BowlingTests */,
 				110E80741B161B4000DF989C /* Products */,
 			);
@@ -163,13 +169,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		110E80751B161B4000DF989C /* Bowling */ = {
+		110E80751B161B4000DF989C /* Golden Trail */ = {
 			isa = PBXGroup;
 			children = (
 				11C1BF261B1E2BC600DF06A0 /* assets.atlas */,
+				110E80851B161B4100DF989C /* Main.storyboard */,
 				110E807A1B161B4000DF989C /* AppDelegate.h */,
 				110E807B1B161B4000DF989C /* AppDelegate.m */,
-				110E80851B161B4100DF989C /* Main.storyboard */,
+				514D2A141DBEA57C00A96118 /* CollectionViewController.h */,
+				514D2A151DBEA57C00A96118 /* CollectionViewController.m */,
+				514D2A171DBEA59900A96118 /* CollectionViewCell.h */,
+				514D2A181DBEA59900A96118 /* CollectionViewCell.m */,
 				110E80821B161B4100DF989C /* GameViewController.h */,
 				110E80831B161B4100DF989C /* GameViewController.m */,
 				110E807D1B161B4100DF989C /* GameScene.h */,
@@ -185,6 +195,7 @@
 				110E808A1B161B4100DF989C /* LaunchScreen.xib */,
 				110E80761B161B4000DF989C /* Supporting Files */,
 			);
+			name = "Golden Trail";
 			path = Bowling;
 			sourceTree = "<group>";
 		};
@@ -398,6 +409,8 @@
 				110E80C01B16863700DF989C /* GameCenterManager.m in Sources */,
 				110E80BE1B16863700DF989C /* Reachability.m in Sources */,
 				110E80BF1B16863700DF989C /* NSDataAES256.m in Sources */,
+				514D2A161DBEA57C00A96118 /* CollectionViewController.m in Sources */,
+				514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */,
 				110E80791B161B4000DF989C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
