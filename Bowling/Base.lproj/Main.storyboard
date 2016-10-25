@@ -192,7 +192,7 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="s2H-7v-chg">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="2Fn-86-XCr"/>
+                                    <constraint firstAttribute="height" constant="280" id="2Fn-86-XCr"/>
                                     <constraint firstAttribute="width" constant="260" id="FJP-IC-bN6"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="676-cC-MrW">
@@ -239,12 +239,20 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5b-7m-Ygc">
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="7YI-KG-sjj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="top" secondItem="AzP-0c-PJL" secondAttribute="bottom" constant="36" id="3ku-49-T5q"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="GPl-tM-Wxt"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="IB2-mD-w94"/>
+                            <constraint firstItem="Q5b-7m-Ygc" firstAttribute="top" secondItem="7Cc-kL-TM6" secondAttribute="bottom" constant="20" id="Xqf-ij-li8"/>
+                            <constraint firstItem="Q5b-7m-Ygc" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="p7w-DT-Jmk"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="top" secondItem="s2H-7v-chg" secondAttribute="bottom" constant="2" id="wZB-1H-qbY"/>
                         </constraints>
                     </view>

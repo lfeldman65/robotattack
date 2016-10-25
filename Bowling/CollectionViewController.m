@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *level1;
 @property (nonatomic, strong) NSMutableArray *level2;
 @property (nonatomic, strong) NSMutableArray *levels1To2;
+- (IBAction)resetPressed:(id)sender;
 
 @end
 
@@ -29,7 +30,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     [self configureLevel];
     self.myCollectionView.allowsMultipleSelection = true;
-    tilesRemaining = 13;
+    tilesRemaining = 11;
     self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
 
 }
@@ -67,17 +68,27 @@ static NSString * const reuseIdentifier = @"Cell";
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor greenColor]; // default
     
+    for(NSIndexPath *ip in self.level1)
+    {
+        if(indexPath.section == ip.section && indexPath.row == ip.row)
+        {
+            cell.backgroundColor = [UIColor yellowColor];
+            cell.textLable.text = @"";
+            cell.selected = true;
+        }
+    }
+    
     if(indexPath.section == 7 && indexPath.row == 0)
     {
-        cell.backgroundColor = [UIColor yellowColor];  // start
         cell.textLable.text = @"Start";
     }
     
     if(indexPath.section == 0 && indexPath.row == 7)
     {
-        cell.backgroundColor = [UIColor yellowColor];  // end
         cell.textLable.text = @"End";
     }
+    
+    
     
     return cell;
 }
@@ -97,7 +108,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
         if(!tilesRemaining)
         {
-            if([self didWin])
+            if([self didWin:collectionView])
             {
                 self.tilesRemaining.text = @"You won!";
             }
@@ -115,6 +126,13 @@ static NSString * const reuseIdentifier = @"Cell";
         cell.backgroundColor = [UIColor greenColor];
         tilesRemaining++;
         self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
+        if(!tilesRemaining)
+        {
+            if([self didWin:collectionView])
+            {
+                self.tilesRemaining.text = @"You won!";
+            }
+        }
     }
 }
 
@@ -130,14 +148,110 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(1, 1, 1, 1);
 }
 
--(BOOL)didWin
+-(BOOL)didWin:(UICollectionView *)collectionView
 {
+    UICollectionViewCell *cell;
+    UICollectionViewCell *cellLeft;
+    UICollectionViewCell *cellRight;
+    UICollectionViewCell *cellAbove;
+    UICollectionViewCell *cellBelow;
+
+    NSIndexPath *ip;
+    NSIndexPath *ipLeft;
+    NSIndexPath *ipRight;
+    NSIndexPath *ipAbove;
+    NSIndexPath *ipBelow;
+    
+    for(int section = 0; section < 8; section++)
+    {
+        for (int row = 0; row < 8; row++)
+        {
+            int neighbors = 0;
+            ip = [NSIndexPath indexPathForRow:row inSection:section];
+            ipLeft = [NSIndexPath indexPathForRow:row-1 inSection:section];
+            ipRight = [NSIndexPath indexPathForRow:row+1 inSection:section];
+            ipAbove = [NSIndexPath indexPathForRow:row inSection:section+1];
+            ipBelow = [NSIndexPath indexPathForRow:row inSection:section-1];
+
+            cell = [collectionView cellForItemAtIndexPath:ip];
+            cellLeft = [collectionView cellForItemAtIndexPath:ipLeft];
+            cellRight = [collectionView cellForItemAtIndexPath:ipRight];
+            cellAbove = [collectionView cellForItemAtIndexPath:ipAbove];
+            cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
+            
+            if(row == 0 && section == 7)  // Make sure start cell has exactly 1 neighbor
+            {
+                ipRight = [NSIndexPath indexPathForRow:1 inSection:7];
+                cellRight = [collectionView cellForItemAtIndexPath:ipRight];
+                
+                ipAbove = [NSIndexPath indexPathForRow:0 inSection:6];
+                cellAbove = [collectionView cellForItemAtIndexPath:ipAbove];
+                
+                if(cellRight.selected && cellAbove.selected)    // can't have both cells highlighted
+                {
+                    return false;
+                }
+                
+                if(!cellRight.selected && !cellAbove.selected) {  // can't have both cells empty
+                    
+                    return false;
+                }
+            }
+            
+            else if(row == 7 && section == 0)  // Make sure end cell has exactly 2 neighbor
+            {
+                ipLeft = [NSIndexPath indexPathForRow:1 inSection:7];
+                cellLeft = [collectionView cellForItemAtIndexPath:ipLeft];
+                
+                ipBelow = [NSIndexPath indexPathForRow:0 inSection:6];
+                cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
+                
+                if(cellLeft.selected && cellBelow.selected)     // can't have both cells highlighted
+                {
+                    return false;
+                }
+                
+                if(!cellLeft.selected && !cellBelow.selected)   // can't have both cells empty
+
+                {
+                    return false;
+                }
+            }
+            
+            else if(cell.selected)
+            {
+                if(cellLeft.selected)
+                {
+                    neighbors++;
+                }
+                
+                if(cellRight.selected)
+                {
+                    neighbors++;
+                }
+                
+                if(cellAbove.selected)
+                {
+                    neighbors++;
+                }
+                
+                if(cellBelow.selected)
+                {
+                    neighbors++;
+                }
+                if (neighbors != 2)
+                {
+                    return false;
+                }
+            }
+        }
+    }
+  //  [self.view setUserInteractionEnabled:NO];
     return true;
 }
 
@@ -154,6 +268,15 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.tileIndex = [NSIndexPath indexPathForRow:0 inSection:7];    // end
     [self.level1 addObject:self.tileIndex];
+}
+
+- (IBAction)resetPressed:(id)sender
+{
+    /*
+    [self configureLevel];
+    tilesRemaining = 11;
+    self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
+     */
 }
 
 
@@ -185,5 +308,6 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
 
 @end
