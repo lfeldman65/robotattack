@@ -10,4 +10,22 @@
 
 @implementation CollectionViewCell
 
+-(void)awakeFromNib
+{
+    // background color
+    
+    [super awakeFromNib];
+  //  UIView *bgView = [[UIView alloc]initWithFrame:self.bounds];
+ //   self.backgroundView = bgView;
+  //  self.backgroundView.backgroundColor = [UIColor greenColor];
+    
+    // selected background
+    
+    UIView *selectedView = [[UIView alloc]initWithFrame:self.bounds];
+ //   self.selectedBackgroundView = selectedView;
+ //   self.selectedBackgroundView.backgroundColor = [UIColor yellowColor];
+
+    
+}
+
 @end
