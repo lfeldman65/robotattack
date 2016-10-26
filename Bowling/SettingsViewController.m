@@ -28,6 +28,12 @@
 @implementation SettingsViewController
 
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -98,18 +104,12 @@
 }
 
 
-- (IBAction)backPressed:(id)sender {
-    
-    [self.delegate settingsDidFinish:self];
-    
+- (IBAction)backPressed:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-
-}
 
 
 - (IBAction)soundSwitched:(id)sender {

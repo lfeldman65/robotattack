@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		110E80791B161B4000DF989C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E80781B161B4000DF989C /* main.m */; };
 		110E807C1B161B4000DF989C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E807B1B161B4000DF989C /* AppDelegate.m */; };
-		110E807F1B161B4100DF989C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E807E1B161B4100DF989C /* GameScene.m */; };
 		110E80811B161B4100DF989C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 110E80801B161B4100DF989C /* GameScene.sks */; };
 		110E80841B161B4100DF989C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E80831B161B4100DF989C /* GameViewController.m */; };
 		110E80871B161B4100DF989C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 110E80851B161B4100DF989C /* Main.storyboard */; };
@@ -71,8 +70,6 @@
 		110E80781B161B4000DF989C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		110E807A1B161B4000DF989C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		110E807B1B161B4000DF989C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		110E807D1B161B4100DF989C /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		110E807E1B161B4100DF989C /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		110E80801B161B4100DF989C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		110E80821B161B4100DF989C /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		110E80831B161B4100DF989C /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
@@ -176,14 +173,12 @@
 				110E80851B161B4100DF989C /* Main.storyboard */,
 				110E807A1B161B4000DF989C /* AppDelegate.h */,
 				110E807B1B161B4000DF989C /* AppDelegate.m */,
+				110E80821B161B4100DF989C /* GameViewController.h */,
+				110E80831B161B4100DF989C /* GameViewController.m */,
 				514D2A141DBEA57C00A96118 /* CollectionViewController.h */,
 				514D2A151DBEA57C00A96118 /* CollectionViewController.m */,
 				514D2A171DBEA59900A96118 /* CollectionViewCell.h */,
 				514D2A181DBEA59900A96118 /* CollectionViewCell.m */,
-				110E80821B161B4100DF989C /* GameViewController.h */,
-				110E80831B161B4100DF989C /* GameViewController.m */,
-				110E807D1B161B4100DF989C /* GameScene.h */,
-				110E807E1B161B4100DF989C /* GameScene.m */,
 				11E153C91B16B25C00619239 /* SettingsViewController.h */,
 				11E153CA1B16B25C00619239 /* SettingsViewController.m */,
 				11C1BEF11B179AC200DF06A0 /* Shop.h */,
@@ -405,7 +400,6 @@
 				110E807C1B161B4000DF989C /* AppDelegate.m in Sources */,
 				11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */,
 				11E153CB1B16B25C00619239 /* SettingsViewController.m in Sources */,
-				110E807F1B161B4100DF989C /* GameScene.m in Sources */,
 				110E80C01B16863700DF989C /* GameCenterManager.m in Sources */,
 				110E80BE1B16863700DF989C /* Reachability.m in Sources */,
 				110E80BF1B16863700DF989C /* NSDataAES256.m in Sources */,

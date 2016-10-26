@@ -1,10 +1,9 @@
 //
 //  CollectionViewController.m
-//  Bowling
+//  Golden Trail
 //
-//  Created by Maurice on 10/24/16.
 //  Copyright © 2016 Larry Feldman. All rights reserved.
-//
+
 
 #import "CollectionViewController.h"
 #import "CollectionViewCell.h"
@@ -13,9 +12,13 @@
 
 @property (nonatomic, strong) NSIndexPath *tileIndex;
 @property (nonatomic, strong) NSMutableArray *level1;
-@property (nonatomic, strong) NSMutableArray *level2;
-@property (nonatomic, strong) NSMutableArray *levels1To2;
+@property (nonatomic, strong) NSTimer *levelTimer;
+@property (assign,nonatomic)  int secondsElapsed;
+
+
+
 - (IBAction)resetPressed:(id)sender;
+- (IBAction)backPressed:(id)sender;
 
 @end
 
@@ -30,15 +33,22 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     [self configureLevel];
     self.myCollectionView.allowsMultipleSelection = true;
-    tilesRemaining = 11;
+    tilesRemaining = 18;
     self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
-
+    self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeElapsed) userInfo:nil repeats:YES];
+    self.secondsElapsed = 0;
+    
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
+    if (best == 10000000)
+    {
+        self.bestTime.text = @"Best Time: Never Completed";
+        
+    } else {
+    
+        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation
@@ -66,18 +76,16 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {    
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor]; // default
-    
+    cell.selected = NO;
+
     for(NSIndexPath *ip in self.level1)
     {
         if(indexPath.section == ip.section && indexPath.row == ip.row)
         {
-            cell.backgroundColor = [UIColor yellowColor];
-            cell.textLable.text = @"";
+            cell.textLable.text = @"L";
             cell.selected = true;
         }
     }
-    
     if(indexPath.section == 7 && indexPath.row == 0)
     {
         cell.textLable.text = @"Start";
@@ -88,7 +96,14 @@ static NSString * const reuseIdentifier = @"Cell";
         cell.textLable.text = @"End";
     }
     
-    
+    if(cell.selected)
+    {
+        cell.backgroundColor = [UIColor yellowColor];
+        
+    } else {
+        
+        cell.backgroundColor = [UIColor greenColor];
+    }
     
     return cell;
 }
@@ -203,7 +218,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 }
             }
             
-            else if(row == 7 && section == 0)  // Make sure end cell has exactly 2 neighbor
+            else if(row == 7 && section == 0)  // Make sure end cell has exactly 2 neighbors
             {
                 ipLeft = [NSIndexPath indexPathForRow:1 inSection:7];
                 cellLeft = [collectionView cellForItemAtIndexPath:ipLeft];
@@ -252,6 +267,19 @@ static NSString * const reuseIdentifier = @"Cell";
         }
     }
   //  [self.view setUserInteractionEnabled:NO];
+    [self.levelTimer invalidate];
+    
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
+    
+    if (self.secondsElapsed < best)
+    {
+        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)self.secondsElapsed];
+        [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:@"bestTime"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    //    [[GameCenterManager sharedManager] saveAndReportScore:(int)lastGame leaderboard:@"assaultHighScore" sortOrder:GameCenterSortOrderHighToLow];
+        
+    }
     return true;
 }
 
@@ -263,6 +291,18 @@ static NSString * const reuseIdentifier = @"Cell";
     self.tileIndex = [NSIndexPath indexPathForRow:5 inSection:3];
     [self.level1 addObject:self.tileIndex];
     
+    self.tileIndex = [NSIndexPath indexPathForRow:0 inSection:3];
+    [self.level1 addObject:self.tileIndex];
+
+    self.tileIndex = [NSIndexPath indexPathForRow:2 inSection:2];
+    [self.level1 addObject:self.tileIndex];
+
+    self.tileIndex = [NSIndexPath indexPathForRow:4 inSection:4];
+    [self.level1 addObject:self.tileIndex];
+    
+ //   self.tileIndex = [NSIndexPath indexPathForRow:6 inSection:4];
+ //   [self.level1 addObject:self.tileIndex];
+    
     self.tileIndex = [NSIndexPath indexPathForRow:2 inSection:5];
     [self.level1 addObject:self.tileIndex];
     
@@ -272,13 +312,22 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (IBAction)resetPressed:(id)sender
 {
-    /*
+    [self.myCollectionView reloadData];
     [self configureLevel];
     tilesRemaining = 11;
     self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
-     */
 }
 
+- (IBAction)backPressed:(id)sender
+{    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) timeElapsed
+{
+    self.secondsElapsed++;
+    self.timeLabel.text = [NSString stringWithFormat:@"Time: %d sec", self.secondsElapsed];
+}
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -309,5 +358,9 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

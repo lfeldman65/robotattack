@@ -16,26 +16,14 @@
     
     [super viewDidLoad];
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(checkGameOver:)
-                                                 name:@"gameOverNotification"
-                                               object:nil];
-    
-  /*  [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(soundChanged:)
-                                                 name:@"soundDidChange"
-                                               object:nil];*/
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"]) {
-        
-        NSString *infoString = @"Block Assault is the love child of Space Invaders and Breakout. Please go to the Settings screen to read the full instructions.";
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"])
+    {
+        NSString *infoString = @"Create a Golden Trail that connects the start tile to the end tile. Please go to the Settings screen to read the full instructions.";
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome!" message:infoString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"wasGameLaunched"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
     }
     
     NSString *lGS = [NSString stringWithFormat:@"Last Game: %ld", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"lastGameScore"]];
@@ -90,10 +78,6 @@
     [self.bgImage setFrame:CGRectMake(0, 0, sWidth, sHeight)];
     self.bgImage.center = CGPointMake(.5*sWidth, .5*sHeight);
     
-    [self.webAddress setFrame:CGRectMake(0, 0, sWidth, .1*sWidth)];
-    self.webAddress.font = [UIFont fontWithName: @"Noteworthy" size: .06*sWidth];
-    self.webAddress.center = CGPointMake(sWidth/2, .96*sHeight);
-    
 
 }
 
@@ -135,35 +119,8 @@
 
 - (IBAction)startPressed:(id)sender {
         
-    // Configure the view.
+  
     
-    self.skView = (SKView *)self.view;
-    if (!self.skView.scene) {
-        self.skView.showsFPS = NO;
-        self.skView.showsNodeCount = NO;
-    }
-    
-    self.startButton.hidden = YES;
-    self.settingsButton.hidden = YES;
-    self.highScoreLabel.hidden = YES;
-    self.titleLabel.hidden = YES;
-    self.lastGameLabel.hidden = YES;
-    self.bgImage.hidden = YES;
-    self.webAddress.hidden = YES;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(checkGameOver:)
-                                                 name:@"gameOverNotification"
-                                               object:nil];
-    
-   /* [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(soundChanged:)
-                                                 name:@"soundDidChange"
-                                               object:nil];*/
-    
-    self.scene = [[GameScene alloc] initWithSize:self.skView.bounds.size];
-    self.scene.scaleMode = SKSceneScaleModeAspectFill;
-    [self.skView presentScene:self.scene];
     
 }
 
@@ -172,26 +129,18 @@
     
     if ([[notification name] isEqualToString:@"gameOverNotification"]) {
         
-        [self.scene removeFromParent];
-        [self.skView presentScene:nil];
-        
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         
         NSLog(@"game over");
         
         self.startButton.hidden = NO;
         self.settingsButton.hidden = NO;
-        
-        [self.scene removeFromParent];
-        [self.skView presentScene:nil];
-        
+            
         self.highScoreLabel.hidden = NO;
         self.titleLabel.hidden = NO;
         self.lastGameLabel.hidden = NO;
         self.bgImage.hidden = NO;
-        
-        self.webAddress.hidden = NO;
-        
+                
         NSInteger lastGame = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastGameScore"];
         
         //   NSLog(@"last game = %ld", (long)lastGame);
@@ -263,23 +212,18 @@
     }
 }*/
 
--(void)settingsDidFinish:(SettingsViewController *)controller {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"]) {
 
-    }
-
-    
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([[segue identifier] isEqualToString:@"toSettings"]){
         SettingsViewController *svc = (SettingsViewController *)[segue destinationViewController];
-        svc.delegate = self;
+      //  svc.delegate = self;
     }
     
+    if ([[segue identifier] isEqualToString:@"toGame"]){
+        CollectionViewController *cvc = (CollectionViewController *)[segue destinationViewController];
+      //  svc.delegate = self;
+    }
 }
 
 

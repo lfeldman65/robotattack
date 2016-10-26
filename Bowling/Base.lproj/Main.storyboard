@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="uEe-pH-4Co">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -101,7 +101,7 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                         <viewControllerLayoutGuide type="top" id="0zT-8N-ont"/>
                         <viewControllerLayoutGuide type="bottom" id="qGm-wL-JDN"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -110,23 +110,18 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="www.lfeldman.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jba-5f-egW">
-                                <frame key="frameInset" minX="57" minY="477" width="194" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzG-C7-dQs">
-                                <frame key="frameInset" minX="50.20%" minY="54.63%" width="131" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzG-C7-dQs">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="131" id="5Y2-Ow-Kqo"/>
+                                </constraints>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="startPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ZpC-Pe-3lb"/>
+                                    <segue destination="uEe-pH-4Co" kind="modal" identifier="toGame" id="7A7-NB-Jlm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="High Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNv-mx-GZg">
@@ -162,6 +157,10 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="mzG-C7-dQs" secondAttribute="bottom" constant="50" id="Xyt-mA-zn2"/>
+                            <constraint firstItem="mzG-C7-dQs" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vbm-p1-odP"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="bgImage" destination="hhm-Fu-rko" id="wft-fW-2MQ"/>
@@ -170,7 +169,6 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                         <outlet property="settingsButton" destination="Vc2-4c-Ocv" id="cpQ-PD-F5x"/>
                         <outlet property="startButton" destination="mzG-C7-dQs" id="57g-R3-PbM"/>
                         <outlet property="titleLabel" destination="nkW-OT-9br" id="32c-aL-hGf"/>
-                        <outlet property="webAddress" destination="Jba-5f-egW" id="fT4-GF-39X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -231,7 +229,7 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                                     <outlet property="delegate" destination="uEe-pH-4Co" id="6pT-KB-5JP"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Cc-kL-TM6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiles Remaining" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Cc-kL-TM6">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="nzz-1X-GJs"/>
                                 </constraints>
@@ -239,26 +237,54 @@ The game ends if the ball hits the bottom 3 times. You're also cooked if a block
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5b-7m-Ygc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5b-7m-Ygc">
                                 <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="resetPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="7YI-KG-sjj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfc-xX-EP4">
+                                <state key="normal" title="Home"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="W83-Xc-wDp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 0 sec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-EO-Qb0">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="fFI-jN-Hby"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Time: Never Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpp-7C-quh">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="top" secondItem="AzP-0c-PJL" secondAttribute="bottom" constant="36" id="3ku-49-T5q"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="GPl-tM-Wxt"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="IB2-mD-w94"/>
-                            <constraint firstItem="Q5b-7m-Ygc" firstAttribute="top" secondItem="7Cc-kL-TM6" secondAttribute="bottom" constant="20" id="Xqf-ij-li8"/>
+                            <constraint firstItem="Cfc-xX-EP4" firstAttribute="top" secondItem="iVp-Hf-a0f" secondAttribute="top" constant="20" id="Zvi-m0-vTr"/>
+                            <constraint firstItem="QYd-EO-Qb0" firstAttribute="top" secondItem="iVp-Hf-a0f" secondAttribute="top" constant="25" id="aK6-1T-xaA"/>
+                            <constraint firstItem="fpp-7C-quh" firstAttribute="top" secondItem="7Cc-kL-TM6" secondAttribute="bottom" constant="20" id="ai4-zg-7z9"/>
+                            <constraint firstItem="Cfc-xX-EP4" firstAttribute="leading" secondItem="iVp-Hf-a0f" secondAttribute="leading" constant="19" id="eAF-M7-aCf"/>
+                            <constraint firstItem="fpp-7C-quh" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="fcj-zy-uDs"/>
                             <constraint firstItem="Q5b-7m-Ygc" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="p7w-DT-Jmk"/>
+                            <constraint firstItem="QYd-EO-Qb0" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="sTc-s2-dTc"/>
+                            <constraint firstItem="Q5b-7m-Ygc" firstAttribute="top" secondItem="fpp-7C-quh" secondAttribute="bottom" constant="20" id="u9v-OY-f2J"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="top" secondItem="s2H-7v-chg" secondAttribute="bottom" constant="2" id="wZB-1H-qbY"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Mlw-t1-jSk"/>
                     <connections>
+                        <outlet property="bestTime" destination="fpp-7C-quh" id="W86-RI-Ur4"/>
                         <outlet property="myCollectionView" destination="s2H-7v-chg" id="3Ns-Ta-EwW"/>
                         <outlet property="tilesRemaining" destination="7Cc-kL-TM6" id="8cI-Ua-eCb"/>
+                        <outlet property="timeLabel" destination="QYd-EO-Qb0" id="qnI-az-31m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgS-FA-pob" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (strong, nonatomic) IBOutlet UILabel *tilesRemaining;
+@property (strong, nonatomic) IBOutlet UILabel *bestTime;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
