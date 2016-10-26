@@ -15,8 +15,6 @@
 @property (nonatomic, strong) NSTimer *levelTimer;
 @property (assign,nonatomic)  int secondsElapsed;
 
-
-
 - (IBAction)resetPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
@@ -82,7 +80,7 @@ static NSString * const reuseIdentifier = @"Cell";
     {
         if(indexPath.section == ip.section && indexPath.row == ip.row)
         {
-            cell.textLable.text = @"L";
+            cell.textLable.text = @"👍";
             cell.selected = true;
         }
     }
@@ -109,7 +107,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark <UICollectionViewDelegate>
-
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
