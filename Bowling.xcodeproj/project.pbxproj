@@ -30,6 +30,7 @@
 		674643041DC16793006387A6 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 674643031DC16793006387A6 /* Puzzle.m */; };
 		674643061DC17259006387A6 /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674643051DC17259006387A6 /* 2.plist */; };
 		674643081DC17CF1006387A6 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674643071DC17CF1006387A6 /* 3.plist */; };
+		6746430A1DC188E3006387A6 /* 4.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674643091DC188E3006387A6 /* 4.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		674643031DC16793006387A6 /* Puzzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Puzzle.m; sourceTree = "<group>"; };
 		674643051DC17259006387A6 /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 2.plist; path = puzzles/2.plist; sourceTree = "<group>"; };
 		674643071DC17CF1006387A6 /* 3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 3.plist; path = puzzles/3.plist; sourceTree = "<group>"; };
+		674643091DC188E3006387A6 /* 4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 4.plist; path = puzzles/4.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 				674643001DC164DC006387A6 /* 1.plist */,
 				674643051DC17259006387A6 /* 2.plist */,
 				674643071DC17CF1006387A6 /* 3.plist */,
+				674643091DC188E3006387A6 /* 4.plist */,
 			);
 			name = Puzzles;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				674643061DC17259006387A6 /* 2.plist in Resources */,
 				674643081DC17CF1006387A6 /* 3.plist in Resources */,
 				11B648221B1E66C1005AB6A3 /* pop.mp3 in Resources */,
+				6746430A1DC188E3006387A6 /* 4.plist in Resources */,
 				11B648241B1E6A31005AB6A3 /* super.mp3 in Resources */,
 				110E80871B161B4100DF989C /* Main.storyboard in Resources */,
 			);

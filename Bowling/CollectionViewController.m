@@ -17,6 +17,8 @@
 @property (assign,nonatomic)  int secondsElapsed;
 @property (assign,nonatomic)  int tilesRemaining;
 @property (assign,nonatomic)  int currentLevel;
+@property (strong,nonatomic)  IBOutlet UIButton* nextLevelButton;
+
 - (IBAction)resetPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
@@ -31,6 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     [super viewDidLoad];
     
+    self.nextLevelButton.hidden = true;
     
     if (_currentLevel == 0)
     {
@@ -180,7 +183,7 @@ static NSString * const reuseIdentifier = @"Cell";
             cellRight = [collectionView cellForItemAtIndexPath:ipRight];
             cellAbove = [collectionView cellForItemAtIndexPath:ipAbove];
             cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
-                           
+            
             if(cell.selected)
             {
                 if(cellLeft.selected)
@@ -234,7 +237,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if(!self.tilesRemaining)
     {
         
-        __weak typeof (self) ws = self;
+        //__weak typeof (self) ws = self;
         if([self didWin:self.myCollectionView])
         {
             [self.levelTimer invalidate];
@@ -255,10 +258,12 @@ static NSString * const reuseIdentifier = @"Cell";
             [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:_currentLevel] forKey:@"numberGames"];
             [[NSUserDefaults standardUserDefaults]  synchronize];
             
-            _currentLevel += 1;
+            //_currentLevel += 1;
             
             self.tilesRemainingLabel.text = @"You won!";
             
+            self.nextLevelButton.hidden = false;
+            /*
             NSString* message = [NSString stringWithFormat:@"You completed this in %d secs", self.secondsElapsed];
             
             if (self.secondsElapsed < best)
@@ -273,12 +278,13 @@ static NSString * const reuseIdentifier = @"Cell";
             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction * action) {
                                                                   
-                                                                      [ws resetPressed:nil];
-                                                                      [ws resetTimer];
+                                                                      ///[ws resetPressed:nil];
+                                                                      //[ws resetTimer];
                                                                   }];
             
             [alert addAction:defaultAction];
             [self presentViewController:alert animated:YES completion:nil];
+            */
             
             
         }
@@ -292,8 +298,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.currentPuzzle = [[Puzzle alloc] initWithFilePath:plistPath];
     
     self.tilesRemaining = self.currentPuzzle.numberOfTiles;
-    
-    self.tilesRemainingLabel.text = [NSString stringWithFormat:@"Tiles Remaining: %d", self.tilesRemaining];
+    [self updateTilesRemaining];
     
 }
 
@@ -315,6 +320,16 @@ static NSString * const reuseIdentifier = @"Cell";
 {    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)nextLevelPressed:(id)sender
+{
+    _currentLevel +=1;
+    
+    [self resetPressed:nil];
+    [self resetTimer];
+    self.nextLevelButton.hidden = true;
+}
+
 
 -(void) timeElapsed
 {

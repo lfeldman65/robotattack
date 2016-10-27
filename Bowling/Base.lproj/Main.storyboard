@@ -237,6 +237,16 @@ Add the number of tiles that is shown as "Tiles Remaining."  No more and no less
                                     <action selector="resetPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="7YI-KG-sjj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvV-he-mFk">
+                                <frame key="frameInset" minX="153" minY="441" width="72" height="30"/>
+                                <state key="normal" title="Next Level">
+                                    <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextLevelPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="mka-GM-2F5"/>
+                                    <action selector="resetPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="HBM-k6-mjJ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfc-xX-EP4">
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Home">
@@ -262,6 +272,7 @@ Add the number of tiles that is shown as "Tiles Remaining."  No more and no less
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IvV-he-mFk" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="0Xj-hP-n7C"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="top" secondItem="AzP-0c-PJL" secondAttribute="bottom" constant="36" id="3ku-49-T5q"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="GPl-tM-Wxt"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="IB2-mD-w94"/>
@@ -274,12 +285,14 @@ Add the number of tiles that is shown as "Tiles Remaining."  No more and no less
                             <constraint firstItem="QYd-EO-Qb0" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="sTc-s2-dTc"/>
                             <constraint firstItem="Q5b-7m-Ygc" firstAttribute="top" secondItem="fpp-7C-quh" secondAttribute="bottom" constant="20" id="u9v-OY-f2J"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="top" secondItem="s2H-7v-chg" secondAttribute="bottom" constant="2" id="wZB-1H-qbY"/>
+                            <constraint firstItem="IvV-he-mFk" firstAttribute="top" secondItem="Q5b-7m-Ygc" secondAttribute="bottom" constant="12" id="xZK-yr-Xe7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mlw-t1-jSk"/>
                     <connections>
                         <outlet property="bestTime" destination="fpp-7C-quh" id="W86-RI-Ur4"/>
                         <outlet property="myCollectionView" destination="s2H-7v-chg" id="3Ns-Ta-EwW"/>
+                        <outlet property="nextLevelButton" destination="IvV-he-mFk" id="KQa-pu-0ZY"/>
                         <outlet property="tilesRemainingLabel" destination="7Cc-kL-TM6" id="SdL-RE-Zbv"/>
                         <outlet property="timeLabel" destination="QYd-EO-Qb0" id="qnI-az-31m"/>
                     </connections>
