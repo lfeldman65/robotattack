@@ -7,14 +7,16 @@
 
 #import "CollectionViewController.h"
 #import "CollectionViewCell.h"
+#import "Puzzle.h"
+
 
 @interface CollectionViewController ()
 
-@property (nonatomic, strong) NSIndexPath *tileIndex;
-@property (nonatomic, strong) NSMutableArray *level1;
 @property (nonatomic, strong) NSTimer *levelTimer;
+@property (nonatomic, strong) Puzzle* currentPuzzle;
 @property (assign,nonatomic)  int secondsElapsed;
-
+@property (assign,nonatomic)  int tilesRemaining;
+@property (assign,nonatomic)  int currentLevel;
 - (IBAction)resetPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
@@ -22,19 +24,27 @@
 
 @implementation CollectionViewController
 
-int tilesRemaining;
 
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self configureLevel];
+    
+    
+    if (_currentLevel == 0)
+    {
+        NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"numberGames"];
+        
+        _currentLevel = [num intValue] + 1;
+    }
+    
+    
+    [self configureLevel:_currentLevel];
+    
     self.myCollectionView.allowsMultipleSelection = true;
-    tilesRemaining = 18;
-    self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
-    self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeElapsed) userInfo:nil repeats:YES];
-    self.secondsElapsed = 0;
+    
+    [self resetTimer];
     
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
     if (best == 10000000)
@@ -48,15 +58,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -75,24 +77,25 @@ static NSString * const reuseIdentifier = @"Cell";
 {    
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.selected = NO;
-
-    for(NSIndexPath *ip in self.level1)
+    cell.textLable.text = @"";
+    
+    int rowNumber = 0;
+    for (NSArray* row in self.currentPuzzle.puzzleArray)
     {
-        if(indexPath.section == ip.section && indexPath.row == ip.row)
+        for (NSDictionary* dict in row)
         {
-            cell.textLable.text = @"👍";
-            cell.selected = true;
+            NSNumber* column = dict[@"Column"];
+            
+            if ((rowNumber == indexPath.section) && ([column intValue] == indexPath.row))
+            {
+                cell.textLable.text = dict[@"Text"];
+                cell.selected = true;
+            }
         }
-    }
-    if(indexPath.section == 7 && indexPath.row == 0)
-    {
-        cell.textLable.text = @"Start";
+        
+        rowNumber++;
     }
     
-    if(indexPath.section == 0 && indexPath.row == 7)
-    {
-        cell.textLable.text = @"End";
-    }
     
     if(cell.selected)
     {
@@ -114,18 +117,10 @@ static NSString * const reuseIdentifier = @"Cell";
     NSLog(@"select index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor yellowColor];
-    if(!(indexPath.section == 7 && indexPath.row == 0) && !(indexPath.section == 0 && indexPath.row == 7))
-    {
-        tilesRemaining--;
-        self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
-        if(!tilesRemaining)
-        {
-            if([self didWin:collectionView])
-            {
-                self.tilesRemaining.text = @"You won!";
-            }
-        }
-    }
+    
+    self.tilesRemaining--;
+    [self updateTilesRemaining];
+    
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -133,19 +128,9 @@ static NSString * const reuseIdentifier = @"Cell";
     NSLog(@"deselect index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor yellowColor];
-    if(!(indexPath.section == 7 && indexPath.row == 0) && !(indexPath.section == 0 && indexPath.row == 7))
-    {
-        cell.backgroundColor = [UIColor greenColor];
-        tilesRemaining++;
-        self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
-        if(!tilesRemaining)
-        {
-            if([self didWin:collectionView])
-            {
-                self.tilesRemaining.text = @"You won!";
-            }
-        }
-    }
+    cell.backgroundColor = [UIColor greenColor];
+    self.tilesRemaining++;
+    [self updateTilesRemaining];
 }
 
 
@@ -195,47 +180,8 @@ static NSString * const reuseIdentifier = @"Cell";
             cellRight = [collectionView cellForItemAtIndexPath:ipRight];
             cellAbove = [collectionView cellForItemAtIndexPath:ipAbove];
             cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
-            
-            if(row == 0 && section == 7)  // Make sure start cell has exactly 1 neighbor
-            {
-                ipRight = [NSIndexPath indexPathForRow:1 inSection:7];
-                cellRight = [collectionView cellForItemAtIndexPath:ipRight];
-                
-                ipAbove = [NSIndexPath indexPathForRow:0 inSection:6];
-                cellAbove = [collectionView cellForItemAtIndexPath:ipAbove];
-                
-                if(cellRight.selected && cellAbove.selected)    // can't have both cells highlighted
-                {
-                    return false;
-                }
-                
-                if(!cellRight.selected && !cellAbove.selected) {  // can't have both cells empty
-                    
-                    return false;
-                }
-            }
-            
-            else if(row == 7 && section == 0)  // Make sure end cell has exactly 2 neighbors
-            {
-                ipLeft = [NSIndexPath indexPathForRow:1 inSection:7];
-                cellLeft = [collectionView cellForItemAtIndexPath:ipLeft];
-                
-                ipBelow = [NSIndexPath indexPathForRow:0 inSection:6];
-                cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
-                
-                if(cellLeft.selected && cellBelow.selected)     // can't have both cells highlighted
-                {
-                    return false;
-                }
-                
-                if(!cellLeft.selected && !cellBelow.selected)   // can't have both cells empty
-
-                {
-                    return false;
-                }
-            }
-            
-            else if(cell.selected)
+                           
+            if(cell.selected)
             {
                 if(cellLeft.selected)
                 {
@@ -256,6 +202,20 @@ static NSString * const reuseIdentifier = @"Cell";
                 {
                     neighbors++;
                 }
+                
+                
+                if(row == self.currentPuzzle.startIndexPath.row && section == self.currentPuzzle.startIndexPath.section)
+                {
+                    if (neighbors > 1)
+                        return false;
+                }
+                else
+                if(row == self.currentPuzzle.endIndexPath.row && section == self.currentPuzzle.endIndexPath.section)
+                {
+                    if (neighbors > 1)
+                        return false;
+                }
+                else
                 if (neighbors != 2)
                 {
                     return false;
@@ -264,55 +224,91 @@ static NSString * const reuseIdentifier = @"Cell";
         }
     }
   //  [self.view setUserInteractionEnabled:NO];
-    [self.levelTimer invalidate];
-    
-    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
-    
-    if (self.secondsElapsed < best)
-    {
-        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)self.secondsElapsed];
-        [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:@"bestTime"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-    //    [[GameCenterManager sharedManager] saveAndReportScore:(int)lastGame leaderboard:@"assaultHighScore" sortOrder:GameCenterSortOrderHighToLow];
-        
-    }
-    return true;
+        return true;
 }
 
--(void)configureLevel  // visible tiles only
+
+-(void) updateTilesRemaining
 {
-    self.tileIndex = [NSIndexPath indexPathForRow:7 inSection:0];    // start
-    self.level1 = [NSMutableArray arrayWithObject:self.tileIndex];
-    
-    self.tileIndex = [NSIndexPath indexPathForRow:5 inSection:3];
-    [self.level1 addObject:self.tileIndex];
-    
-    self.tileIndex = [NSIndexPath indexPathForRow:0 inSection:3];
-    [self.level1 addObject:self.tileIndex];
+    self.tilesRemainingLabel.text = [NSString stringWithFormat:@"Tiles Remaining: %d", self.tilesRemaining];
+    if(!self.tilesRemaining)
+    {
+        
+        __weak typeof (self) ws = self;
+        if([self didWin:self.myCollectionView])
+        {
+            [self.levelTimer invalidate];
+            
+            NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
+            
+            if (self.secondsElapsed < best)
+            {
+                self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)self.secondsElapsed];
+                [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:@"bestTime"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                //    [[GameCenterManager sharedManager] saveAndReportScore:(int)lastGame leaderboard:@"assaultHighScore" sortOrder:GameCenterSortOrderHighToLow];
+                
+            }
 
-    self.tileIndex = [NSIndexPath indexPathForRow:2 inSection:2];
-    [self.level1 addObject:self.tileIndex];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:_currentLevel] forKey:@"numberGames"];
+            [[NSUserDefaults standardUserDefaults]  synchronize];
+            
+            _currentLevel += 1;
+            
+            self.tilesRemainingLabel.text = @"You won!";
+            
+            NSString* message = [NSString stringWithFormat:@"You completed this in %d secs", self.secondsElapsed];
+            
+            if (self.secondsElapsed < best)
+            {
+                message = [NSString stringWithFormat:@"You broke your record. You completed this in %d secs", self.secondsElapsed];
+            }
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Good Job"
+                                                                           message: message
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                  
+                                                                      [ws resetPressed:nil];
+                                                                      [ws resetTimer];
+                                                                  }];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            
+        }
+    }
+}
 
-    self.tileIndex = [NSIndexPath indexPathForRow:4 inSection:4];
-    [self.level1 addObject:self.tileIndex];
+-(void)configureLevel:(int) level
+{
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%d", level]  ofType:@"plist"];
     
- //   self.tileIndex = [NSIndexPath indexPathForRow:6 inSection:4];
- //   [self.level1 addObject:self.tileIndex];
+    self.currentPuzzle = [[Puzzle alloc] initWithFilePath:plistPath];
     
-    self.tileIndex = [NSIndexPath indexPathForRow:2 inSection:5];
-    [self.level1 addObject:self.tileIndex];
+    self.tilesRemaining = self.currentPuzzle.numberOfTiles;
     
-    self.tileIndex = [NSIndexPath indexPathForRow:0 inSection:7];    // end
-    [self.level1 addObject:self.tileIndex];
+    self.tilesRemainingLabel.text = [NSString stringWithFormat:@"Tiles Remaining: %d", self.tilesRemaining];
+    
+}
+
+-(void) resetTimer
+{
+    self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeElapsed) userInfo:nil repeats:YES];
+    self.secondsElapsed = 0;
+    self.timeLabel.text = [NSString stringWithFormat:@"Time: %d sec", self.secondsElapsed];
+
 }
 
 - (IBAction)resetPressed:(id)sender
 {
+    [self configureLevel:_currentLevel];
     [self.myCollectionView reloadData];
-    [self configureLevel];
-    tilesRemaining = 11;
-    self.tilesRemaining.text = [NSString stringWithFormat:@"Tiles Remaining: %d", tilesRemaining];
 }
 
 - (IBAction)backPressed:(id)sender
@@ -326,38 +322,5 @@ static NSString * const reuseIdentifier = @"Cell";
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %d sec", self.secondsElapsed];
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

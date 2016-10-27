@@ -13,7 +13,5 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, SKPaymentTransactionObserver>
 
 @property (strong, nonatomic) UIWindow *window;
-
-
 @end
 
