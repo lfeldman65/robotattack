@@ -297,6 +297,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
     
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    
     if (best == 10000000)
     {
         self.bestTime.text = @"Best Time: Never Completed";
@@ -316,7 +317,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeElapsed) userInfo:nil repeats:YES];
     self.secondsElapsed = 0;
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %d sec", self.secondsElapsed];
-
 }
 
 - (IBAction)resetPressed:(id)sender

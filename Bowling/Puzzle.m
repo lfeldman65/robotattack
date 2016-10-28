@@ -25,33 +25,27 @@
         NSNumber* num = self.puzzleDictionary[@"TilesToComplete"];
         self.numberOfTiles = [num intValue];
         
-        self.puzzleArray = self.puzzleDictionary[@"Board"];
+        self.puzzleArray = self.puzzleDictionary[@"Board"];  // array of dictionaries
         
-        
-        int rowNumber = 0;
-        for (NSArray* row in self.puzzleArray)
+        for (NSArray *tile in self.puzzleArray)
         {
-            for (NSDictionary* dict in row)
-            {
-                NSNumber* column = dict[@"Column"];
+            NSLog(@"tile = %@", tile);
+            for (NSDictionary *dict in tile) {
+                
+                NSLog(@"dict = %@", dict);
+                NSNumber* row = dict[@"Row"];
+                NSNumber* section = dict[@"Section"];
                 
                 if ([dict[@"Text"] isEqualToString:@"Start"])
                 {
-                    self.startIndexPath = [NSIndexPath indexPathForRow:[column intValue] inSection:rowNumber];
+                    self.startIndexPath = [NSIndexPath indexPathForRow:[row intValue] inSection:[section intValue]];
                 }
                 else if ([dict[@"Text"] isEqualToString:@"End"])
                 {
-                    self.endIndexPath = [NSIndexPath indexPathForRow:[column intValue] inSection:rowNumber];
+                    self.endIndexPath = [NSIndexPath indexPathForRow:[row intValue] inSection:[section intValue]];
                 }
-                
-                
             }
-            
-            rowNumber++;
         }
-        
-        
-        
     }
     
     return self;
