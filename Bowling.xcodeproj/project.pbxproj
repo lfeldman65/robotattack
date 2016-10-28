@@ -24,6 +24,8 @@
 		11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C1BEF01B179AC200DF06A0 /* Shop.m */; };
 		11C1BEF41B179AF300DF06A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C1BEF31B179AF300DF06A0 /* StoreKit.framework */; };
 		11E153CB1B16B25C00619239 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E153CA1B16B25C00619239 /* SettingsViewController.m */; };
+		51210BC51DC2AB6700AC8AE9 /* 5.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51210BC41DC2AB6700AC8AE9 /* 5.plist */; };
+		51210BCB1DC3705A00AC8AE9 /* LevelSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51210BCA1DC3705A00AC8AE9 /* LevelSelectViewController.m */; };
 		514D2A161DBEA57C00A96118 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A151DBEA57C00A96118 /* CollectionViewController.m */; };
 		514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A181DBEA59900A96118 /* CollectionViewCell.m */; };
 		674643011DC164DC006387A6 /* 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674643001DC164DC006387A6 /* 1.plist */; };
@@ -72,6 +74,9 @@
 		11C1BEF31B179AF300DF06A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		11E153C91B16B25C00619239 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		11E153CA1B16B25C00619239 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		51210BC41DC2AB6700AC8AE9 /* 5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 5.plist; path = puzzles/5.plist; sourceTree = "<group>"; };
+		51210BC91DC3705A00AC8AE9 /* LevelSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectViewController.h; path = ../LevelSelectViewController.h; sourceTree = "<group>"; };
+		51210BCA1DC3705A00AC8AE9 /* LevelSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectViewController.m; path = ../LevelSelectViewController.m; sourceTree = "<group>"; };
 		514D2A141DBEA57C00A96118 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		514D2A151DBEA57C00A96118 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		514D2A171DBEA59900A96118 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
@@ -185,8 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				110E808A1B161B4100DF989C /* LaunchScreen.xib */,
-				110E80881B161B4100DF989C /* Images.xcassets */,
 				110E80851B161B4100DF989C /* Main.storyboard */,
+				110E80881B161B4100DF989C /* Images.xcassets */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -196,6 +201,8 @@
 			children = (
 				110E80821B161B4100DF989C /* GameViewController.h */,
 				110E80831B161B4100DF989C /* GameViewController.m */,
+				51210BC91DC3705A00AC8AE9 /* LevelSelectViewController.h */,
+				51210BCA1DC3705A00AC8AE9 /* LevelSelectViewController.m */,
 				514D2A141DBEA57C00A96118 /* CollectionViewController.h */,
 				514D2A151DBEA57C00A96118 /* CollectionViewController.m */,
 				11E153C91B16B25C00619239 /* SettingsViewController.h */,
@@ -240,6 +247,7 @@
 				674643051DC17259006387A6 /* 2.plist */,
 				674643071DC17CF1006387A6 /* 3.plist */,
 				674643091DC188E3006387A6 /* 4.plist */,
+				51210BC41DC2AB6700AC8AE9 /* 5.plist */,
 			);
 			name = Puzzles;
 			sourceTree = "<group>";
@@ -339,6 +347,7 @@
 				110E808C1B161B4100DF989C /* LaunchScreen.xib in Resources */,
 				110E80891B161B4100DF989C /* Images.xcassets in Resources */,
 				674643061DC17259006387A6 /* 2.plist in Resources */,
+				51210BC51DC2AB6700AC8AE9 /* 5.plist in Resources */,
 				674643081DC17CF1006387A6 /* 3.plist in Resources */,
 				11B648221B1E66C1005AB6A3 /* pop.mp3 in Resources */,
 				6746430A1DC188E3006387A6 /* 4.plist in Resources */,
@@ -362,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				110E80841B161B4100DF989C /* GameViewController.m in Sources */,
+				51210BCB1DC3705A00AC8AE9 /* LevelSelectViewController.m in Sources */,
 				110E807C1B161B4000DF989C /* AppDelegate.m in Sources */,
 				11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */,
 				11E153CB1B16B25C00619239 /* SettingsViewController.m in Sources */,

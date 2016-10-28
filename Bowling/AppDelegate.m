@@ -23,10 +23,10 @@
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                                                              [NSNumber numberWithBool:false], @"wasGameLaunched",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime",
-                                                             [NSNumber numberWithInt:0], @"totalBlocksDestroyed",
-                                                             [NSNumber numberWithInt:0], @"lastGameScore",
-                                                             [NSNumber numberWithInt:0], @"numberGames",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime1",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime2",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime3",
+                                                             [NSNumber numberWithInt:1], @"levelNumber",
                                                              [NSNumber numberWithBool:false], @"fullVersion",
                                                              [NSNumber numberWithBool:true], @"isSoundOn",
                                                              nil]];

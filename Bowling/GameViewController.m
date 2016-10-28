@@ -148,10 +148,10 @@
         NSString *lastGameString = [NSString stringWithFormat:@"Last Game: %ld", (long)lastGame];
         self.lastGameLabel.text = lastGameString;
         
-        NSInteger numGames = [[NSUserDefaults standardUserDefaults] integerForKey:@"numberGames"];
+        NSInteger numGames = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelNumber"];
         numGames++;
         
-        [[NSUserDefaults standardUserDefaults] setInteger:numGames forKey:@"numberGames"];
+        [[NSUserDefaults standardUserDefaults] setInteger:numGames forKey:@"levelNumber"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"];
@@ -188,7 +188,7 @@
         
         // every 10 games, offer full version if they don't already have it.
 
-        if (![[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"] && [[NSUserDefaults standardUserDefaults] integerForKey:@"numberGames"]%10 == 0) {
+        if (![[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"] && [[NSUserDefaults standardUserDefaults] integerForKey:@"levelNumber"]%10 == 0) {
             [self.ourNewShop validateProductIdentifiers];
             
         }
@@ -220,7 +220,7 @@
       //  svc.delegate = self;
     }
     
-    if ([[segue identifier] isEqualToString:@"toGame"]){
+    if ([[segue identifier] isEqualToString:@"toLevelSelector"]){
         CollectionViewController *cvc = (CollectionViewController *)[segue destinationViewController];
       //  svc.delegate = self;
     }

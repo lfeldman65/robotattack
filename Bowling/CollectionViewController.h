@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *tilesRemainingLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bestTime;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *levelLabel;
 
 @end

@@ -18,6 +18,7 @@
 @property (assign,nonatomic)  int tilesRemaining;
 @property (assign,nonatomic)  int currentLevel;
 @property (strong,nonatomic)  IBOutlet UIButton* nextLevelButton;
+@property (strong, nonatomic) IBOutlet UIButton *previousLevelButton;
 
 - (IBAction)resetPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
@@ -33,23 +34,31 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     [super viewDidLoad];
     
-    self.nextLevelButton.hidden = true;
+    self.nextLevelButton.hidden = false;
     
-    if (_currentLevel == 0)
-    {
-        NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"numberGames"];
+    self.previousLevelButton.hidden = false;
+    
+    NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"levelNumber"];
         
-        _currentLevel = [num intValue] + 1;
+    self.currentLevel = [num intValue];
+    
+    if(self.currentLevel == 1) {
+        
+        self.previousLevelButton.hidden = true;
+        
     }
     
-    
-    [self configureLevel:_currentLevel];
+    self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
+
+    [self configureLevel:self.currentLevel];
     
     self.myCollectionView.allowsMultipleSelection = true;
     
     [self resetTimer];
     
-    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
+    NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
+    
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
     if (best == 10000000)
     {
         self.bestTime.text = @"Best Time: Never Completed";
@@ -236,29 +245,29 @@ static NSString * const reuseIdentifier = @"Cell";
     self.tilesRemainingLabel.text = [NSString stringWithFormat:@"Tiles Remaining: %d", self.tilesRemaining];
     if(!self.tilesRemaining)
     {
-        
         //__weak typeof (self) ws = self;
         if([self didWin:self.myCollectionView])
         {
             [self.levelTimer invalidate];
             
-            NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"bestTime"];
+            NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
+            NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
             
             if (self.secondsElapsed < best)
             {
                 self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)self.secondsElapsed];
-                [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:@"bestTime"];
+                
+                [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:key];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 //    [[GameCenterManager sharedManager] saveAndReportScore:(int)lastGame leaderboard:@"assaultHighScore" sortOrder:GameCenterSortOrderHighToLow];
                 
             }
 
-            
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:_currentLevel] forKey:@"numberGames"];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:(self.currentLevel+1)] forKey:@"levelNumber"];
             [[NSUserDefaults standardUserDefaults]  synchronize];
             
-            //_currentLevel += 1;
+            //self.currentLevel += 1;
             
             self.tilesRemainingLabel.text = @"You won!";
             
@@ -304,6 +313,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void) resetTimer
 {
+    [self.levelTimer invalidate];
     self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timeElapsed) userInfo:nil repeats:YES];
     self.secondsElapsed = 0;
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %d sec", self.secondsElapsed];
@@ -312,7 +322,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (IBAction)resetPressed:(id)sender
 {
-    [self configureLevel:_currentLevel];
+    [self configureLevel:self.currentLevel];
+    [self resetTimer];
     [self.myCollectionView reloadData];
 }
 
@@ -321,13 +332,49 @@ static NSString * const reuseIdentifier = @"Cell";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)nextLevelPressed:(id)sender
+- (IBAction)previousLevelPressed:(id)sender
 {
-    _currentLevel +=1;
-    
+    self.currentLevel--;
+    self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
+    NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (best == 10000000)
+    {
+        self.bestTime.text = @"Best Time: Never Completed";
+        
+    } else {
+        
+        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
+    }
     [self resetPressed:nil];
     [self resetTimer];
-    self.nextLevelButton.hidden = true;
+    self.nextLevelButton.hidden = false;
+    self.previousLevelButton.hidden = false;
+    
+    if(self.currentLevel == 1)
+    {
+        self.previousLevelButton.hidden = true;
+    }
+}
+
+- (IBAction)nextLevelPressed:(id)sender
+{
+    self.currentLevel++;
+    self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
+    NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (best == 10000000)
+    {
+        self.bestTime.text = @"Best Time: Never Completed";
+        
+    } else {
+        
+        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
+    }
+    [self resetPressed:nil];
+    [self resetTimer];
+    self.nextLevelButton.hidden = false;
+    self.previousLevelButton.hidden = false;
 }
 
 
