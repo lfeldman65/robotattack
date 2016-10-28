@@ -11,5 +11,7 @@
 @interface LevelSelectViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) NSArray *levelArray;
+@property (strong, nonatomic) IBOutlet UITableView *myTableView;
+@property (assign,nonatomic) int selectedLevel;
 
 @end

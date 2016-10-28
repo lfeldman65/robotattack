@@ -15,5 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *bestTime;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *levelLabel;
+@property (assign,nonatomic)  int currentLevel;
+
 
 @end

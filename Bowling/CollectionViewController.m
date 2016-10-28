@@ -16,7 +16,6 @@
 @property (nonatomic, strong) Puzzle* currentPuzzle;
 @property (assign,nonatomic)  int secondsElapsed;
 @property (assign,nonatomic)  int tilesRemaining;
-@property (assign,nonatomic)  int currentLevel;
 @property (strong,nonatomic)  IBOutlet UIButton* nextLevelButton;
 @property (strong, nonatomic) IBOutlet UIButton *previousLevelButton;
 
@@ -38,16 +37,16 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.previousLevelButton.hidden = false;
     
-    NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"levelNumber"];
-        
-    self.currentLevel = [num intValue];
-    
-    if(self.currentLevel == 1) {
-        
+    if(self.currentLevel == 1)
+    {
         self.previousLevelButton.hidden = true;
-        
     }
     
+    if(self.currentLevel == 9)
+    {
+        self.nextLevelButton.hidden = true;
+    }
+
     self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
 
     [self configureLevel:self.currentLevel];
@@ -56,17 +55,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self resetTimer];
     
-    NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
-    
-    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
-    if (best == 10000000)
-    {
-        self.bestTime.text = @"Best Time: Never Completed";
-        
-    } else {
-    
-        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
-    }
 }
 
 
@@ -264,14 +252,14 @@ static NSString * const reuseIdentifier = @"Cell";
                 
             }
 
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:(self.currentLevel+1)] forKey:@"levelNumber"];
-            [[NSUserDefaults standardUserDefaults]  synchronize];
+         //   [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:(self.currentLevel+1)] forKey:@"levelNumber"];
+         //   [[NSUserDefaults standardUserDefaults]  synchronize];
             
             //self.currentLevel += 1;
             
             self.tilesRemainingLabel.text = @"You won!";
             
-            self.nextLevelButton.hidden = false;
+         //   self.nextLevelButton.hidden = false;
             /*
             NSString* message = [NSString stringWithFormat:@"You completed this in %d secs", self.secondsElapsed];
             
@@ -306,9 +294,20 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.currentPuzzle = [[Puzzle alloc] initWithFilePath:plistPath];
     
+    NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
+    
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (best == 10000000)
+    {
+        self.bestTime.text = @"Best Time: Never Completed";
+        
+    } else {
+        
+        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
+    }
+    
     self.tilesRemaining = self.currentPuzzle.numberOfTiles;
     [self updateTilesRemaining];
-    
 }
 
 -(void) resetTimer
@@ -375,6 +374,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [self resetTimer];
     self.nextLevelButton.hidden = false;
     self.previousLevelButton.hidden = false;
+    if(self.currentLevel == 5)
+    {
+        self.nextLevelButton.hidden = true;
+    }
+    
 }
 
 

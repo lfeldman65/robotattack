@@ -18,7 +18,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption
 
 {
-    
     [[SKPaymentQueue defaultQueue]addTransactionObserver:self];
 
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -26,6 +25,12 @@
                                                              [NSNumber numberWithInt:10000000], @"bestTime1",
                                                              [NSNumber numberWithInt:10000000], @"bestTime2",
                                                              [NSNumber numberWithInt:10000000], @"bestTime3",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime4",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime5",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime6",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime7",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime8",
+                                                             [NSNumber numberWithInt:10000000], @"bestTime9",
                                                              [NSNumber numberWithInt:1], @"levelNumber",
                                                              [NSNumber numberWithBool:false], @"fullVersion",
                                                              [NSNumber numberWithBool:true], @"isSoundOn",

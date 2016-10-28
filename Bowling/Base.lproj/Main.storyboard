@@ -197,7 +197,7 @@ Add the number of tiles that is shown as "Tiles Remaining."  No more and no less
                                         <rect key="frame" x="0.0" y="28" width="336" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3ZD-Tm-2cB" id="x1J-qQ-toV">
-                                            <frame key="frameInset" width="336" height="43"/>
+                                            <frame key="frameInset" width="336" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -211,6 +211,10 @@ Add the number of tiles that is shown as "Tiles Remaining."  No more and no less
                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Rkk-sd-Uso"/>
+                    <connections>
+                        <outlet property="myTableView" destination="QGg-h2-Efd" id="lYA-Yr-2ps"/>
+                        <segue destination="uEe-pH-4Co" kind="modal" identifier="toGame" id="ldy-kl-SEq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLV-Ov-TCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -332,9 +336,7 @@ Add the number of tiles that is shown as "Tiles Remaining."  No more and no less
                                     <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextLevelPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="Z9p-QK-cC6"/>
                                     <action selector="previousLevelPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="Gr9-CE-0dF"/>
-                                    <action selector="resetPressed:" destination="uEe-pH-4Co" eventType="touchUpInside" id="g4W-BD-cqj"/>
                                 </connections>
                             </button>
                         </subviews>

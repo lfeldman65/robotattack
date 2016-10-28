@@ -7,6 +7,9 @@
 //
 
 #import "LevelSelectViewController.h"
+#import "CollectionViewController.h"
+
+
 
 @interface LevelSelectViewController ()
 - (IBAction)homePressed:(id)sender;
@@ -18,20 +21,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.levelArray = [NSArray arrayWithObjects: @"Level 1", @"Level 2", @"Level 3", @"Level 4", @"Level 5", @"Level 6", @"Level 7", @"Level 8", @"Level 9", nil];
+    self.levelArray = [NSArray arrayWithObjects: @"Level 1", @"Level 2", @"Level 3", @"Level 4", @"Level 5", nil];
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.myTableView reloadData];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-    
+    self.selectedLevel = (int)indexPath.row + 1;
+    [self performSegueWithIdentifier:@"toGame" sender:nil];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -46,26 +48,42 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.textLabel.text = [self.levelArray objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    return cell;
     
+    NSString *key = [NSString stringWithFormat:@"bestTime%d", (int)indexPath.row + 1];
+    
+    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    if (best < 10000000)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+    }
+    return cell;
 }
 
-/*
+
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    [super prepareForSegue:segue sender:sender];
+    
+    if ([[segue identifier] isEqualToString:@"toGame"])
+    {
+        CollectionViewController* cvc = (CollectionViewController*) segue.destinationViewController;
+        cvc.currentLevel = self.selectedLevel;
+    }
 }
-*/
 
 - (IBAction)homePressed:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 @end
