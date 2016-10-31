@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Puzzle.h"
+#import "AppDelegate.h"
 
 @interface CreateLevelsViewController : UIViewController
 @property (strong, nonatomic) Puzzle* currentPuzzle;

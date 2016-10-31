@@ -12,6 +12,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "Shop.h"
+#import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "GameCenterManager.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 
 @interface LevelSelectViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
@@ -19,5 +25,7 @@
 @property(nonatomic, strong) NSMutableArray *levelArray;
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 @property (assign,nonatomic) int selectedLevel;
+@property (nonatomic) Shop *ourNewShop;
+
 
 @end

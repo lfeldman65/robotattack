@@ -163,7 +163,7 @@
     {
         if (self.alreadyHasStart)
         {
-            [self showAlertWithTitle:@"Duplicate" message:@"There is already a Start tile"];
+            [theAppDelegate() showAlertWithTitle:@"Duplicate" message:@"There is already a Start tile"];
             cell.textLable.text = @"";
             cell.selected = NO;
             [collectionView deselectItemAtIndexPath:indexPath animated:NO];
@@ -179,7 +179,7 @@
     {
         if (self.alreadyHasEnd)
         {
-            [self showAlertWithTitle:@"Duplicate" message:@"There is already a End tile"];
+            [theAppDelegate() showAlertWithTitle:@"Duplicate" message:@"There is already an End tile"];
             cell.textLable.text = @"";
             cell.selected = NO;
             [collectionView deselectItemAtIndexPath:indexPath animated:NO];

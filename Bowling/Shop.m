@@ -13,7 +13,7 @@
 - (NSArray *)allProducts {
     
     if (!_allProducts) {
-        _allProducts = @[@"com.lfeldman.brickattack.full"];
+        _allProducts = @[@"com.lfeldman.golden.extra1"];
     }
     return _allProducts;
 }
@@ -78,12 +78,9 @@
     
 }
 
-- (void)cantBuyAnything {
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Buy" message:@"In-App purchases are disabled" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
-
-    
+- (void)cantBuyAnything
+{
+    [theAppDelegate() showAlertWithTitle:@"Cannot Buy" message:@"In-App purchases are disabled"];
 }
 
 @end

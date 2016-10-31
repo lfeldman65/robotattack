@@ -8,6 +8,7 @@
 #import "CollectionViewController.h"
 #import "CollectionViewCell.h"
 #import "Puzzle.h"
+#import "Shop.h"
 
 #define numLevels 9
 
@@ -20,6 +21,8 @@
 @property (assign,nonatomic)  int tilesRemaining;
 @property (strong,nonatomic)  IBOutlet UIButton* nextLevelButton;
 @property (strong, nonatomic) IBOutlet UIButton *previousLevelButton;
+@property (assign, nonatomic) SystemSoundID selectSound;
+
 
 - (IBAction)resetPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
@@ -57,6 +60,8 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self resetTimer];
     
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pop" ofType:@"mp3"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &_selectSound);
 }
 
 
@@ -121,6 +126,11 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"soundOn"])
+    {
+        AudioServicesPlayAlertSound(self.selectSound);
+    }
+    
     NSLog(@"select index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor yellowColor];
@@ -144,9 +154,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    float f = (_myCollectionView.frame.size.width-16) / 8;
-    
+    float f = (self.myCollectionView.frame.size.width-16) / 8;
     return CGSizeMake(f, f);
 }
 
@@ -258,7 +266,6 @@ static NSString * const reuseIdentifier = @"Cell";
     {
         for (int row = 0; row < 8; row++)
         {
-            int neighbors = 0;
             ip = [NSIndexPath indexPathForRow:row inSection:section];
             ipRight = [NSIndexPath indexPathForRow:row+1 inSection:section];
             ipSE = [NSIndexPath indexPathForRow:row+1 inSection:section+1];
@@ -269,27 +276,9 @@ static NSString * const reuseIdentifier = @"Cell";
             cellSE = [collectionView cellForItemAtIndexPath:ipSE];
             cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
             
-            if(cell.selected)
+            if(cell.selected && cellRight.selected && cellSE.selected && cellBelow.selected)
             {
-                if(cellRight.selected)
-                {
-                    neighbors++;
-                }
-                
-                if(cellSE.selected)
-                {
-                    neighbors++;
-                }
-                
-                if(cellBelow.selected)
-                {
-                    neighbors++;
-                }
-                
-                if(neighbors == 3)
-                {
-                    return true;
-                }
+                return true;
             }
         }
     }
@@ -303,6 +292,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if(!self.tilesRemaining)
     {
         //__weak typeof (self) ws = self;
+        
         if([self didWin:self.myCollectionView])
         {
             [self.levelTimer invalidate];
@@ -313,46 +303,13 @@ static NSString * const reuseIdentifier = @"Cell";
             if (self.secondsElapsed < best)
             {
                 self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)self.secondsElapsed];
-                
+            
                 [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:key];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
-                //    [[GameCenterManager sharedManager] saveAndReportScore:(int)lastGame leaderboard:@"assaultHighScore" sortOrder:GameCenterSortOrderHighToLow];
-                
+                [[GameCenterManager sharedManager] saveAndReportScore:self.secondsElapsed leaderboard:key sortOrder:GameCenterSortOrderLowToHigh];
             }
-
-         //   [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:(self.currentLevel+1)] forKey:@"levelNumber"];
-         //   [[NSUserDefaults standardUserDefaults]  synchronize];
-            
-            //self.currentLevel += 1;
-            
             self.tilesRemainingLabel.text = @"You won!";
-            
-         //   self.nextLevelButton.hidden = false;
-            /*
-            NSString* message = [NSString stringWithFormat:@"You completed this in %d secs", self.secondsElapsed];
-            
-            if (self.secondsElapsed < best)
-            {
-                message = [NSString stringWithFormat:@"You broke your record. You completed this in %d secs", self.secondsElapsed];
-            }
-            
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Good Job"
-                                                                           message: message
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
-                                                                  
-                                                                      ///[ws resetPressed:nil];
-                                                                      //[ws resetTimer];
-                                                                  }];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            */
-            
-            
         }
     }
 }
@@ -403,6 +360,33 @@ static NSString * const reuseIdentifier = @"Cell";
 - (IBAction)previousLevelPressed:(id)sender
 {
     self.currentLevel--;
+    [self changeLevels];
+}
+
+- (IBAction)nextLevelPressed:(id)sender
+{
+    if(self.currentLevel >= 4)
+    {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fullVersion"])
+        {
+            self.currentLevel++;
+            [self changeLevels];
+            
+        } else {
+            
+            [self offerPurchase];
+        }
+        
+    } else {
+        
+        self.currentLevel++;
+        [self changeLevels];
+    }
+}
+
+
+-(void)changeLevels
+{
     self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
     NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
@@ -419,36 +403,34 @@ static NSString * const reuseIdentifier = @"Cell";
     self.nextLevelButton.hidden = false;
     self.previousLevelButton.hidden = false;
     
-    if(self.currentLevel == 1)
-    {
-        self.previousLevelButton.hidden = true;
-    }
-}
-
-- (IBAction)nextLevelPressed:(id)sender
-{
-    self.currentLevel++;
-    self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
-    NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
-    NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
-    if (best == 10000000)
-    {
-        self.bestTime.text = @"Best Time: Never Completed";
-        
-    } else {
-        
-        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
-    }
-    [self resetPressed:nil];
-    [self resetTimer];
-    self.nextLevelButton.hidden = false;
-    self.previousLevelButton.hidden = false;
     if(self.currentLevel == numLevels)
     {
         self.nextLevelButton.hidden = true;
     }
     
+    if(self.currentLevel == 1)
+    {
+        self.previousLevelButton.hidden = true;
+    }
+    
 }
+
+-(void)offerPurchase
+{
+    NSLog(@"offer purchase");
+    [self.ourNewShop validateProductIdentifiers];
+}
+
+
+- (Shop *)ourNewShop
+{
+    if (!_ourNewShop) {
+        _ourNewShop = [[Shop alloc] init];
+        _ourNewShop.delegate = self;
+    }
+    return _ourNewShop;
+}
+
 
 
 -(void) timeElapsed

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+
 
 @interface CollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -16,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *levelLabel;
 @property (assign,nonatomic)  int currentLevel;
+@property (nonatomic) Shop *ourNewShop;
 
 
 @end

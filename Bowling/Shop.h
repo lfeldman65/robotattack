@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 @import StoreKit;
 
 @interface Shop : NSObject <SKProductsRequestDelegate>

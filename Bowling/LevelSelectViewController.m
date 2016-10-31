@@ -13,7 +13,8 @@
 #import "SSZipArchive.h"
 
 @interface LevelSelectViewController ()
-- (IBAction)homePressed:(id)sender;
+
+//- (IBAction)homePressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *zipButton;
 @end
@@ -36,8 +37,8 @@
 
 
 
-- (IBAction)zipAndMail:(id)sender {
-    
+- (IBAction)zipAndMail:(id)sender
+{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //NSURL *bundleURL = [[NSBundle mainBundle] bundleURL];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -59,9 +60,8 @@
     
     if (arrayOfPList.count == 0)
     {
-        [self showAlertWithTitle:@"No Files"
-                         message:@"There are no puzzles to zip up"];
-        
+        [theAppDelegate() showAlertWithTitle:@"No Files" message:@"There are no puzzles to zip up"];
+
         return;
     }
     
@@ -90,7 +90,7 @@
     
     // Determine the file name and extension
     NSArray *filepart = [file componentsSeparatedByString:@"."];
-    NSString *filename = [filepart objectAtIndex:0];
+  //  NSString *filename = [filepart objectAtIndex:0];
     NSString *extension = [filepart objectAtIndex:1];
     
     // Get the resource path and read the file using NSData
@@ -151,7 +151,6 @@
 {
     [super viewWillAppear:animated];
 
-    
     self.zipButton.hidden = !theAppDelegate().createLevelsMode;
     int level = 1;
     
@@ -218,9 +217,32 @@
     else
     {
         self.selectedLevel = level.intValue;
-        [self performSegueWithIdentifier:@"toGame" sender:nil];
+        
+        if (self.selectedLevel >= 5) {
+            
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fullVersion"])
+            {
+                [self performSegueWithIdentifier:@"toGame" sender:nil];
+
+            } else {
+                
+                [self offerPurchase];
+                
+            }
+            
+        } else {
+        
+            [self performSegueWithIdentifier:@"toGame" sender:nil];
+        }
     
     }
+}
+
+-(void)offerPurchase
+{
+    NSLog(@"offer purchase");
+    [self.ourNewShop validateProductIdentifiers];
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -290,6 +312,39 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+- (Shop *)ourNewShop
+{
+    if (!_ourNewShop) {
+        _ourNewShop = [[Shop alloc] init];
+        _ourNewShop.delegate = self;
+    }
+    return _ourNewShop;
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0: {
+            [self.ourNewShop makeThePurchase];
+            break;
+            
+        }
+            
+        case 1: {
+            [self.ourNewShop restoreThePurchase];
+            break;
+            
+        }
+            
+        default: {
+            break;
+        }
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

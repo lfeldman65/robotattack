@@ -11,18 +11,19 @@
 
 @interface GameViewController ()
 - (IBAction)gameCenterPressed:(id)sender;
+- (IBAction)soundSwitchChanged:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISwitch* createLevelsSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
 
 @end
 
 
 @implementation GameViewController
 
-- (IBAction)createGameModeChanged:(id)sender {
-    
+- (IBAction)createGameModeChanged:(id)sender
+{
     theAppDelegate().createLevelsMode = self.createLevelsSwitch.on;
-    
 }
 
 - (void)viewDidLoad {
@@ -31,10 +32,8 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"])
     {
-        NSString *infoString = @"Create a Golden Trail that connects the start tile to the end tile. Play level 1 to learn the rules.  As the saying goes, it's easy to learn and hard to master!";
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome!" message:infoString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        NSString *infoString = @"Create a Golden Trail that connects the start tile to the end tile. Play level 1 to learn the rules.  As with all good puzzles, it's easy to learn and hard to master!";
+        [self showAlertWithTitle:@"Welcome!" message:infoString];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"wasGameLaunched"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
@@ -53,10 +52,22 @@
     
 }
 
-
-- (void)shoppingDone:(NSNotification *)notification {
+-(void)viewDidAppear:(BOOL)animated {
     
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"soundOn"])
+    {
+        self.soundSwitch.on = true;
+        
+    } else {
+        
+        self.soundSwitch.on = false;
+    }
+}
 
+
+- (void)shoppingDone:(NSNotification *)notification
+{
+    NSLog(@"shopping done");
 }
 
 - (Shop *)ourNewShop {
@@ -86,116 +97,6 @@
         default: {
             break;
         }
-    }
-}
-
-
-- (IBAction)startPressed:(id)sender {
-        
-  
-    
-    
-}
-
-
-- (void)checkGameOver:(NSNotification *)notification {
-    
-    if ([[notification name] isEqualToString:@"gameOverNotification"]) {
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        
-        NSLog(@"game over");
-        
-        self.startButton.hidden = NO;
-        self.settingsButton.hidden = NO;
-            
-        self.highScoreLabel.hidden = NO;
-        self.titleLabel.hidden = NO;
-        self.lastGameLabel.hidden = NO;
-        self.bgImage.hidden = NO;
-                
-        NSInteger lastGame = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastGameScore"];
-        
-        //   NSLog(@"last game = %ld", (long)lastGame);
-        
-        NSString *lastGameString = [NSString stringWithFormat:@"Last Game: %ld", (long)lastGame];
-        self.lastGameLabel.text = lastGameString;
-        
-        NSInteger numGames = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelNumber"];
-        numGames++;
-        
-        [[NSUserDefaults standardUserDefaults] setInteger:numGames forKey:@"levelNumber"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"];
-        
-        if (lastGame > best) {
-            
-            NSString *highScoreString = [NSString stringWithFormat:@"High Score: %ld", (long)lastGame];
-            self.highScoreLabel.text = highScoreString;
-            
-            [[NSUserDefaults standardUserDefaults] setInteger:lastGame forKey:@"highScore"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            [[GameCenterManager sharedManager] saveAndReportScore:(int)lastGame leaderboard:@"assaultHighScore" sortOrder:GameCenterSortOrderHighToLow];
-            
-        }
-        
-        if (lastGame >=50 && lastGame < 100) {
-            [[GameCenterManager sharedManager] saveAndReportAchievement:@"50blocks" percentComplete:100 shouldDisplayNotification:YES];
-        }
-        
-        if (lastGame >= 100 && lastGame < 250) {
-            [[GameCenterManager sharedManager] saveAndReportAchievement:@"100blocks" percentComplete:100 shouldDisplayNotification:YES];
-        }
-        
-        if (lastGame >= 250) {
-            [[GameCenterManager sharedManager] saveAndReportAchievement:@"250blocks" percentComplete:100 shouldDisplayNotification:YES];
-        }
-        
-
-     /*   [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(soundChanged:)
-                                                     name:@"soundDidChange"
-                                                   object:nil];*/
-        
-        // every 10 games, offer full version if they don't already have it.
-
-        if (![[NSUserDefaults standardUserDefaults] integerForKey:@"fullVersion"] && [[NSUserDefaults standardUserDefaults] integerForKey:@"levelNumber"]%10 == 0) {
-            [self.ourNewShop validateProductIdentifiers];
-            
-        }
-    }
-}
-
-/*
-- (void)soundChanged:(NSNotification *)notification {
-    
-    if ([[notification name] isEqualToString:@"soundDidChange"]) {
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isSoundOn"]) {
-            
-          //  [self.backgroundMusicPlayer prepareToPlay];
-          //  [self.backgroundMusicPlayer play];
-            
-        } else {
-            
-        //    [self.backgroundMusicPlayer stop];
-        }
-    }
-}*/
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"toSettings"]){
-        SettingsViewController *svc = (SettingsViewController *)[segue destinationViewController];
-      //  svc.delegate = self;
-    }
-    
-    if ([[segue identifier] isEqualToString:@"toLevelSelector"]){
-        CollectionViewController *cvc = (CollectionViewController *)[segue destinationViewController];
-      //  svc.delegate = self;
     }
 }
 
@@ -285,5 +186,34 @@
 {
     [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self];
 }
+
+- (IBAction)soundSwitchChanged:(id)sender {
+    
+    if(self.soundSwitch.on) {
+        
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"soundOn"];
+        
+    } else {
+        
+        [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"soundOn"];
+
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void) showAlertWithTitle:(NSString*) title message:(NSString*) msg
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 @end

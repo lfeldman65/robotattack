@@ -13,8 +13,6 @@ AppDelegate* theAppDelegate()
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
-
-
 @interface AppDelegate ()
 
 @end
@@ -40,9 +38,17 @@ AppDelegate* theAppDelegate()
                                                              [NSNumber numberWithInt:10000000], @"bestTime9",
                                                              [NSNumber numberWithInt:1], @"levelNumber",
                                                              [NSNumber numberWithBool:false], @"fullVersion",
-                                                             [NSNumber numberWithBool:true], @"isSoundOn",
+                                                             [NSNumber numberWithBool:true], @"soundOn",
                                                              nil]];
     return YES;
+}
+
+-(void) showAlertWithTitle:(NSString*) title message:(NSString*) msg {
+    
+    
+    
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -86,10 +92,7 @@ AppDelegate* theAppDelegate()
                 
                 [self unlockFullVersion];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Full version successfully restored" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                
+                [theAppDelegate() showAlertWithTitle:@"Success" message:@"Full version successfully restored"];
                 break;
             }
                 
