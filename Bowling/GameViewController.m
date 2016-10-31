@@ -7,10 +7,22 @@
 //
 
 #import "GameViewController.h"
+#import "AppDelegate.h"
+
+@interface GameViewController ()
+
+@property (weak, nonatomic) IBOutlet UISwitch* createLevelsSwitch;
+
+@end
 
 
 @implementation GameViewController
 
+- (IBAction)createGameModeChanged:(id)sender {
+    
+    theAppDelegate().createLevelsMode = self.createLevelsSwitch.on;
+    
+}
 
 - (void)viewDidLoad {
     

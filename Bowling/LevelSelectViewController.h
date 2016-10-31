@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface LevelSelectViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, strong) NSArray *levelArray;
+@interface LevelSelectViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
+
+@property(nonatomic, strong) NSMutableArray *levelArray;
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 @property (assign,nonatomic) int selectedLevel;
 

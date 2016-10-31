@@ -13,7 +13,11 @@
 -(id) initWithFilePath : (NSString* ) path;
 
 @property (atomic, assign) int numberOfTiles;
-@property (atomic, strong) NSArray * puzzleArray;
+@property (atomic, strong) NSMutableArray * puzzleArray;
+@property (atomic, strong) NSMutableDictionary* puzzleDictionary;
 @property (atomic, strong) NSIndexPath* startIndexPath;
 @property (atomic, strong) NSIndexPath * endIndexPath;
+
+-(BOOL) saveToFile: (NSString*) path;
+
 @end

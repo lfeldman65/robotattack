@@ -13,5 +13,9 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, SKPaymentTransactionObserver>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (assign, nonatomic) BOOL createLevelsMode;
+
 @end
 
+AppDelegate* theAppDelegate();

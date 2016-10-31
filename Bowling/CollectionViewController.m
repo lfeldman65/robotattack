@@ -88,8 +88,13 @@ static NSString * const reuseIdentifier = @"Cell";
             
             if ((rowNumber == indexPath.section) && ([column intValue] == indexPath.row))
             {
-                cell.textLable.text = dict[@"Text"];
-                cell.selected = true;
+                NSString*str = dict[@"Text"];
+                
+                if (str.length > 0)
+                {
+                    cell.textLable.text = dict[@"Text"];
+                    cell.selected = true;
+                }
             }
         }
         
@@ -136,7 +141,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(30.0, 30.0);
+    
+    float f = (_myCollectionView.frame.size.width-16) / 8;
+    
+    return CGSizeMake(f, f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section

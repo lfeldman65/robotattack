@@ -8,6 +8,13 @@
 
 #import "AppDelegate.h"
 
+AppDelegate* theAppDelegate()
+{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+
+
 @interface AppDelegate ()
 
 @end
