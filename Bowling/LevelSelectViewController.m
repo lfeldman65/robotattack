@@ -114,7 +114,7 @@
     }
     
     // Add attachment
-    [mc addAttachmentData:fileData mimeType:mimeType fileName:filename];
+    [mc addAttachmentData:fileData mimeType:mimeType fileName:@"puzzles.zip"];
     
     // Present mail view controller on screen
     [self presentViewController:mc animated:YES completion:NULL];
