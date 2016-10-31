@@ -9,6 +9,8 @@
 #import "CollectionViewCell.h"
 #import "Puzzle.h"
 
+#define numLevels 9
+
 
 @interface CollectionViewController ()
 
@@ -42,7 +44,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.previousLevelButton.hidden = true;
     }
     
-    if(self.currentLevel == 9)
+    if(self.currentLevel == numLevels)
     {
         self.nextLevelButton.hidden = true;
     }
@@ -382,7 +384,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self resetTimer];
     self.nextLevelButton.hidden = false;
     self.previousLevelButton.hidden = false;
-    if(self.currentLevel == 5)
+    if(self.currentLevel == numLevels)
     {
         self.nextLevelButton.hidden = true;
     }

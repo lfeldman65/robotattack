@@ -38,12 +38,6 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    NSString *lGS = [NSString stringWithFormat:@"Last Game: %ld", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"lastGameScore"]];
-    self.lastGameLabel.text = lGS;
-    
-    NSString *hSS = [NSString stringWithFormat:@"High Score: %ld", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]];
-    self.highScoreLabel.text = hSS;
-    
     // Game Center
     
  //   [[GameCenterManager sharedManager] setDelegate:self];
@@ -58,40 +52,6 @@
     
 }
 
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    
-    float sWidth = [UIScreen mainScreen].bounds.size.width;    // 4S: width = 320
-    float sHeight = [UIScreen mainScreen].bounds.size.height;  // 4S: height = 480
-    
-    [self.bgImage setFrame:CGRectMake(0, 0, sWidth, sHeight)];
-    self.bgImage.center = CGPointMake(sWidth/2, sHeight/2);
-    
-    [self.settingsButton setFrame:CGRectMake(0, 0, .1*sWidth, .1*sWidth)];
-    self.settingsButton.center = CGPointMake(.9*sWidth, 0.12*sHeight);
-    
-    [self.titleLabel setFrame:CGRectMake(0, 0, sWidth, .09*sHeight)];
-    [[self titleLabel] setFont:[UIFont fontWithName:@"Noteworthy" size:.11*sWidth]];
-    self.titleLabel.center = CGPointMake(.5*sWidth, .23*sHeight);
-
-    [self.lastGameLabel setFrame:CGRectMake(0, 0, .5*sWidth, .11*sHeight)];
-    self.lastGameLabel.font = [UIFont fontWithName: @"Noteworthy" size: .07*sWidth];
-    self.lastGameLabel.center = CGPointMake(.5*sWidth, .4*sHeight);
-    
-    [self.highScoreLabel setFrame:CGRectMake(0, 0, .5*sWidth, .11*sHeight)];
-    self.highScoreLabel.font = [UIFont fontWithName: @"Noteworthy" size: .07*sWidth];
-    self.highScoreLabel.center = CGPointMake(.5*sWidth, .6*sHeight);
-    
-    [self.startButton setFrame:CGRectMake(0, 0, sWidth, .1*sWidth)];
-    self.startButton.titleLabel.font = [UIFont fontWithName: @"Noteworthy" size: .09*sWidth];
-    self.startButton.center = CGPointMake(.5*sWidth, .8*sHeight);
-    
-    [self.bgImage setFrame:CGRectMake(0, 0, sWidth, sHeight)];
-    self.bgImage.center = CGPointMake(.5*sWidth, .5*sHeight);
-    
-
-}
 
 - (void)shoppingDone:(NSNotification *)notification {
     
