@@ -127,7 +127,8 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.tilesRemaining--;
     [self updateTilesRemaining];
-    
+    BOOL flag = [self testForGroupsOfFour:collectionView];
+    NSLog(@"flag = %d", flag);
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -174,6 +175,13 @@ static NSString * const reuseIdentifier = @"Cell";
     NSIndexPath *ipAbove;
     NSIndexPath *ipBelow;
     
+    BOOL anyGroupsOfFour = [self testForGroupsOfFour:collectionView];
+    
+    if(anyGroupsOfFour)
+    {
+        return false;
+    }
+    
     for(int section = 0; section < 8; section++)
     {
         for (int row = 0; row < 8; row++)
@@ -213,28 +221,79 @@ static NSString * const reuseIdentifier = @"Cell";
                     neighbors++;
                 }
                 
-                
                 if(row == self.currentPuzzle.startIndexPath.row && section == self.currentPuzzle.startIndexPath.section)
                 {
                     if (neighbors > 1)
                         return false;
                 }
-                else
-                if(row == self.currentPuzzle.endIndexPath.row && section == self.currentPuzzle.endIndexPath.section)
+                else if(row == self.currentPuzzle.endIndexPath.row && section == self.currentPuzzle.endIndexPath.section)
                 {
                     if (neighbors > 1)
                         return false;
                 }
-                else
-                if (neighbors != 2)
+                else if (neighbors != 2)
                 {
                     return false;
                 }
             }
         }
     }
-  //  [self.view setUserInteractionEnabled:NO];
-        return true;
+
+    return true;
+}
+
+-(BOOL)testForGroupsOfFour:(UICollectionView *)collectionView {
+    
+    UICollectionViewCell *cell;
+    UICollectionViewCell *cellRight;
+    UICollectionViewCell *cellSE;
+    UICollectionViewCell *cellBelow;
+    
+    NSIndexPath *ip;
+    NSIndexPath *ipRight;
+    NSIndexPath *ipSE;
+    NSIndexPath *ipBelow;
+    
+    for(int section = 0; section < 8; section++)
+    {
+        for (int row = 0; row < 8; row++)
+        {
+            int neighbors = 0;
+            ip = [NSIndexPath indexPathForRow:row inSection:section];
+            ipRight = [NSIndexPath indexPathForRow:row+1 inSection:section];
+            ipSE = [NSIndexPath indexPathForRow:row+1 inSection:section+1];
+            ipBelow = [NSIndexPath indexPathForRow:row inSection:section+1];
+            
+            cell = [collectionView cellForItemAtIndexPath:ip];
+            cellRight = [collectionView cellForItemAtIndexPath:ipRight];
+            cellSE = [collectionView cellForItemAtIndexPath:ipSE];
+            cellBelow = [collectionView cellForItemAtIndexPath:ipBelow];
+            
+            if(cell.selected)
+            {
+                if(cellRight.selected)
+                {
+                    neighbors++;
+                }
+                
+                if(cellSE.selected)
+                {
+                    neighbors++;
+                }
+                
+                if(cellBelow.selected)
+                {
+                    neighbors++;
+                }
+                
+                if(neighbors == 3)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 

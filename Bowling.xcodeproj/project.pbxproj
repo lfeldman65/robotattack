@@ -260,10 +260,10 @@
 		674642FB1DC15EF4006387A6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				67B6CD0E1DC3F7D90065E077 /* LevelSelectViewController.h */,
-				67B6CD0F1DC3F7D90065E077 /* LevelSelectViewController.m */,
 				110E80821B161B4100DF989C /* GameViewController.h */,
 				110E80831B161B4100DF989C /* GameViewController.m */,
+				67B6CD0E1DC3F7D90065E077 /* LevelSelectViewController.h */,
+				67B6CD0F1DC3F7D90065E077 /* LevelSelectViewController.m */,
 				514D2A141DBEA57C00A96118 /* CollectionViewController.h */,
 				514D2A151DBEA57C00A96118 /* CollectionViewController.m */,
 				11E153C91B16B25C00619239 /* SettingsViewController.h */,

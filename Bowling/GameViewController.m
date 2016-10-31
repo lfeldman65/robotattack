@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 @interface GameViewController ()
+- (IBAction)gameCenterPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISwitch* createLevelsSwitch;
 
@@ -30,7 +31,7 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"])
     {
-        NSString *infoString = @"Create a Golden Trail that connects the start tile to the end tile. Please go to the Settings screen to read the full instructions.";
+        NSString *infoString = @"Create a Golden Trail that connects the start tile to the end tile. Play level 1 to learn the rules.  As the saying goes, it's easy to learn and hard to master!";
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome!" message:infoString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -278,6 +279,11 @@
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (IBAction)gameCenterPressed:(id)sender
+{
+    [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self];
 }
 
 @end
