@@ -25,7 +25,6 @@
 
 @property (assign, nonatomic) BOOL createLevelsMode;
 
--(void)showAlertWithTitle:(NSString*) title message:(NSString*) msg;
 
 @end
 

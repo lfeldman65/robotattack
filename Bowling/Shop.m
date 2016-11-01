@@ -78,9 +78,11 @@
     
 }
 
-- (void)cantBuyAnything
-{
-    [theAppDelegate() showAlertWithTitle:@"Cannot Buy" message:@"In-App purchases are disabled"];
+- (void)cantBuyAnything {
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Buy" message:@"In-App purchases are disabled" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    
 }
 
 @end

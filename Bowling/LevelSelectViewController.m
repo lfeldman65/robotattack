@@ -60,7 +60,7 @@
     
     if (arrayOfPList.count == 0)
     {
-        [theAppDelegate() showAlertWithTitle:@"No Files" message:@"There are no puzzles to zip up"];
+        [self showAlertWithTitle:@"No Files" message:@"There are no puzzles to zip up"];
 
         return;
     }
