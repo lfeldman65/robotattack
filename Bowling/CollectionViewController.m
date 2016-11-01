@@ -295,6 +295,8 @@ static NSString * const reuseIdentifier = @"Cell";
         
         if([self didWin:self.myCollectionView])
         {
+            [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.golden.lp1" percentComplete:100.00 shouldDisplayNotification:true];
+            
             [self.levelTimer invalidate];
             
             NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
@@ -307,7 +309,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:key];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
-                [[GameCenterManager sharedManager] saveAndReportScore:self.secondsElapsed leaderboard:key sortOrder:GameCenterSortOrderLowToHigh];
+               // [[GameCenterManager sharedManager] saveAndReportScore:self.secondsElapsed leaderboard:key sortOrder:GameCenterSortOrderLowToHigh];
             }
             self.tilesRemainingLabel.text = @"You won!";
         }

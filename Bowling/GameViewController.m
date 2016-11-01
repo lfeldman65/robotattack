@@ -12,14 +12,19 @@
 @interface GameViewController ()
 - (IBAction)gameCenterPressed:(id)sender;
 - (IBAction)soundSwitchChanged:(id)sender;
+- (IBAction)fullVersionPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISwitch* createLevelsSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (strong, nonatomic) UISwipeGestureRecognizer *leftSwipe;
+@property (strong, nonatomic) IBOutlet UILabel *levelCreationLabel;
 
 @end
 
 
 @implementation GameViewController
+
+int numLeftSwipes = 0;
 
 - (IBAction)createGameModeChanged:(id)sender
 {
@@ -29,6 +34,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+   // self.levelCreationLabel.hidden = true;
+   // self.createLevelsSwitch.hidden = true;
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"])
     {
@@ -40,7 +48,7 @@
     
     // Game Center
     
- //   [[GameCenterManager sharedManager] setDelegate:self];
+    [[GameCenterManager sharedManager] setDelegate:self];
     BOOL available = [[GameCenterManager sharedManager] checkGameCenterAvailability];
     if (available) {
         NSLog(@"available");
@@ -50,6 +58,21 @@
     
     [[GKLocalPlayer localPlayer] authenticateHandler];
     
+    self.leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeDetected)];
+    self.leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:self.leftSwipe];
+    
+}
+
+-(void)leftSwipeDetected
+{
+    NSLog(@"here");
+    numLeftSwipes++;
+    if(numLeftSwipes >= 3)
+    {
+        self.levelCreationLabel.hidden = false;
+        self.createLevelsSwitch.hidden = false;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -200,6 +223,13 @@
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)fullVersionPressed:(id)sender {
+    
+    NSLog(@"offer purchase");
+    [self.ourNewShop validateProductIdentifiers];
+
 }
 
 -(void) showAlertWithTitle:(NSString*) title message:(NSString*) msg

@@ -24,22 +24,21 @@ AppDelegate* theAppDelegate()
 
 {
     [[SKPaymentQueue defaultQueue]addTransactionObserver:self];
-
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                             [NSNumber numberWithBool:false], @"wasGameLaunched",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime1",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime2",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime3",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime4",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime5",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime6",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime7",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime8",
-                                                             [NSNumber numberWithInt:10000000], @"bestTime9",
-                                                             [NSNumber numberWithInt:1], @"levelNumber",
-                                                             [NSNumber numberWithBool:false], @"fullVersion",
-                                                             [NSNumber numberWithBool:true], @"soundOn",
-                                                             nil]];
+    
+    NSMutableDictionary *defaultsDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithBool:false], @"wasGameLaunched",
+                                  [NSNumber numberWithInt:1], @"levelNumber",
+                                  [NSNumber numberWithBool:false], @"fullVersion",
+                                  [NSNumber numberWithBool:true], @"soundOn",
+                                  nil];
+    
+    for (int i = 1; i <= 20; i++)
+    {
+        NSString *bestTimeKey = [NSString stringWithFormat:@"bestTime%d", i];
+        [defaultsDict setObject:[NSNumber numberWithInt:10000000] forKey:bestTimeKey];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
     return YES;
 }
 
