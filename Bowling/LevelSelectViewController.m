@@ -14,7 +14,6 @@
 
 @interface LevelSelectViewController ()
 
-//- (IBAction)homePressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *zipButton;
 @end
@@ -218,7 +217,7 @@
     {
         self.selectedLevel = level.intValue;
         
-        if (self.selectedLevel >= 5) {
+        if (self.selectedLevel > numFreeLevels) {
             
             if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fullVersion"])
             {
@@ -259,7 +258,6 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.textLabel.text = [self.levelArray objectAtIndex:indexPath.row];
-    
     
     if (theAppDelegate().createLevelsMode == NO)
     {

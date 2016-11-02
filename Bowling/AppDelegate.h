@@ -16,6 +16,9 @@
 #import "GameCenterManager.h"
 #import <MediaPlayer/MediaPlayer.h>
 
+#define numFullLevels 34
+#define numFreeLevels 20
+
 @import StoreKit;
 
 

@@ -9,13 +9,131 @@
 				<key>Column</key>
 				<integer>0</integer>
 				<key>Text</key>
-				<string>End</string>
+				<string></string>
 			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>1</integer>
+				<key>Text</key>
+				<string>👍</string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>2</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+		</array>
+		<array>
 			<dict>
 				<key>Column</key>
 				<integer>0</integer>
 				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>2</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>4</integer>
+				<key>Text</key>
+				<string>👍</string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>5</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>6</integer>
+				<key>Text</key>
+				<string>Start</string>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>Column</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>2</integer>
+				<key>Text</key>
+				<string>👍</string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>4</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>Column</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>👍</string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>2</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>3</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>4</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>7</integer>
+				<key>Text</key>
 				<string>End</string>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>Column</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>6</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Column</key>
+				<integer>7</integer>
+				<key>Text</key>
+				<string></string>
+			</dict>
+		</array>
+		<array>
+			<dict>
+				<key>Column</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string></string>
 			</dict>
 			<dict>
 				<key>Column</key>
@@ -25,21 +143,9 @@
 			</dict>
 			<dict>
 				<key>Column</key>
-				<integer>2</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>3</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
 				<integer>4</integer>
 				<key>Text</key>
-				<string></string>
+				<string>👍</string>
 			</dict>
 			<dict>
 				<key>Column</key>
@@ -51,56 +157,16 @@
 				<key>Column</key>
 				<integer>6</integer>
 				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string></string>
+				<string>👍</string>
 			</dict>
 		</array>
 		<array>
 			<dict>
 				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-		</array>
-		<array>
-			<dict>
-				<key>Column</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>Text</key>
 				<string>👍</string>
 			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>2</integer>
-				<key>Text</key>
-				<string>👍</string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>3</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>4</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-		</array>
-		<array>
 			<dict>
 				<key>Column</key>
 				<integer>2</integer>
@@ -113,40 +179,8 @@
 				<key>Text</key>
 				<string></string>
 			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>5</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>6</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
 		</array>
 		<array>
-			<dict>
-				<key>Column</key>
-				<integer>2</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-		</array>
-		<array>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string>👍</string>
-			</dict>
 			<dict>
 				<key>Column</key>
 				<integer>2</integer>
@@ -157,57 +191,17 @@
 				<key>Column</key>
 				<integer>3</integer>
 				<key>Text</key>
-				<string></string>
+				<string>👍</string>
 			</dict>
 			<dict>
 				<key>Column</key>
 				<integer>4</integer>
 				<key>Text</key>
 				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>5</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>6</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string>👍</string>
-			</dict>
-		</array>
-		<array>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string></string>
-			</dict>
-		</array>
-		<array>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string>Start</string>
-			</dict>
-			<dict>
-				<key>Column</key>
-				<integer>7</integer>
-				<key>Text</key>
-				<string>Start</string>
 			</dict>
 		</array>
 	</array>
 	<key>TilesToComplete</key>
-	<integer>23</integer>
+	<integer>20</integer>
 </dict>
 </plist>

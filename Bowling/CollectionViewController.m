@@ -10,8 +10,6 @@
 #import "Puzzle.h"
 #import "Shop.h"
 
-#define numLevels 9
-
 
 @interface CollectionViewController ()
 
@@ -47,7 +45,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.previousLevelButton.hidden = true;
     }
     
-    if(self.currentLevel == numLevels)
+    if(self.currentLevel == numFullLevels)
     {
         self.nextLevelButton.hidden = true;
     }
@@ -140,6 +138,7 @@ static NSString * const reuseIdentifier = @"Cell";
     BOOL flag = [self testForGroupsOfFour:collectionView];
     NSLog(@"flag = %d", flag);
 }
+
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -367,7 +366,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (IBAction)nextLevelPressed:(id)sender
 {
-    if(self.currentLevel >= 4)
+    if(self.currentLevel >= numFreeLevels)
     {
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fullVersion"])
         {
@@ -405,7 +404,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.nextLevelButton.hidden = false;
     self.previousLevelButton.hidden = false;
     
-    if(self.currentLevel == numLevels)
+    if(self.currentLevel == numFullLevels)
     {
         self.nextLevelButton.hidden = true;
     }

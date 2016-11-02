@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 AppDelegate* theAppDelegate()
 {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -28,11 +29,11 @@ AppDelegate* theAppDelegate()
     NSMutableDictionary *defaultsDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:false], @"wasGameLaunched",
                                   [NSNumber numberWithInt:1], @"levelNumber",
-                                  [NSNumber numberWithBool:false], @"fullVersion",
+                                  [NSNumber numberWithBool:true], @"fullVersion",
                                   [NSNumber numberWithBool:true], @"soundOn",
                                   nil];
     
-    for (int i = 1; i <= 20; i++)
+    for (int i = 1; i <= numFullLevels; i++)
     {
         NSString *bestTimeKey = [NSString stringWithFormat:@"bestTime%d", i];
         [defaultsDict setObject:[NSNumber numberWithInt:10000000] forKey:bestTimeKey];
