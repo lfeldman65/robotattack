@@ -57,6 +57,12 @@
 		515783BC1DCA24BE00FB7A97 /* 32.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157839C1DCA24BE00FB7A97 /* 32.plist */; };
 		515783BD1DCA24BE00FB7A97 /* 33.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157839D1DCA24BE00FB7A97 /* 33.plist */; };
 		515783BE1DCA24BE00FB7A97 /* 34.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157839E1DCA24BE00FB7A97 /* 34.plist */; };
+		5157BF611DCA69ED00A73497 /* 35.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5B1DCA69ED00A73497 /* 35.plist */; };
+		5157BF621DCA69ED00A73497 /* 36.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5C1DCA69ED00A73497 /* 36.plist */; };
+		5157BF631DCA69ED00A73497 /* 37.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5D1DCA69ED00A73497 /* 37.plist */; };
+		5157BF641DCA69ED00A73497 /* 38.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5E1DCA69ED00A73497 /* 38.plist */; };
+		5157BF651DCA69ED00A73497 /* 39.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5F1DCA69ED00A73497 /* 39.plist */; };
+		5157BF661DCA69ED00A73497 /* 40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF601DCA69ED00A73497 /* 40.plist */; };
 		673B2DF41DC6B55F00147D8F /* 7.plist in Resources */ = {isa = PBXBuildFile; fileRef = 673B2DF31DC6B55F00147D8F /* 7.plist */; };
 		673B2E051DC6B68100147D8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFA1DC6B68100147D8F /* ioapi.c */; };
 		673B2E061DC6B68100147D8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFC1DC6B68100147D8F /* mztools.c */; };
@@ -143,6 +149,12 @@
 		5157839C1DCA24BE00FB7A97 /* 32.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 32.plist; sourceTree = "<group>"; };
 		5157839D1DCA24BE00FB7A97 /* 33.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 33.plist; sourceTree = "<group>"; };
 		5157839E1DCA24BE00FB7A97 /* 34.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 34.plist; sourceTree = "<group>"; };
+		5157BF5B1DCA69ED00A73497 /* 35.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 35.plist; sourceTree = "<group>"; };
+		5157BF5C1DCA69ED00A73497 /* 36.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 36.plist; sourceTree = "<group>"; };
+		5157BF5D1DCA69ED00A73497 /* 37.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 37.plist; sourceTree = "<group>"; };
+		5157BF5E1DCA69ED00A73497 /* 38.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 38.plist; sourceTree = "<group>"; };
+		5157BF5F1DCA69ED00A73497 /* 39.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 39.plist; sourceTree = "<group>"; };
+		5157BF601DCA69ED00A73497 /* 40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 40.plist; sourceTree = "<group>"; };
 		673B2DF31DC6B55F00147D8F /* 7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 7.plist; path = puzzles/7.plist; sourceTree = "<group>"; };
 		673B2DF91DC6B68100147D8F /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		673B2DFA1DC6B68100147D8F /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -389,6 +401,12 @@
 				5157839C1DCA24BE00FB7A97 /* 32.plist */,
 				5157839D1DCA24BE00FB7A97 /* 33.plist */,
 				5157839E1DCA24BE00FB7A97 /* 34.plist */,
+				5157BF5B1DCA69ED00A73497 /* 35.plist */,
+				5157BF5C1DCA69ED00A73497 /* 36.plist */,
+				5157BF5D1DCA69ED00A73497 /* 37.plist */,
+				5157BF5E1DCA69ED00A73497 /* 38.plist */,
+				5157BF5F1DCA69ED00A73497 /* 39.plist */,
+				5157BF601DCA69ED00A73497 /* 40.plist */,
 			);
 			name = Puzzles;
 			sourceTree = "<group>";
@@ -486,11 +504,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5157BF641DCA69ED00A73497 /* 38.plist in Resources */,
 				673B2DF41DC6B55F00147D8F /* 7.plist in Resources */,
 				674643011DC164DC006387A6 /* 1.plist in Resources */,
 				515783B41DCA24BE00FB7A97 /* 24.plist in Resources */,
+				5157BF661DCA69ED00A73497 /* 40.plist in Resources */,
 				110E808C1B161B4100DF989C /* LaunchScreen.xib in Resources */,
 				515783B31DCA24BE00FB7A97 /* 23.plist in Resources */,
+				5157BF621DCA69ED00A73497 /* 36.plist in Resources */,
 				515783A81DCA24BE00FB7A97 /* 12.plist in Resources */,
 				515783B21DCA24BE00FB7A97 /* 22.plist in Resources */,
 				515783AF1DCA24BE00FB7A97 /* 19.plist in Resources */,
@@ -513,13 +534,16 @@
 				515783BB1DCA24BE00FB7A97 /* 31.plist in Resources */,
 				515783B01DCA24BE00FB7A97 /* 20.plist in Resources */,
 				515783B51DCA24BE00FB7A97 /* 25.plist in Resources */,
+				5157BF631DCA69ED00A73497 /* 37.plist in Resources */,
 				515783AC1DCA24BE00FB7A97 /* 16.plist in Resources */,
 				515783AE1DCA24BE00FB7A97 /* 18.plist in Resources */,
 				515783AD1DCA24BE00FB7A97 /* 17.plist in Resources */,
 				11B648221B1E66C1005AB6A3 /* pop.mp3 in Resources */,
+				5157BF651DCA69ED00A73497 /* 39.plist in Resources */,
 				515783BE1DCA24BE00FB7A97 /* 34.plist in Resources */,
 				515783A41DCA24BE00FB7A97 /* 8.plist in Resources */,
 				515783A51DCA24BE00FB7A97 /* 9.plist in Resources */,
+				5157BF611DCA69ED00A73497 /* 35.plist in Resources */,
 				515783B91DCA24BE00FB7A97 /* 29.plist in Resources */,
 				11B648241B1E6A31005AB6A3 /* super.mp3 in Resources */,
 				515783AA1DCA24BE00FB7A97 /* 14.plist in Resources */,

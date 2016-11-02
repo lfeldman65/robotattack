@@ -262,12 +262,15 @@
     if (theAppDelegate().createLevelsMode == NO)
     {
         NSString *key = [NSString stringWithFormat:@"bestTime%d", (int)indexPath.row + 1];
-        
         NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+        
         if (best < infinity)
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
+        } else {
+            
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
     return cell;
