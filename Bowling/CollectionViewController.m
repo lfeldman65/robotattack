@@ -294,8 +294,6 @@ static NSString * const reuseIdentifier = @"Cell";
         
         if([self didWin:self.myCollectionView])
         {
-            [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.golden.lp1" percentComplete:100.00 shouldDisplayNotification:true];
-            
             [self.levelTimer invalidate];
             
             NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
@@ -308,12 +306,56 @@ static NSString * const reuseIdentifier = @"Cell";
                 [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:key];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
+                [self checkFreeLevelsComplete];
+                [self checkFullLevelsComplete];
+                
                // [[GameCenterManager sharedManager] saveAndReportScore:self.secondsElapsed leaderboard:key sortOrder:GameCenterSortOrderLowToHigh];
             }
             self.tilesRemainingLabel.text = @"You won!";
         }
     }
 }
+
+-(void)checkFreeLevelsComplete
+{
+    BOOL freeLevelsAreComplete = true;
+    
+    for (int i = 1; i <= numFreeLevels; i++)
+    {
+        NSString *bestTimeKey = [NSString stringWithFormat:@"bestTime%d", i];
+        NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:bestTimeKey];
+        if(best == infinity)
+        {
+            freeLevelsAreComplete = false;
+        }
+    }
+    
+    if(freeLevelsAreComplete)
+    {
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.golden.lp1" percentComplete:100.00 shouldDisplayNotification:true];
+    }
+}
+
+-(void)checkFullLevelsComplete
+{
+    BOOL fullLevelsAreComplete = true;
+    
+    for (int i = 1; i <= numFullLevels; i++)
+    {
+        NSString *bestTimeKey = [NSString stringWithFormat:@"bestTime%d", i];
+        NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:bestTimeKey];
+        if(best == infinity)
+        {
+            fullLevelsAreComplete = false;
+        }
+    }
+    
+    if(fullLevelsAreComplete)
+    {
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.golden.lp2" percentComplete:100.00 shouldDisplayNotification:true];
+    }
+}
+
 
 -(void)configureLevel:(int) level
 {
@@ -325,7 +367,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
     
-    if (best == 10000000)
+    if (best == infinity)
     {
         self.bestTime.text = @"Best Time: Never Completed";
         
@@ -391,7 +433,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.levelLabel.text = [NSString stringWithFormat:@"Level: %d", self.currentLevel];
     NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
-    if (best == 10000000)
+    if (best == infinity)
     {
         self.bestTime.text = @"Best Time: Never Completed";
         

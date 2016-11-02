@@ -264,7 +264,7 @@
         NSString *key = [NSString stringWithFormat:@"bestTime%d", (int)indexPath.row + 1];
         
         NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
-        if (best < 10000000)
+        if (best < infinity)
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
 

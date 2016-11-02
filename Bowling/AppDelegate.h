@@ -18,6 +18,7 @@
 
 #define numFullLevels 34
 #define numFreeLevels 20
+#define infinity 10000000
 
 @import StoreKit;
 

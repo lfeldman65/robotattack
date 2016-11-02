@@ -36,7 +36,7 @@ AppDelegate* theAppDelegate()
     for (int i = 1; i <= numFullLevels; i++)
     {
         NSString *bestTimeKey = [NSString stringWithFormat:@"bestTime%d", i];
-        [defaultsDict setObject:[NSNumber numberWithInt:10000000] forKey:bestTimeKey];
+        [defaultsDict setObject:[NSNumber numberWithInt:infinity] forKey:bestTimeKey];
     }
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
