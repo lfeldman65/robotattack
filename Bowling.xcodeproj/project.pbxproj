@@ -23,6 +23,8 @@
 		11B648241B1E6A31005AB6A3 /* super.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11B648231B1E6A30005AB6A3 /* super.mp3 */; };
 		11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C1BEF01B179AC200DF06A0 /* Shop.m */; };
 		11C1BEF41B179AF300DF06A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C1BEF31B179AF300DF06A0 /* StoreKit.framework */; };
+		5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107C9761DD2933000411FFA /* TutorialViewController.m */; };
+		5107C9851DD3746100411FFA /* tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5107C9841DD3746100411FFA /* tutorial.plist */; };
 		514D2A161DBEA57C00A96118 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A151DBEA57C00A96118 /* CollectionViewController.m */; };
 		514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A181DBEA59900A96118 /* CollectionViewCell.m */; };
 		5157839F1DCA24BE00FB7A97 /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157837F1DCA24BE00FB7A97 /* 2.plist */; };
@@ -113,6 +115,9 @@
 		11C1BEF01B179AC200DF06A0 /* Shop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shop.m; sourceTree = "<group>"; };
 		11C1BEF11B179AC200DF06A0 /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
 		11C1BEF31B179AF300DF06A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5107C9751DD2933000411FFA /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
+		5107C9761DD2933000411FFA /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
+		5107C9841DD3746100411FFA /* tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tutorial.plist; sourceTree = "<group>"; };
 		514D2A141DBEA57C00A96118 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		514D2A151DBEA57C00A96118 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		514D2A171DBEA59900A96118 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
@@ -331,6 +336,8 @@
 				514D2A151DBEA57C00A96118 /* CollectionViewController.m */,
 				67B6CD111DC3FB940065E077 /* CreateLevelsViewController.h */,
 				67B6CD121DC3FB940065E077 /* CreateLevelsViewController.m */,
+				5107C9751DD2933000411FFA /* TutorialViewController.h */,
+				5107C9761DD2933000411FFA /* TutorialViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -367,6 +374,7 @@
 		674642FF1DC1649F006387A6 /* Puzzles */ = {
 			isa = PBXGroup;
 			children = (
+				5107C9841DD3746100411FFA /* tutorial.plist */,
 				674643001DC164DC006387A6 /* 1.plist */,
 				5157837F1DCA24BE00FB7A97 /* 2.plist */,
 				515783801DCA24BE00FB7A97 /* 3.plist */,
@@ -540,6 +548,7 @@
 				515783AD1DCA24BE00FB7A97 /* 17.plist in Resources */,
 				11B648221B1E66C1005AB6A3 /* pop.mp3 in Resources */,
 				5157BF651DCA69ED00A73497 /* 39.plist in Resources */,
+				5107C9851DD3746100411FFA /* tutorial.plist in Resources */,
 				515783BE1DCA24BE00FB7A97 /* 34.plist in Resources */,
 				515783A41DCA24BE00FB7A97 /* 8.plist in Resources */,
 				515783A51DCA24BE00FB7A97 /* 9.plist in Resources */,
@@ -568,6 +577,7 @@
 			files = (
 				110E80841B161B4100DF989C /* GameViewController.m in Sources */,
 				110E807C1B161B4000DF989C /* AppDelegate.m in Sources */,
+				5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */,
 				673B2E091DC6B68100147D8F /* SSZipArchive.m in Sources */,
 				11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */,
 				110E80C01B16863700DF989C /* GameCenterManager.m in Sources */,

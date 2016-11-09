@@ -38,9 +38,12 @@ int numLeftSwipes = 0;
    // self.levelCreationLabel.hidden = true;
    // self.createLevelsSwitch.hidden = true;
     
+    bool launched = [[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"];
+    NSLog(@"launched = %d", launched);
+    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"])
     {
-        NSString *infoString = @"Create a Golden Trail that connects the start tile to the end tile. Play level 1 to learn the rules.  As with all good puzzles, it's easy to learn and hard to master!";
+        NSString *infoString = @"Create a Golden Trail that connects the Start tile to the End tile. Tap on the Tutorial to learn how to play. As with all good puzzles, it's easy to learn and hard to master!";
         [self showAlertWithTitle:@"Welcome!" message:infoString];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"wasGameLaunched"];
         [[NSUserDefaults standardUserDefaults] synchronize];
