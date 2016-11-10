@@ -219,7 +219,10 @@
         
         if (self.selectedLevel > numFreeLevels) {
             
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fullVersion"])
+            NSNumber* fullVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"fullVersion"];
+            BOOL full = [fullVersion boolValue];
+            
+            if (full)
             {
                 [self performSegueWithIdentifier:@"toGame" sender:nil];
 

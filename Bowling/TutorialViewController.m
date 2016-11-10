@@ -388,7 +388,7 @@ int step;
         self.myCollectionView.userInteractionEnabled = true;
         [self.myCollectionView reloadData];
         self.tilesRemainingLabel.text = @"Tiles Remaining: 6";
-        self.instructionText.text = @"Connect tiles horizontally and vertically, not diagonally. Add yellow tiles until the number of tiles remaining is exactly 0! If you're stuck, tap Next to see the solution.";
+        self.instructionText.text = @"Connect tiles horizontally and vertically, not diagonally. Add yellow tiles until the number of tiles remaining is exactly 0! Tap Next to see the solution.";
     }
     else if (step == 4)
     {

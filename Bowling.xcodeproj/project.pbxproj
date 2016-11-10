@@ -105,6 +105,7 @@
 		51C66D101DD51308004070B1 /* 78.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D061DD51308004070B1 /* 78.plist */; };
 		51C66D111DD51308004070B1 /* 79.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D071DD51308004070B1 /* 79.plist */; };
 		51C66D121DD51308004070B1 /* 80.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D081DD51308004070B1 /* 80.plist */; };
+		51C66D141DD52523004070B1 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D131DD52523004070B1 /* iPad.storyboard */; };
 		673B2DF41DC6B55F00147D8F /* 7.plist in Resources */ = {isa = PBXBuildFile; fileRef = 673B2DF31DC6B55F00147D8F /* 7.plist */; };
 		673B2E051DC6B68100147D8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFA1DC6B68100147D8F /* ioapi.c */; };
 		673B2E061DC6B68100147D8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFC1DC6B68100147D8F /* mztools.c */; };
@@ -240,6 +241,7 @@
 		51C66D061DD51308004070B1 /* 78.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 78.plist; sourceTree = "<group>"; };
 		51C66D071DD51308004070B1 /* 79.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 79.plist; sourceTree = "<group>"; };
 		51C66D081DD51308004070B1 /* 80.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 80.plist; sourceTree = "<group>"; };
+		51C66D131DD52523004070B1 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		673B2DF31DC6B55F00147D8F /* 7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 7.plist; path = puzzles/7.plist; sourceTree = "<group>"; };
 		673B2DF91DC6B68100147D8F /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		673B2DFA1DC6B68100147D8F /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			children = (
 				110E808A1B161B4100DF989C /* LaunchScreen.xib */,
 				110E80851B161B4100DF989C /* Main.storyboard */,
+				51C66D131DD52523004070B1 /* iPad.storyboard */,
 				110E80881B161B4100DF989C /* Images.xcassets */,
 			);
 			name = Assets;
@@ -705,6 +708,7 @@
 				5107C9851DD3746100411FFA /* tutorial.plist in Resources */,
 				515783BE1DCA24BE00FB7A97 /* 34.plist in Resources */,
 				515783A41DCA24BE00FB7A97 /* 8.plist in Resources */,
+				51C66D141DD52523004070B1 /* iPad.storyboard in Resources */,
 				515783A51DCA24BE00FB7A97 /* 9.plist in Resources */,
 				5157BF611DCA69ED00A73497 /* 35.plist in Resources */,
 				515783B91DCA24BE00FB7A97 /* 29.plist in Resources */,
@@ -895,6 +899,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -912,6 +917,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

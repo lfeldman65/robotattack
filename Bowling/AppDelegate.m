@@ -29,7 +29,7 @@ AppDelegate* theAppDelegate()
     NSMutableDictionary *defaultsDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:false], @"wasGameLaunched",
                                   [NSNumber numberWithInt:1], @"levelNumber",
-                                  [NSNumber numberWithBool:false], @"fullVersion",
+                                  [NSNumber numberWithBool:true], @"fullVersion",
                                   [NSNumber numberWithBool:true], @"soundOn",
                                   nil];
     
@@ -105,9 +105,9 @@ AppDelegate* theAppDelegate()
     }
 }
 
-- (void)unlockFullVersion {
-    
-    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"fullVersion"];
+- (void)unlockFullVersion
+{    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"fullVersion"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

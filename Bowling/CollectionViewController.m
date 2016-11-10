@@ -410,7 +410,10 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     if(self.currentLevel >= numFreeLevels)
     {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"fullVersion"])
+        NSNumber* fullVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"fullVersion"];
+        BOOL full = [fullVersion boolValue];
+        
+        if (full)
         {
             self.currentLevel++;
             [self changeLevels];
