@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="hhm-Fu-rko" userLabel="bg image">
-                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG" translatesAutoresizingMaskIntoConstraints="NO" id="hhm-Fu-rko" userLabel="bg image">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzG-C7-dQs">
                                 <constraints>
@@ -28,7 +28,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="30"/>
                                 <state key="normal" title="Play">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -41,7 +41,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="30"/>
                                 <state key="normal" title="Full Version">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -53,12 +53,12 @@
                                     <constraint firstAttribute="width" constant="200" id="twa-gA-YTG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="35"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Levels Creation Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD3-oK-cok">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Levels Creation Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD3-oK-cok">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-U2-sj6">
@@ -72,21 +72,21 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="30"/>
                                 <state key="normal" title="Game Center">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="gameCenterPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VM7-Jl-kf3"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6Z-eH-7gY">
-                                <color key="onTintColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="soundSwitchChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="ixO-aC-I02"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sounds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nY6-A2-HMe">
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfv-Aq-VX1">
@@ -95,7 +95,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="30"/>
                                 <state key="normal" title="Tutorial">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -103,30 +103,30 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hhm-Fu-rko" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="BAP-ua-M6z"/>
                             <constraint firstItem="sD3-oK-cok" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="45" id="Eze-BI-wLP"/>
                             <constraint firstItem="YeJ-6C-YHb" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Fwl-ut-V0z"/>
-                            <constraint firstItem="S6Z-eH-7gY" firstAttribute="top" secondItem="dFI-ZA-c4F" secondAttribute="bottom" constant="50" id="GKG-ai-t4E"/>
+                            <constraint firstItem="S6Z-eH-7gY" firstAttribute="top" secondItem="dFI-ZA-c4F" secondAttribute="bottom" constant="40" id="GKG-ai-t4E"/>
                             <constraint firstItem="dFI-ZA-c4F" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Mgw-I4-Opg"/>
-                            <constraint firstItem="mzG-C7-dQs" firstAttribute="top" secondItem="tfv-Aq-VX1" secondAttribute="bottom" constant="40" id="RLi-6I-aHK"/>
+                            <constraint firstItem="mzG-C7-dQs" firstAttribute="top" secondItem="tfv-Aq-VX1" secondAttribute="bottom" constant="30" id="RLi-6I-aHK"/>
                             <constraint firstItem="tfv-Aq-VX1" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="S79-Qk-jou"/>
                             <constraint firstItem="nkW-OT-9br" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="VIb-8v-6LQ"/>
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="bO8-U2-sj6" secondAttribute="bottom" constant="20" id="XYQ-XM-2o9"/>
                             <constraint firstItem="S6Z-eH-7gY" firstAttribute="leading" secondItem="nY6-A2-HMe" secondAttribute="trailing" constant="10" id="aoK-Ej-L30"/>
-                            <constraint firstItem="dFI-ZA-c4F" firstAttribute="top" secondItem="YeJ-6C-YHb" secondAttribute="bottom" constant="40" id="fPR-L9-KQE"/>
+                            <constraint firstItem="dFI-ZA-c4F" firstAttribute="top" secondItem="YeJ-6C-YHb" secondAttribute="bottom" constant="30" id="fPR-L9-KQE"/>
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="hhm-Fu-rko" secondAttribute="bottom" id="gzd-rI-i5N"/>
                             <constraint firstItem="nY6-A2-HMe" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" constant="-30" id="hua-Og-oDx"/>
-                            <constraint firstItem="nY6-A2-HMe" firstAttribute="top" secondItem="dFI-ZA-c4F" secondAttribute="bottom" constant="40" id="j4d-1T-qSm"/>
+                            <constraint firstItem="nY6-A2-HMe" firstAttribute="top" secondItem="dFI-ZA-c4F" secondAttribute="bottom" constant="30" id="j4d-1T-qSm"/>
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="sD3-oK-cok" secondAttribute="bottom" constant="20" id="jAR-08-jGt"/>
                             <constraint firstAttribute="trailing" secondItem="hhm-Fu-rko" secondAttribute="trailing" id="lr6-ME-Yn8"/>
                             <constraint firstItem="bO8-U2-sj6" firstAttribute="leading" secondItem="sD3-oK-cok" secondAttribute="trailing" constant="29" id="maI-UD-Hqp"/>
                             <constraint firstItem="hhm-Fu-rko" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="tae-W4-vQc"/>
                             <constraint firstItem="tfv-Aq-VX1" firstAttribute="top" secondItem="nkW-OT-9br" secondAttribute="bottom" constant="40" id="uiv-hm-xvD"/>
                             <constraint firstItem="mzG-C7-dQs" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vbm-p1-odP"/>
-                            <constraint firstItem="nkW-OT-9br" firstAttribute="top" secondItem="0zT-8N-ont" secondAttribute="bottom" constant="30" id="zC8-iU-PVa"/>
-                            <constraint firstItem="YeJ-6C-YHb" firstAttribute="top" secondItem="mzG-C7-dQs" secondAttribute="bottom" constant="40" id="zmt-Pw-3La"/>
+                            <constraint firstItem="nkW-OT-9br" firstAttribute="top" secondItem="0zT-8N-ont" secondAttribute="bottom" constant="25" id="zC8-iU-PVa"/>
+                            <constraint firstItem="YeJ-6C-YHb" firstAttribute="top" secondItem="mzG-C7-dQs" secondAttribute="bottom" constant="30" id="zmt-Pw-3La"/>
                         </constraints>
                     </view>
                     <connections>
@@ -151,13 +151,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="QbW-B9-Otw"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG" translatesAutoresizingMaskIntoConstraints="NO" id="QbW-B9-Otw">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7G3-kB-3Ov">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="7lN-2T-7ym"/>
                                     <constraint firstAttribute="height" constant="30" id="qbW-8k-CaA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Home">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -172,7 +174,7 @@
                                         <rect key="frame" x="0.0" y="28" width="327" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3ZD-Tm-2cB" id="x1J-qQ-toV">
-                                            <frame key="frameInset" width="327" height="43.5"/>
+                                            <frame key="frameInset" width="327" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -235,7 +237,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="cxb-eh-05F"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG" translatesAutoresizingMaskIntoConstraints="NO" id="cxb-eh-05F">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="s2H-7v-chg">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -282,7 +286,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="nzz-1X-GJs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -290,7 +294,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="78" id="CPn-xm-8us"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Reset">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -299,7 +303,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvV-he-mFk">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Next Level">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -309,7 +313,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cfc-xX-EP4">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -321,12 +325,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="fFI-jN-Hby"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Time: Never Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpp-7C-quh">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -334,12 +338,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="FON-80-BK5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62Z-SS-EZb">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Previous Level">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -350,15 +354,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="gEC-Cv-zRr" firstAttribute="top" secondItem="IvV-he-mFk" secondAttribute="bottom" constant="20" id="00W-E4-Mxe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="s2H-7v-chg" secondAttribute="trailing" constant="16" id="658-vm-qdP"/>
                             <constraint firstAttribute="trailing" secondItem="heZ-bL-3tk" secondAttribute="trailing" constant="5" id="7MG-0d-hEb"/>
-                            <constraint firstAttribute="trailing" secondItem="IvV-he-mFk" secondAttribute="trailing" constant="20" id="9ab-S2-eBm"/>
+                            <constraint firstItem="gEC-Cv-zRr" firstAttribute="top" secondItem="62Z-SS-EZb" secondAttribute="bottom" constant="20" id="CEe-gb-hLW"/>
+                            <constraint firstAttribute="trailing" secondItem="IvV-he-mFk" secondAttribute="trailing" constant="20" id="EaJ-Cx-7qv"/>
                             <constraint firstItem="Cfc-xX-EP4" firstAttribute="top" secondItem="AzP-0c-PJL" secondAttribute="bottom" constant="10" id="Eyo-G4-7JP"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="leading" secondItem="iVp-Hf-a0f" secondAttribute="leadingMargin" constant="16" id="GAs-jv-z29"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="GPl-tM-Wxt"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="IB2-mD-w94"/>
                             <constraint firstItem="s2H-7v-chg" firstAttribute="top" secondItem="QYd-EO-Qb0" secondAttribute="bottom" constant="20" id="Opg-4O-dPH"/>
-                            <constraint firstItem="62Z-SS-EZb" firstAttribute="leading" secondItem="iVp-Hf-a0f" secondAttribute="leading" constant="10" id="RPG-Z8-DvB"/>
+                            <constraint firstItem="62Z-SS-EZb" firstAttribute="leading" secondItem="iVp-Hf-a0f" secondAttribute="leading" constant="10" id="Rum-99-gDS"/>
                             <constraint firstItem="cxb-eh-05F" firstAttribute="top" secondItem="iVp-Hf-a0f" secondAttribute="top" id="Sxg-o9-KIl"/>
                             <constraint firstItem="QYd-EO-Qb0" firstAttribute="top" secondItem="AzP-0c-PJL" secondAttribute="bottom" constant="15" id="YdB-h2-aMU"/>
                             <constraint firstItem="fpp-7C-quh" firstAttribute="top" secondItem="7Cc-kL-TM6" secondAttribute="bottom" constant="20" id="ai4-zg-7z9"/>
@@ -366,13 +372,11 @@
                             <constraint firstItem="Cfc-xX-EP4" firstAttribute="leading" secondItem="iVp-Hf-a0f" secondAttribute="leading" constant="10" id="eAF-M7-aCf"/>
                             <constraint firstItem="fpp-7C-quh" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="fcj-zy-uDs"/>
                             <constraint firstItem="cxb-eh-05F" firstAttribute="leading" secondItem="iVp-Hf-a0f" secondAttribute="leading" id="gD3-6N-z2z"/>
-                            <constraint firstItem="62Z-SS-EZb" firstAttribute="top" secondItem="Q5b-7m-Ygc" secondAttribute="bottom" constant="20" id="hrt-dF-CJk"/>
                             <constraint firstItem="Q5b-7m-Ygc" firstAttribute="centerX" secondItem="iVp-Hf-a0f" secondAttribute="centerX" id="p7w-DT-Jmk"/>
                             <constraint firstAttribute="trailing" secondItem="cxb-eh-05F" secondAttribute="trailing" id="qG5-qH-ctR"/>
                             <constraint firstItem="heZ-bL-3tk" firstAttribute="top" secondItem="AzP-0c-PJL" secondAttribute="bottom" constant="15" id="rVo-8t-dC3"/>
                             <constraint firstItem="Q5b-7m-Ygc" firstAttribute="top" secondItem="fpp-7C-quh" secondAttribute="bottom" constant="20" id="u9v-OY-f2J"/>
                             <constraint firstItem="7Cc-kL-TM6" firstAttribute="top" secondItem="s2H-7v-chg" secondAttribute="bottom" constant="8" id="wZB-1H-qbY"/>
-                            <constraint firstItem="IvV-he-mFk" firstAttribute="top" secondItem="Q5b-7m-Ygc" secondAttribute="bottom" constant="20" id="xhJ-oT-rOB"/>
                             <constraint firstItem="gEC-Cv-zRr" firstAttribute="top" secondItem="cxb-eh-05F" secondAttribute="bottom" id="zw6-zF-Ae1"/>
                         </constraints>
                     </view>
@@ -547,7 +551,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="9QX-sl-DCm"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG" translatesAutoresizingMaskIntoConstraints="NO" id="9QX-sl-DCm">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cpk-f2-8I9">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -597,7 +603,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="eKB-Z6-WUd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -605,7 +611,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="qZh-Lq-gbS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Home">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -613,20 +619,20 @@
                                     <action selector="backPressed:" destination="YFV-4X-cK7" eventType="touchUpInside" id="fA2-SD-f95"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eVF-Bb-W4t">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eVF-Bb-W4t">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="XMc-uw-LF3"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJa-MN-8wh">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="74" id="lK4-2v-wEc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -638,23 +644,23 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="eVF-Bb-W4t" firstAttribute="leading" secondItem="OGj-DS-TXw" secondAttribute="leading" constant="8" id="2Y0-2z-P4c"/>
-                            <constraint firstItem="sAy-O2-oOO" firstAttribute="top" secondItem="cpk-f2-8I9" secondAttribute="bottom" constant="20" id="91Y-EJ-Tkk"/>
+                            <constraint firstItem="sAy-O2-oOO" firstAttribute="top" secondItem="cpk-f2-8I9" secondAttribute="bottom" constant="15" id="91Y-EJ-Tkk"/>
                             <constraint firstItem="n2P-wg-zoP" firstAttribute="leading" secondItem="OGj-DS-TXw" secondAttribute="leading" constant="10" id="Gxo-sd-WFC"/>
-                            <constraint firstAttribute="trailing" secondItem="cJa-MN-8wh" secondAttribute="trailing" constant="16" id="PkF-1b-vUA"/>
-                            <constraint firstItem="cJa-MN-8wh" firstAttribute="top" secondItem="eVF-Bb-W4t" secondAttribute="bottom" constant="8" id="Qw7-PK-0VT"/>
+                            <constraint firstAttribute="trailing" secondItem="cJa-MN-8wh" secondAttribute="trailing" constant="16" id="QeJ-cY-Q3y"/>
                             <constraint firstItem="eVF-Bb-W4t" firstAttribute="centerX" secondItem="OGj-DS-TXw" secondAttribute="centerX" id="RIc-6t-APn"/>
-                            <constraint firstItem="eVF-Bb-W4t" firstAttribute="top" secondItem="sAy-O2-oOO" secondAttribute="bottom" constant="20" id="ZU3-UI-0Tw"/>
+                            <constraint firstItem="eVF-Bb-W4t" firstAttribute="top" secondItem="sAy-O2-oOO" secondAttribute="bottom" constant="10" id="ZU3-UI-0Tw"/>
                             <constraint firstItem="n2P-wg-zoP" firstAttribute="top" secondItem="qsI-k8-Acj" secondAttribute="bottom" constant="10" id="hhp-7s-sNG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cpk-f2-8I9" secondAttribute="trailing" constant="16" id="iuX-4X-EkQ"/>
                             <constraint firstItem="cpk-f2-8I9" firstAttribute="centerX" secondItem="OGj-DS-TXw" secondAttribute="centerX" id="jL3-9m-8bj"/>
                             <constraint firstItem="9QX-sl-DCm" firstAttribute="top" secondItem="OGj-DS-TXw" secondAttribute="top" id="jrq-iC-ZaR"/>
-                            <constraint firstItem="cpk-f2-8I9" firstAttribute="top" secondItem="n2P-wg-zoP" secondAttribute="bottom" constant="20" id="qVL-EA-orj"/>
+                            <constraint firstItem="cpk-f2-8I9" firstAttribute="top" secondItem="n2P-wg-zoP" secondAttribute="bottom" constant="15" id="qVL-EA-orj"/>
                             <constraint firstAttribute="trailing" secondItem="9QX-sl-DCm" secondAttribute="trailing" id="rmo-98-FoL"/>
                             <constraint firstItem="bP6-DT-QYh" firstAttribute="top" secondItem="9QX-sl-DCm" secondAttribute="bottom" id="u6s-mG-Eia"/>
                             <constraint firstItem="9QX-sl-DCm" firstAttribute="leading" secondItem="OGj-DS-TXw" secondAttribute="leading" id="ugf-0c-dBw"/>
                             <constraint firstAttribute="trailing" secondItem="eVF-Bb-W4t" secondAttribute="trailing" constant="8" id="vMX-gt-ccc"/>
                             <constraint firstItem="sAy-O2-oOO" firstAttribute="centerX" secondItem="OGj-DS-TXw" secondAttribute="centerX" id="wdV-wA-Y01"/>
                             <constraint firstItem="cpk-f2-8I9" firstAttribute="leading" secondItem="OGj-DS-TXw" secondAttribute="leadingMargin" constant="16" id="xl1-MO-a21"/>
+                            <constraint firstItem="bP6-DT-QYh" firstAttribute="top" secondItem="cJa-MN-8wh" secondAttribute="bottom" constant="15" id="yJZ-WB-yGG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ORe-Ol-EaE"/>
@@ -671,6 +677,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="goldBackground" width="577" height="575"/>
+        <image name="blueBG" width="768" height="1024"/>
     </resources>
 </document>

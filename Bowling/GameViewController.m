@@ -38,17 +38,6 @@ int numLeftSwipes = 0;
    // self.levelCreationLabel.hidden = true;
    // self.createLevelsSwitch.hidden = true;
     
-    bool launched = [[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"];
-    NSLog(@"launched = %d", launched);
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"wasGameLaunched"])
-    {
-        NSString *infoString = @"Create a Golden Trail that connects the Start tile to the End tile. Tap on the Tutorial to learn how to play. As with all good puzzles, it's easy to learn and hard to master!";
-        [self showAlertWithTitle:@"Welcome!" message:infoString];
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"wasGameLaunched"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
     // Game Center
     
     [[GameCenterManager sharedManager] setDelegate:self];
@@ -80,7 +69,9 @@ int numLeftSwipes = 0;
 
 -(void)viewDidAppear:(BOOL)animated {
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"soundOn"])
+    NSNumber* sound = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
+    BOOL soundOn = [sound boolValue];
+    if(soundOn)
     {
         self.soundSwitch.on = true;
         
@@ -88,6 +79,18 @@ int numLeftSwipes = 0;
         
         self.soundSwitch.on = false;
     }
+    
+    NSNumber* launched = [[NSUserDefaults standardUserDefaults] objectForKey:@"wasGameLaunched"];
+    BOOL wasLaunched = [launched boolValue];
+    
+    if (!wasLaunched)
+    {
+        NSString *infoString = @"Create a Golden Trail that connects tiles horizontally and vertically. Tap on the Tutorial to learn how to play. As with all good puzzles, it's easy to learn and hard to master!";
+        [self showAlertWithTitle:@"Welcome!" message:infoString];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"wasGameLaunched"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
 }
 
 
@@ -217,12 +220,11 @@ int numLeftSwipes = 0;
     
     if(self.soundSwitch.on) {
         
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"soundOn"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"soundOn"];
         
     } else {
         
-        [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"soundOn"];
-
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:false] forKey:@"soundOn"];
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];

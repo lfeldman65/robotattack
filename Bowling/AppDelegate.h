@@ -16,8 +16,8 @@
 #import "GameCenterManager.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-#define numFullLevels 40
-#define numFreeLevels 20
+#define numFullLevels 60
+#define numFreeLevels 10
 #define infinity 10000000
 
 @import StoreKit;

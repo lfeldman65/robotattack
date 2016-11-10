@@ -42,7 +42,7 @@ int step;
     
     self.myCollectionView.allowsMultipleSelection = true;
     
-    self.instructionText.text = @"Welcome! Create a Golden Trail from the start tile to the end tile that passes through all of the 👍 tiles. Tap the Next button to continue.";
+    self.instructionText.text = @"Welcome! Create a Golden Trail from the start tile to the end tile that passes through all of the 👍 tiles. Tap the Next button below to continue.";
     
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pop" ofType:@"mp3"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &_selectSound);
@@ -365,8 +365,8 @@ int step;
 
 
 
-- (IBAction)nextPressed:(id)sender {
-    
+- (IBAction)nextPressed:(id)sender
+{    
     if (step == 0)
     {
         self.myCollectionView.userInteractionEnabled = true;
@@ -376,7 +376,6 @@ int step;
     {
         self.instructionText.text = @"Now tap on the yellow tiles you just added to turn them back to green. Give it a shot!";
     }
-
     else if (step == 2)
     {
         self.myCollectionView.userInteractionEnabled = false;
@@ -388,7 +387,7 @@ int step;
     {
         self.myCollectionView.userInteractionEnabled = true;
         [self.myCollectionView reloadData];
-        self.tilesRemainingLabel.text = @"Tiles Remaining: 3";
+        self.tilesRemainingLabel.text = @"Tiles Remaining: 6";
         self.instructionText.text = @"Connect tiles horizontally and vertically, not diagonally. Add yellow tiles until the number of tiles remaining is exactly 0! If you're stuck, tap Next to see the solution.";
     }
     else if (step == 4)
