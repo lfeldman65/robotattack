@@ -482,5 +482,27 @@ static NSString * const reuseIdentifier = @"Cell";
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %d sec", self.secondsElapsed];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0: {
+            [self.ourNewShop makeThePurchase];
+            break;
+            
+        }
+            
+        case 1: {
+            [self.ourNewShop restoreThePurchase];
+            break;
+            
+        }
+            
+        default: {
+            break;
+        }
+    }
+}
+
+
 
 @end

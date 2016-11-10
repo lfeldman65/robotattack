@@ -86,7 +86,7 @@ AppDelegate* theAppDelegate()
                 [self unlockFullVersion];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Unlimited ammo successfully restored" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Full Version successfully restored" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
                 
                 break;
