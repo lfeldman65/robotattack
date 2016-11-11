@@ -158,7 +158,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"soundOn"])
     {
        // AudioServicesPlayAlertSound(self.selectSound);
-        [self.selectPlayer play];
+      //  [self.selectPlayer play];
 
     }
     
