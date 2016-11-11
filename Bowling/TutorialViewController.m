@@ -18,6 +18,8 @@
 @property (assign,nonatomic)  int secondsElapsed;
 @property (assign,nonatomic)  int tilesRemaining;
 @property (assign, nonatomic) SystemSoundID selectSound;
+@property (strong, nonnull) UIColor *greenishColor;
+@property (strong, nonnull) UIColor *yellowishColor;
 
 @property (strong, nonatomic) IBOutlet UITextView *instructionText;
 
@@ -46,6 +48,11 @@ int step;
     
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pop" ofType:@"mp3"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &_selectSound);
+    
+    self.greenishColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
+    //  self.yellowishColor = [UIColor colorWithRed:0.99 green:0.84 blue:0.0 alpha:1.0];
+    self.yellowishColor = [UIColor yellowColor];
+
 }
 
 
@@ -151,11 +158,11 @@ int step;
 
     if(cell.selected)
     {
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = self.yellowishColor;
         
     } else {
         
-        cell.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = self.greenishColor;
     }
     
     return cell;
@@ -170,12 +177,12 @@ int step;
     
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"soundOn"])
     {
-        AudioServicesPlayAlertSound(self.selectSound);
+       // AudioServicesPlayAlertSound(self.selectSound);
     }
     
     NSLog(@"select index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    cell.backgroundColor = self.yellowishColor;
     
     self.tilesRemaining--;
     [self updateTilesRemaining];
@@ -191,8 +198,7 @@ int step;
 
     NSLog(@"deselect index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
-    cell.backgroundColor = [UIColor greenColor];
+    cell.backgroundColor = self.greenishColor;
     self.tilesRemaining++;
     [self updateTilesRemaining];
 

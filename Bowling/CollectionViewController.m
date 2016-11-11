@@ -338,11 +338,11 @@ static NSString * const reuseIdentifier = @"Cell";
                 [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:key];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
-                [self checkFreeLevelsComplete];
-                [self checkFullLevelsComplete];
-                
                // [[GameCenterManager sharedManager] saveAndReportScore:self.secondsElapsed leaderboard:key sortOrder:GameCenterSortOrderLowToHigh];
             }
+            
+            [self checkFreeLevelsComplete];
+            [self checkFullLevelsComplete];
             self.tilesRemainingLabel.text = @"You won!";
         }
     }
