@@ -299,9 +299,9 @@ static NSString * const reuseIdentifier = @"Cell";
             NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
             NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
             
-            if (self.secondsElapsed < best)
+            if (best == infinity)
             {
-                self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)self.secondsElapsed];
+                self.bestTime.text = [NSString stringWithFormat:@"Completion Time: %ld sec", (long)self.secondsElapsed];
             
                 [[NSUserDefaults standardUserDefaults] setInteger:self.secondsElapsed forKey:key];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -369,11 +369,11 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if (best == infinity)
     {
-        self.bestTime.text = @"Best Time: Never Completed";
+        self.bestTime.text = @"Completion Time: N/A";
         
     } else {
         
-        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
+        self.bestTime.text = [NSString stringWithFormat:@"Completion Time: %ld sec", (long)best];
     }
     
     self.tilesRemaining = self.currentPuzzle.numberOfTiles;
@@ -438,11 +438,11 @@ static NSString * const reuseIdentifier = @"Cell";
     NSInteger best = [[NSUserDefaults standardUserDefaults] integerForKey:key];
     if (best == infinity)
     {
-        self.bestTime.text = @"Best Time: Never Completed";
+        self.bestTime.text = @"Completion Time: N/A";
         
     } else {
         
-        self.bestTime.text = [NSString stringWithFormat:@"Best Time: %ld sec", (long)best];
+        self.bestTime.text = [NSString stringWithFormat:@"Completion Time: %ld sec", (long)best];
     }
     [self resetPressed:nil];
     [self resetTimer];

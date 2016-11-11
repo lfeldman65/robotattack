@@ -29,7 +29,7 @@ AppDelegate* theAppDelegate()
     NSMutableDictionary *defaultsDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:false], @"wasGameLaunched",
                                   [NSNumber numberWithInt:1], @"levelNumber",
-                                  [NSNumber numberWithBool:true], @"fullVersion",
+                                  [NSNumber numberWithBool:false], @"fullVersion",
                                   [NSNumber numberWithBool:true], @"soundOn",
                                   nil];
     

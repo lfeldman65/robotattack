@@ -50,18 +50,22 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golden Trail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkW-OT-9br">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="twa-gA-YTG"/>
+                                    <constraint firstAttribute="width" constant="250" id="twa-gA-YTG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="35"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Levels Creation Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD3-oK-cok">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Levels Creation Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD3-oK-cok">
+                                <frame key="frameInset" minX="42" minY="109" width="166" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-U2-sj6">
+                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-U2-sj6">
+                                <frame key="frameInset" minX="216" minY="102" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="createGameModeChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="ddr-Pr-VUj"/>
                                 </connections>
@@ -78,12 +82,6 @@
                                     <action selector="gameCenterPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VM7-Jl-kf3"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6Z-eH-7gY">
-                                <color key="onTintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="soundSwitchChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="ixO-aC-I02"/>
-                                </connections>
-                            </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sounds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nY6-A2-HMe">
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,26 +100,29 @@
                                     <segue destination="YFV-4X-cK7" kind="presentation" identifier="toTutorial" id="ZKS-cY-DYS"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6Z-eH-7gY">
+                                <color key="onTintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="soundSwitchChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="ixO-aC-I02"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hhm-Fu-rko" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="BAP-ua-M6z"/>
-                            <constraint firstItem="sD3-oK-cok" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="45" id="Eze-BI-wLP"/>
                             <constraint firstItem="YeJ-6C-YHb" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Fwl-ut-V0z"/>
-                            <constraint firstItem="S6Z-eH-7gY" firstAttribute="top" secondItem="dFI-ZA-c4F" secondAttribute="bottom" constant="40" id="GKG-ai-t4E"/>
+                            <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="nY6-A2-HMe" secondAttribute="bottom" constant="20" id="Jaa-Xr-9iu"/>
                             <constraint firstItem="dFI-ZA-c4F" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Mgw-I4-Opg"/>
                             <constraint firstItem="mzG-C7-dQs" firstAttribute="top" secondItem="tfv-Aq-VX1" secondAttribute="bottom" constant="30" id="RLi-6I-aHK"/>
                             <constraint firstItem="tfv-Aq-VX1" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="S79-Qk-jou"/>
                             <constraint firstItem="nkW-OT-9br" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="VIb-8v-6LQ"/>
-                            <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="bO8-U2-sj6" secondAttribute="bottom" constant="20" id="XYQ-XM-2o9"/>
-                            <constraint firstItem="S6Z-eH-7gY" firstAttribute="leading" secondItem="nY6-A2-HMe" secondAttribute="trailing" constant="10" id="aoK-Ej-L30"/>
+                            <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="nY6-A2-HMe" secondAttribute="bottom" constant="20" id="Ww8-5Y-bPV"/>
                             <constraint firstItem="dFI-ZA-c4F" firstAttribute="top" secondItem="YeJ-6C-YHb" secondAttribute="bottom" constant="30" id="fPR-L9-KQE"/>
+                            <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="S6Z-eH-7gY" secondAttribute="bottom" constant="23" id="gdp-a0-r67"/>
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="hhm-Fu-rko" secondAttribute="bottom" id="gzd-rI-i5N"/>
-                            <constraint firstItem="nY6-A2-HMe" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" constant="-30" id="hua-Og-oDx"/>
-                            <constraint firstItem="nY6-A2-HMe" firstAttribute="top" secondItem="dFI-ZA-c4F" secondAttribute="bottom" constant="30" id="j4d-1T-qSm"/>
-                            <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="sD3-oK-cok" secondAttribute="bottom" constant="20" id="jAR-08-jGt"/>
                             <constraint firstAttribute="trailing" secondItem="hhm-Fu-rko" secondAttribute="trailing" id="lr6-ME-Yn8"/>
-                            <constraint firstItem="bO8-U2-sj6" firstAttribute="leading" secondItem="sD3-oK-cok" secondAttribute="trailing" constant="29" id="maI-UD-Hqp"/>
+                            <constraint firstItem="S6Z-eH-7gY" firstAttribute="leading" secondItem="nY6-A2-HMe" secondAttribute="trailing" constant="16" id="pWR-Ag-Gb7"/>
+                            <constraint firstItem="nY6-A2-HMe" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="20" id="tJU-OG-bqs"/>
                             <constraint firstItem="hhm-Fu-rko" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="tae-W4-vQc"/>
                             <constraint firstItem="tfv-Aq-VX1" firstAttribute="top" secondItem="nkW-OT-9br" secondAttribute="bottom" constant="40" id="uiv-hm-xvD"/>
                             <constraint firstItem="mzG-C7-dQs" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vbm-p1-odP"/>
@@ -329,7 +330,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Time: Never Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpp-7C-quh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completion Time: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpp-7C-quh">
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
