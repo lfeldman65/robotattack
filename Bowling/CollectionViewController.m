@@ -2,7 +2,7 @@
 //  CollectionViewController.m
 //  Golden Trail
 //
-//  Copyright © 2016 Larry Feldman. All rights reserved.
+//  Copyright © 2016 Larry Feldman. All rights reserved. Test
 
 
 #import "CollectionViewController.h"
