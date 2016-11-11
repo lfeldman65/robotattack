@@ -8,12 +8,6 @@
 	<string>Golden Trail</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>icon120.png</string>
-		<string>icon76.png</string>
-		<string>icon152.png</string>
-	</array>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
