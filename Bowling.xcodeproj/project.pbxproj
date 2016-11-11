@@ -20,7 +20,6 @@
 		110E80C01B16863700DF989C /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E80BD1B16863700DF989C /* GameCenterManager.m */; };
 		110E80C31B168D0900DF989C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110E80C21B168D0900DF989C /* iAd.framework */; };
 		11B648221B1E66C1005AB6A3 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11B648211B1E66C1005AB6A3 /* pop.mp3 */; };
-		11B648241B1E6A31005AB6A3 /* super.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11B648231B1E6A30005AB6A3 /* super.mp3 */; };
 		11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C1BEF01B179AC200DF06A0 /* Shop.m */; };
 		11C1BEF41B179AF300DF06A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C1BEF31B179AF300DF06A0 /* StoreKit.framework */; };
 		5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107C9761DD2933000411FFA /* TutorialViewController.m */; };
@@ -106,6 +105,8 @@
 		51C66D111DD51308004070B1 /* 79.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D071DD51308004070B1 /* 79.plist */; };
 		51C66D121DD51308004070B1 /* 80.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D081DD51308004070B1 /* 80.plist */; };
 		51C66D141DD52523004070B1 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D131DD52523004070B1 /* iPad.storyboard */; };
+		51C66D161DD610F0004070B1 /* birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D151DD610F0004070B1 /* birds.mp3 */; };
+		51C66D181DD617BA004070B1 /* stream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D171DD617BA004070B1 /* stream.mp3 */; };
 		673B2DF41DC6B55F00147D8F /* 7.plist in Resources */ = {isa = PBXBuildFile; fileRef = 673B2DF31DC6B55F00147D8F /* 7.plist */; };
 		673B2E051DC6B68100147D8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFA1DC6B68100147D8F /* ioapi.c */; };
 		673B2E061DC6B68100147D8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFC1DC6B68100147D8F /* mztools.c */; };
@@ -152,7 +153,6 @@
 		110E80BD1B16863700DF989C /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		110E80C21B168D0900DF989C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		11B648211B1E66C1005AB6A3 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
-		11B648231B1E6A30005AB6A3 /* super.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = super.mp3; sourceTree = "<group>"; };
 		11C1BEF01B179AC200DF06A0 /* Shop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shop.m; sourceTree = "<group>"; };
 		11C1BEF11B179AC200DF06A0 /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
 		11C1BEF31B179AF300DF06A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -242,6 +242,8 @@
 		51C66D071DD51308004070B1 /* 79.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 79.plist; sourceTree = "<group>"; };
 		51C66D081DD51308004070B1 /* 80.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 80.plist; sourceTree = "<group>"; };
 		51C66D131DD52523004070B1 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		51C66D151DD610F0004070B1 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
+		51C66D171DD617BA004070B1 /* stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stream.mp3; sourceTree = "<group>"; };
 		673B2DF31DC6B55F00147D8F /* 7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 7.plist; path = puzzles/7.plist; sourceTree = "<group>"; };
 		673B2DF91DC6B68100147D8F /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		673B2DFA1DC6B68100147D8F /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -325,8 +327,9 @@
 		110E80761B161B4000DF989C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				51C66D171DD617BA004070B1 /* stream.mp3 */,
+				51C66D151DD610F0004070B1 /* birds.mp3 */,
 				11B648211B1E66C1005AB6A3 /* pop.mp3 */,
-				11B648231B1E6A30005AB6A3 /* super.mp3 */,
 				110E80771B161B4000DF989C /* Info.plist */,
 				110E80781B161B4000DF989C /* main.m */,
 			);
@@ -639,6 +642,7 @@
 				51C66D0F1DD51308004070B1 /* 77.plist in Resources */,
 				51C66CFB1DD50F7F004070B1 /* 67.plist in Resources */,
 				673B2DF41DC6B55F00147D8F /* 7.plist in Resources */,
+				51C66D181DD617BA004070B1 /* stream.mp3 in Resources */,
 				674643011DC164DC006387A6 /* 1.plist in Resources */,
 				515783B41DCA24BE00FB7A97 /* 24.plist in Resources */,
 				51C66CCC1DD4D2BC004070B1 /* 48.plist in Resources */,
@@ -646,6 +650,7 @@
 				110E808C1B161B4100DF989C /* LaunchScreen.xib in Resources */,
 				51C66CE21DD4DFEB004070B1 /* 52.plist in Resources */,
 				515783B31DCA24BE00FB7A97 /* 23.plist in Resources */,
+				51C66D161DD610F0004070B1 /* birds.mp3 in Resources */,
 				51C66CFC1DD50F7F004070B1 /* 68.plist in Resources */,
 				5157BF621DCA69ED00A73497 /* 36.plist in Resources */,
 				51C66CD61DD4DB5D004070B1 /* 43.plist in Resources */,
@@ -713,7 +718,6 @@
 				5157BF611DCA69ED00A73497 /* 35.plist in Resources */,
 				515783B91DCA24BE00FB7A97 /* 29.plist in Resources */,
 				51C66CC91DD4D2BC004070B1 /* 45.plist in Resources */,
-				11B648241B1E6A31005AB6A3 /* super.mp3 in Resources */,
 				515783AA1DCA24BE00FB7A97 /* 14.plist in Resources */,
 				515783A21DCA24BE00FB7A97 /* 5.plist in Resources */,
 				51C66CE31DD4DFEB004070B1 /* 53.plist in Resources */,

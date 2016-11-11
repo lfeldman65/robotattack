@@ -2,7 +2,6 @@
 //  LevelSelectViewController.h
 //  Bowling
 //
-//  Created by Maurice on 10/28/16.
 //  Copyright © 2016 Larry Feldman. All rights reserved.
 //
 /* I added the ability to create/edit a puzzle with user interface and saves it to a plist. After creating puzzles, you can zip them up and mail the plist to yourself.

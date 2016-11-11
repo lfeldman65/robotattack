@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
 @property (strong, nonatomic) UISwipeGestureRecognizer *leftSwipe;
 @property (strong, nonatomic) IBOutlet UILabel *levelCreationLabel;
+@property (retain, nonatomic) AVAudioPlayer *ambientPlayer;
+
 
 @end
 
@@ -34,6 +36,36 @@ int numLeftSwipes = 0;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    // Background sound
+
+    NSNumber* soundOn = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
+    BOOL soundIsOn = [soundOn boolValue];
+    
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/stream.mp3"];
+    NSLog(@"Path to play: %@", resourcePath);
+    NSError* err;
+    
+    self.ambientPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.ambientPlayer.delegate = self;
+        
+        if(soundIsOn)
+        {
+            [self.ambientPlayer play];
+        }
+        self.ambientPlayer.numberOfLoops = -1;
+        self.ambientPlayer.currentTime = 0;
+        self.ambientPlayer.volume = 1.0;
+    }
+
     
    // self.levelCreationLabel.hidden = true;
    // self.createLevelsSwitch.hidden = true;
@@ -67,8 +99,8 @@ int numLeftSwipes = 0;
     }
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    
+-(void)viewDidAppear:(BOOL)animated
+{
     NSNumber* sound = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
     BOOL soundOn = [sound boolValue];
     if(soundOn)
@@ -90,7 +122,6 @@ int numLeftSwipes = 0;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"wasGameLaunched"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-
 }
 
 
@@ -218,13 +249,15 @@ int numLeftSwipes = 0;
 
 - (IBAction)soundSwitchChanged:(id)sender {
     
-    if(self.soundSwitch.on) {
-        
+    if(self.soundSwitch.on)
+    {
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"soundOn"];
+        [self.ambientPlayer play];
         
     } else {
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:false] forKey:@"soundOn"];
+        [self.ambientPlayer pause];
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];

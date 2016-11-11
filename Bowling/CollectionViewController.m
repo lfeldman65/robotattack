@@ -20,6 +20,11 @@
 @property (strong,nonatomic)  IBOutlet UIButton* nextLevelButton;
 @property (strong, nonatomic) IBOutlet UIButton *previousLevelButton;
 @property (assign, nonatomic) SystemSoundID selectSound;
+@property (retain, nonatomic) AVAudioPlayer *ambientPlayer;
+@property (retain, nonatomic) AVAudioPlayer *selectPlayer;
+@property (strong, nonnull) UIColor *greenishColor;
+@property (strong, nonnull) UIColor *yellowishColor;
+
 
 
 - (IBAction)resetPressed:(id)sender;
@@ -36,6 +41,34 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     [super viewDidLoad];
     
+    self.greenishColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
+  //  self.yellowishColor = [UIColor colorWithRed:0.99 green:0.84 blue:0.0 alpha:1.0];
+    self.yellowishColor = [UIColor yellowColor];
+
+    // Select Sound
+    
+    NSString *selectSoundPath = [[NSBundle mainBundle] pathForResource:@"pop" ofType:@"mp3"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: selectSoundPath], &_selectSound);
+    
+    NSError* err;
+    
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/pop.mp3"];
+    NSLog(@"Path to play: %@", resourcePath);
+    
+    self.selectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.selectPlayer.delegate = self;
+        self.selectPlayer.currentTime = 0;
+        self.selectPlayer.volume = 0.5;
+    }
+
     self.nextLevelButton.hidden = false;
     
     self.previousLevelButton.hidden = false;
@@ -57,9 +90,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.myCollectionView.allowsMultipleSelection = true;
     
     [self resetTimer];
-    
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pop" ofType:@"mp3"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &_selectSound);
+
 }
 
 
@@ -109,11 +140,11 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if(cell.selected)
     {
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = self.yellowishColor;
         
     } else {
         
-        cell.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = self.greenishColor;
     }
     
     return cell;
@@ -126,12 +157,14 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"soundOn"])
     {
-        AudioServicesPlayAlertSound(self.selectSound);
+       // AudioServicesPlayAlertSound(self.selectSound);
+        [self.selectPlayer play];
+
     }
     
     NSLog(@"select index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    cell.backgroundColor = self.yellowishColor;
     
     self.tilesRemaining--;
     [self updateTilesRemaining];
@@ -144,8 +177,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     NSLog(@"deselect index path = %ld, %ld", (long)indexPath.section, (long)indexPath.row);
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
-    cell.backgroundColor = [UIColor greenColor];
+    cell.backgroundColor = self.greenishColor;
     self.tilesRemaining++;
     [self updateTilesRemaining];
 }

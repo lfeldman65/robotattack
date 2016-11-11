@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 
-@interface GameViewController : UIViewController <GameCenterManagerDelegate, UIAlertViewDelegate>
+@interface GameViewController : UIViewController <GameCenterManagerDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic) Shop *ourNewShop;
 
