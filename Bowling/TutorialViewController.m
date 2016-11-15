@@ -38,13 +38,15 @@ int step;
     [super viewDidLoad];
     
     step = 0;
-    self.myCollectionView.userInteractionEnabled = false;
+  //  self.myCollectionView.userInteractionEnabled = false;
 
     [self configureLevel:self.currentLevel];
     
     self.myCollectionView.allowsMultipleSelection = true;
+
+    self.instructionText.hidden = true;
     
-    self.instructionText.text = @"Welcome! Create a Golden Trail from the start tile to the end tile that passes through all of the 👍 tiles. Tap the Next button below to continue.";
+    self.instructionText.text = @"Add yellow tiles to connect the Start tile to the End tile by passing throught the 👍 tiles. This puzzle tells you that exactly 6 yellow tiles are remaining. Click Next!";
     
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pop" ofType:@"mp3"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &_selectSound);
@@ -53,6 +55,25 @@ int step;
     //  self.yellowishColor = [UIColor colorWithRed:0.99 green:0.84 blue:0.0 alpha:1.0];
     self.yellowishColor = [UIColor yellowColor];
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSString *info2 = @"Create a continuous Golden Trail by adding and connecting yellow tiles horizontally and vertically. Each puzzle tells you exactly how many tiles to add.";
+    [self showAlertWithTitle:@"How to Play" message:info2];
+}
+
+-(void) showAlertWithTitle:(NSString*) title message:(NSString*) msg
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {self.instructionText.hidden = false;}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -380,7 +401,7 @@ int step;
     }
     else if (step == 1)
     {
-        self.instructionText.text = @"Now tap on the yellow tiles you just added to turn them back to green. Give it a shot!";
+        self.instructionText.text = @"Change your mind? Tap on yellow tiles you added to change them back to green. Give it a shot!";
     }
     else if (step == 2)
     {
@@ -394,7 +415,8 @@ int step;
         self.myCollectionView.userInteractionEnabled = true;
         [self.myCollectionView reloadData];
         self.tilesRemainingLabel.text = @"Tiles Remaining: 6";
-        self.instructionText.text = @"Connect tiles horizontally and vertically, not diagonally. Add yellow tiles until the number of tiles remaining is exactly 0! Tap Next to see the solution.";
+        self.tilesRemaining = 6;
+        self.instructionText.text = @"Remember, add yellow tiles until the number of tiles remaining is exactly zero! Tap Next to see the solution.";
     }
     else if (step == 4)
     {

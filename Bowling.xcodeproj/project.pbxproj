@@ -107,6 +107,27 @@
 		51C66D141DD52523004070B1 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D131DD52523004070B1 /* iPad.storyboard */; };
 		51C66D161DD610F0004070B1 /* birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D151DD610F0004070B1 /* birds.mp3 */; };
 		51C66D181DD617BA004070B1 /* stream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D171DD617BA004070B1 /* stream.mp3 */; };
+		51FD79021DDA7E0B00C676BE /* winLevel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79011DDA7E0B00C676BE /* winLevel.mp3 */; };
+		51FD79171DDB633C00C676BE /* 81.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79031DDB633C00C676BE /* 81.plist */; };
+		51FD79181DDB633C00C676BE /* 82.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79041DDB633C00C676BE /* 82.plist */; };
+		51FD79191DDB633C00C676BE /* 83.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79051DDB633C00C676BE /* 83.plist */; };
+		51FD791A1DDB633C00C676BE /* 84.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79061DDB633C00C676BE /* 84.plist */; };
+		51FD791B1DDB633C00C676BE /* 85.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79071DDB633C00C676BE /* 85.plist */; };
+		51FD791C1DDB633C00C676BE /* 86.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79081DDB633C00C676BE /* 86.plist */; };
+		51FD791D1DDB633C00C676BE /* 87.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79091DDB633C00C676BE /* 87.plist */; };
+		51FD791E1DDB633C00C676BE /* 88.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD790A1DDB633C00C676BE /* 88.plist */; };
+		51FD791F1DDB633C00C676BE /* 89.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD790B1DDB633C00C676BE /* 89.plist */; };
+		51FD79201DDB633C00C676BE /* 90.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD790C1DDB633C00C676BE /* 90.plist */; };
+		51FD79211DDB633C00C676BE /* 91.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD790D1DDB633C00C676BE /* 91.plist */; };
+		51FD79221DDB633C00C676BE /* 92.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD790E1DDB633C00C676BE /* 92.plist */; };
+		51FD79231DDB633C00C676BE /* 93.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD790F1DDB633C00C676BE /* 93.plist */; };
+		51FD79241DDB633C00C676BE /* 94.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79101DDB633C00C676BE /* 94.plist */; };
+		51FD79251DDB633C00C676BE /* 95.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79111DDB633C00C676BE /* 95.plist */; };
+		51FD79261DDB633C00C676BE /* 96.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79121DDB633C00C676BE /* 96.plist */; };
+		51FD79271DDB633C00C676BE /* 97.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79131DDB633C00C676BE /* 97.plist */; };
+		51FD79281DDB633C00C676BE /* 98.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79141DDB633C00C676BE /* 98.plist */; };
+		51FD79291DDB633C00C676BE /* 99.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79151DDB633C00C676BE /* 99.plist */; };
+		51FD792A1DDB633C00C676BE /* 100.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79161DDB633C00C676BE /* 100.plist */; };
 		673B2DF41DC6B55F00147D8F /* 7.plist in Resources */ = {isa = PBXBuildFile; fileRef = 673B2DF31DC6B55F00147D8F /* 7.plist */; };
 		673B2E051DC6B68100147D8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFA1DC6B68100147D8F /* ioapi.c */; };
 		673B2E061DC6B68100147D8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 673B2DFC1DC6B68100147D8F /* mztools.c */; };
@@ -244,6 +265,27 @@
 		51C66D131DD52523004070B1 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		51C66D151DD610F0004070B1 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
 		51C66D171DD617BA004070B1 /* stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stream.mp3; sourceTree = "<group>"; };
+		51FD79011DDA7E0B00C676BE /* winLevel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winLevel.mp3; sourceTree = "<group>"; };
+		51FD79031DDB633C00C676BE /* 81.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 81.plist; sourceTree = "<group>"; };
+		51FD79041DDB633C00C676BE /* 82.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 82.plist; sourceTree = "<group>"; };
+		51FD79051DDB633C00C676BE /* 83.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 83.plist; sourceTree = "<group>"; };
+		51FD79061DDB633C00C676BE /* 84.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 84.plist; sourceTree = "<group>"; };
+		51FD79071DDB633C00C676BE /* 85.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 85.plist; sourceTree = "<group>"; };
+		51FD79081DDB633C00C676BE /* 86.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 86.plist; sourceTree = "<group>"; };
+		51FD79091DDB633C00C676BE /* 87.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 87.plist; sourceTree = "<group>"; };
+		51FD790A1DDB633C00C676BE /* 88.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 88.plist; sourceTree = "<group>"; };
+		51FD790B1DDB633C00C676BE /* 89.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 89.plist; sourceTree = "<group>"; };
+		51FD790C1DDB633C00C676BE /* 90.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 90.plist; sourceTree = "<group>"; };
+		51FD790D1DDB633C00C676BE /* 91.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 91.plist; sourceTree = "<group>"; };
+		51FD790E1DDB633C00C676BE /* 92.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 92.plist; sourceTree = "<group>"; };
+		51FD790F1DDB633C00C676BE /* 93.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 93.plist; sourceTree = "<group>"; };
+		51FD79101DDB633C00C676BE /* 94.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 94.plist; sourceTree = "<group>"; };
+		51FD79111DDB633C00C676BE /* 95.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 95.plist; sourceTree = "<group>"; };
+		51FD79121DDB633C00C676BE /* 96.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 96.plist; sourceTree = "<group>"; };
+		51FD79131DDB633C00C676BE /* 97.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 97.plist; sourceTree = "<group>"; };
+		51FD79141DDB633C00C676BE /* 98.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 98.plist; sourceTree = "<group>"; };
+		51FD79151DDB633C00C676BE /* 99.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 99.plist; sourceTree = "<group>"; };
+		51FD79161DDB633C00C676BE /* 100.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 100.plist; sourceTree = "<group>"; };
 		673B2DF31DC6B55F00147D8F /* 7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 7.plist; path = puzzles/7.plist; sourceTree = "<group>"; };
 		673B2DF91DC6B68100147D8F /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		673B2DFA1DC6B68100147D8F /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -327,6 +369,7 @@
 		110E80761B161B4000DF989C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				51FD79011DDA7E0B00C676BE /* winLevel.mp3 */,
 				51C66D171DD617BA004070B1 /* stream.mp3 */,
 				51C66D151DD610F0004070B1 /* birds.mp3 */,
 				11B648211B1E66C1005AB6A3 /* pop.mp3 */,
@@ -541,6 +584,26 @@
 				51C66D061DD51308004070B1 /* 78.plist */,
 				51C66D071DD51308004070B1 /* 79.plist */,
 				51C66D081DD51308004070B1 /* 80.plist */,
+				51FD79031DDB633C00C676BE /* 81.plist */,
+				51FD79041DDB633C00C676BE /* 82.plist */,
+				51FD79051DDB633C00C676BE /* 83.plist */,
+				51FD79061DDB633C00C676BE /* 84.plist */,
+				51FD79071DDB633C00C676BE /* 85.plist */,
+				51FD79081DDB633C00C676BE /* 86.plist */,
+				51FD79091DDB633C00C676BE /* 87.plist */,
+				51FD790A1DDB633C00C676BE /* 88.plist */,
+				51FD790B1DDB633C00C676BE /* 89.plist */,
+				51FD790C1DDB633C00C676BE /* 90.plist */,
+				51FD790D1DDB633C00C676BE /* 91.plist */,
+				51FD790E1DDB633C00C676BE /* 92.plist */,
+				51FD790F1DDB633C00C676BE /* 93.plist */,
+				51FD79101DDB633C00C676BE /* 94.plist */,
+				51FD79111DDB633C00C676BE /* 95.plist */,
+				51FD79121DDB633C00C676BE /* 96.plist */,
+				51FD79131DDB633C00C676BE /* 97.plist */,
+				51FD79141DDB633C00C676BE /* 98.plist */,
+				51FD79151DDB633C00C676BE /* 99.plist */,
+				51FD79161DDB633C00C676BE /* 100.plist */,
 			);
 			name = Puzzles;
 			sourceTree = "<group>";
@@ -641,11 +704,14 @@
 				5157BF641DCA69ED00A73497 /* 38.plist in Resources */,
 				51C66D0F1DD51308004070B1 /* 77.plist in Resources */,
 				51C66CFB1DD50F7F004070B1 /* 67.plist in Resources */,
+				51FD791B1DDB633C00C676BE /* 85.plist in Resources */,
+				51FD79291DDB633C00C676BE /* 99.plist in Resources */,
 				673B2DF41DC6B55F00147D8F /* 7.plist in Resources */,
 				51C66D181DD617BA004070B1 /* stream.mp3 in Resources */,
 				674643011DC164DC006387A6 /* 1.plist in Resources */,
 				515783B41DCA24BE00FB7A97 /* 24.plist in Resources */,
 				51C66CCC1DD4D2BC004070B1 /* 48.plist in Resources */,
+				51FD79021DDA7E0B00C676BE /* winLevel.mp3 in Resources */,
 				5157BF661DCA69ED00A73497 /* 40.plist in Resources */,
 				110E808C1B161B4100DF989C /* LaunchScreen.xib in Resources */,
 				51C66CE21DD4DFEB004070B1 /* 52.plist in Resources */,
@@ -657,6 +723,7 @@
 				51C66CCD1DD4D2BC004070B1 /* 49.plist in Resources */,
 				515783A81DCA24BE00FB7A97 /* 12.plist in Resources */,
 				51C66CE71DD4DFEB004070B1 /* 57.plist in Resources */,
+				51FD79221DDB633C00C676BE /* 92.plist in Resources */,
 				515783B21DCA24BE00FB7A97 /* 22.plist in Resources */,
 				51C66D0B1DD51308004070B1 /* 73.plist in Resources */,
 				51C66CE81DD4DFEB004070B1 /* 58.plist in Resources */,
@@ -667,12 +734,16 @@
 				515783B11DCA24BE00FB7A97 /* 21.plist in Resources */,
 				51C66CCA1DD4D2BC004070B1 /* 46.plist in Resources */,
 				51C66CE11DD4DFEB004070B1 /* 51.plist in Resources */,
+				51FD79201DDB633C00C676BE /* 90.plist in Resources */,
 				515783AB1DCA24BE00FB7A97 /* 15.plist in Resources */,
 				51C66D0A1DD51308004070B1 /* 72.plist in Resources */,
+				51FD791F1DDB633C00C676BE /* 89.plist in Resources */,
 				51C66CFA1DD50F7F004070B1 /* 66.plist in Resources */,
+				51FD79181DDB633C00C676BE /* 82.plist in Resources */,
 				51C66CF71DD50F7F004070B1 /* 63.plist in Resources */,
 				51C66D0C1DD51308004070B1 /* 74.plist in Resources */,
 				51C66CE41DD4DFEB004070B1 /* 54.plist in Resources */,
+				51FD79191DDB633C00C676BE /* 83.plist in Resources */,
 				51C66D0D1DD51308004070B1 /* 75.plist in Resources */,
 				51C66D091DD51308004070B1 /* 71.plist in Resources */,
 				51C66CF81DD50F7F004070B1 /* 64.plist in Resources */,
@@ -683,29 +754,38 @@
 				51C66D111DD51308004070B1 /* 79.plist in Resources */,
 				515783B81DCA24BE00FB7A97 /* 28.plist in Resources */,
 				515783BA1DCA24BE00FB7A97 /* 30.plist in Resources */,
+				51FD791D1DDB633C00C676BE /* 87.plist in Resources */,
+				51FD79241DDB633C00C676BE /* 94.plist in Resources */,
 				515783BD1DCA24BE00FB7A97 /* 33.plist in Resources */,
 				51C66CF61DD50F7F004070B1 /* 62.plist in Resources */,
 				515783A71DCA24BE00FB7A97 /* 11.plist in Resources */,
+				51FD79171DDB633C00C676BE /* 81.plist in Resources */,
+				51FD791E1DDB633C00C676BE /* 88.plist in Resources */,
 				515783A61DCA24BE00FB7A97 /* 10.plist in Resources */,
+				51FD791C1DDB633C00C676BE /* 86.plist in Resources */,
 				515783A11DCA24BE00FB7A97 /* 4.plist in Resources */,
 				515783A01DCA24BE00FB7A97 /* 3.plist in Resources */,
 				515783B61DCA24BE00FB7A97 /* 26.plist in Resources */,
 				5157839F1DCA24BE00FB7A97 /* 2.plist in Resources */,
 				51C66D101DD51308004070B1 /* 78.plist in Resources */,
+				51FD79211DDB633C00C676BE /* 91.plist in Resources */,
 				110E80891B161B4100DF989C /* Images.xcassets in Resources */,
 				515783BB1DCA24BE00FB7A97 /* 31.plist in Resources */,
 				51C66CD41DD4DB5D004070B1 /* 41.plist in Resources */,
 				51C66D0E1DD51308004070B1 /* 76.plist in Resources */,
 				51C66CF91DD50F7F004070B1 /* 65.plist in Resources */,
+				51FD79251DDB633C00C676BE /* 95.plist in Resources */,
 				515783B01DCA24BE00FB7A97 /* 20.plist in Resources */,
 				51C66CEA1DD4DFEB004070B1 /* 60.plist in Resources */,
 				51C66CF51DD50F7F004070B1 /* 61.plist in Resources */,
 				51C66CE51DD4DFEB004070B1 /* 55.plist in Resources */,
 				515783B51DCA24BE00FB7A97 /* 25.plist in Resources */,
 				5157BF631DCA69ED00A73497 /* 37.plist in Resources */,
+				51FD79261DDB633C00C676BE /* 96.plist in Resources */,
 				515783AC1DCA24BE00FB7A97 /* 16.plist in Resources */,
 				51C66CC81DD4D2BC004070B1 /* 44.plist in Resources */,
 				515783AE1DCA24BE00FB7A97 /* 18.plist in Resources */,
+				51FD792A1DDB633C00C676BE /* 100.plist in Resources */,
 				515783AD1DCA24BE00FB7A97 /* 17.plist in Resources */,
 				51C66CD51DD4DB5D004070B1 /* 42.plist in Resources */,
 				11B648221B1E66C1005AB6A3 /* pop.mp3 in Resources */,
@@ -714,8 +794,10 @@
 				515783BE1DCA24BE00FB7A97 /* 34.plist in Resources */,
 				515783A41DCA24BE00FB7A97 /* 8.plist in Resources */,
 				51C66D141DD52523004070B1 /* iPad.storyboard in Resources */,
+				51FD79231DDB633C00C676BE /* 93.plist in Resources */,
 				515783A51DCA24BE00FB7A97 /* 9.plist in Resources */,
 				5157BF611DCA69ED00A73497 /* 35.plist in Resources */,
+				51FD79271DDB633C00C676BE /* 97.plist in Resources */,
 				515783B91DCA24BE00FB7A97 /* 29.plist in Resources */,
 				51C66CC91DD4D2BC004070B1 /* 45.plist in Resources */,
 				515783AA1DCA24BE00FB7A97 /* 14.plist in Resources */,
@@ -723,8 +805,10 @@
 				51C66CE31DD4DFEB004070B1 /* 53.plist in Resources */,
 				110E80871B161B4100DF989C /* Main.storyboard in Resources */,
 				51C66CCB1DD4D2BC004070B1 /* 47.plist in Resources */,
+				51FD79281DDB633C00C676BE /* 98.plist in Resources */,
 				51C66CFE1DD50F7F004070B1 /* 70.plist in Resources */,
 				51C66CCE1DD4D2BC004070B1 /* 50.plist in Resources */,
+				51FD791A1DDB633C00C676BE /* 84.plist in Resources */,
 				51C66CE91DD4DFEB004070B1 /* 59.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

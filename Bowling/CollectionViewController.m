@@ -22,6 +22,7 @@
 @property (assign, nonatomic) SystemSoundID selectSound;
 @property (retain, nonatomic) AVAudioPlayer *ambientPlayer;
 @property (retain, nonatomic) AVAudioPlayer *selectPlayer;
+@property (retain, nonatomic) AVAudioPlayer *winPlayer;
 @property (strong, nonnull) UIColor *greenishColor;
 @property (strong, nonnull) UIColor *yellowishColor;
 
@@ -68,6 +69,26 @@ static NSString * const reuseIdentifier = @"Cell";
         self.selectPlayer.currentTime = 0;
         self.selectPlayer.volume = 0.5;
     }
+    
+    // Win Sound
+    
+    resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/winLevel.mp3"];
+    NSLog(@"Path to play: %@", resourcePath);
+    
+    self.winPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.selectPlayer.delegate = self;
+        self.selectPlayer.currentTime = 0;
+        self.selectPlayer.volume = 0.5;
+    }
+
 
     self.nextLevelButton.hidden = false;
     
@@ -326,6 +347,7 @@ static NSString * const reuseIdentifier = @"Cell";
         
         if([self didWin:self.myCollectionView])
         {
+            [self.winPlayer play];
             [self.levelTimer invalidate];
             
             NSString *key = [NSString stringWithFormat:@"bestTime%d", self.currentLevel];
