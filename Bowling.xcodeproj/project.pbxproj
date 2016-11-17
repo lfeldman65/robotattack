@@ -24,7 +24,6 @@
 		11C1BEF41B179AF300DF06A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C1BEF31B179AF300DF06A0 /* StoreKit.framework */; };
 		5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107C9761DD2933000411FFA /* TutorialViewController.m */; };
 		5107C9851DD3746100411FFA /* tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5107C9841DD3746100411FFA /* tutorial.plist */; };
-		514D2A161DBEA57C00A96118 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A151DBEA57C00A96118 /* CollectionViewController.m */; };
 		514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A181DBEA59900A96118 /* CollectionViewCell.m */; };
 		5157839F1DCA24BE00FB7A97 /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157837F1DCA24BE00FB7A97 /* 2.plist */; };
 		515783A01DCA24BE00FB7A97 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515783801DCA24BE00FB7A97 /* 3.plist */; };
@@ -107,6 +106,7 @@
 		51C66D141DD52523004070B1 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D131DD52523004070B1 /* iPad.storyboard */; };
 		51C66D161DD610F0004070B1 /* birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D151DD610F0004070B1 /* birds.mp3 */; };
 		51C66D181DD617BA004070B1 /* stream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D171DD617BA004070B1 /* stream.mp3 */; };
+		51DFBA581DDCCF0D00DBF82D /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DFBA571DDCCF0D00DBF82D /* PlayViewController.m */; };
 		51FD79021DDA7E0B00C676BE /* winLevel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79011DDA7E0B00C676BE /* winLevel.mp3 */; };
 		51FD79171DDB633C00C676BE /* 81.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79031DDB633C00C676BE /* 81.plist */; };
 		51FD79181DDB633C00C676BE /* 82.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79041DDB633C00C676BE /* 82.plist */; };
@@ -137,8 +137,6 @@
 		673B2E0B1DC6B7F000147D8F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 673B2E0A1DC6B7F000147D8F /* libz.tbd */; };
 		674643011DC164DC006387A6 /* 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674643001DC164DC006387A6 /* 1.plist */; };
 		674643041DC16793006387A6 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 674643031DC16793006387A6 /* Puzzle.m */; };
-		67B6CD101DC3F7D90065E077 /* LevelSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B6CD0F1DC3F7D90065E077 /* LevelSelectViewController.m */; };
-		67B6CD131DC3FB940065E077 /* CreateLevelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B6CD121DC3FB940065E077 /* CreateLevelsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,8 +178,6 @@
 		5107C9751DD2933000411FFA /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		5107C9761DD2933000411FFA /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		5107C9841DD3746100411FFA /* tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tutorial.plist; sourceTree = "<group>"; };
-		514D2A141DBEA57C00A96118 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		514D2A151DBEA57C00A96118 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		514D2A171DBEA59900A96118 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		514D2A181DBEA59900A96118 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		5157837F1DCA24BE00FB7A97 /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2.plist; sourceTree = "<group>"; };
@@ -265,6 +261,8 @@
 		51C66D131DD52523004070B1 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		51C66D151DD610F0004070B1 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
 		51C66D171DD617BA004070B1 /* stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stream.mp3; sourceTree = "<group>"; };
+		51DFBA561DDCCF0D00DBF82D /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		51DFBA571DDCCF0D00DBF82D /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		51FD79011DDA7E0B00C676BE /* winLevel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winLevel.mp3; sourceTree = "<group>"; };
 		51FD79031DDB633C00C676BE /* 81.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 81.plist; sourceTree = "<group>"; };
 		51FD79041DDB633C00C676BE /* 82.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 82.plist; sourceTree = "<group>"; };
@@ -302,10 +300,6 @@
 		674643001DC164DC006387A6 /* 1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 1.plist; path = puzzles/1.plist; sourceTree = "<group>"; };
 		674643021DC16793006387A6 /* Puzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzle.h; sourceTree = "<group>"; };
 		674643031DC16793006387A6 /* Puzzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Puzzle.m; sourceTree = "<group>"; };
-		67B6CD0E1DC3F7D90065E077 /* LevelSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectViewController.h; sourceTree = "<group>"; };
-		67B6CD0F1DC3F7D90065E077 /* LevelSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectViewController.m; sourceTree = "<group>"; };
-		67B6CD111DC3FB940065E077 /* CreateLevelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateLevelsViewController.h; sourceTree = "<group>"; };
-		67B6CD121DC3FB940065E077 /* CreateLevelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLevelsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,14 +453,10 @@
 			children = (
 				110E80821B161B4100DF989C /* GameViewController.h */,
 				110E80831B161B4100DF989C /* GameViewController.m */,
-				67B6CD0E1DC3F7D90065E077 /* LevelSelectViewController.h */,
-				67B6CD0F1DC3F7D90065E077 /* LevelSelectViewController.m */,
-				514D2A141DBEA57C00A96118 /* CollectionViewController.h */,
-				514D2A151DBEA57C00A96118 /* CollectionViewController.m */,
-				67B6CD111DC3FB940065E077 /* CreateLevelsViewController.h */,
-				67B6CD121DC3FB940065E077 /* CreateLevelsViewController.m */,
 				5107C9751DD2933000411FFA /* TutorialViewController.h */,
 				5107C9761DD2933000411FFA /* TutorialViewController.m */,
+				51DFBA561DDCCF0D00DBF82D /* PlayViewController.h */,
+				51DFBA571DDCCF0D00DBF82D /* PlayViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -831,15 +821,13 @@
 				110E807C1B161B4000DF989C /* AppDelegate.m in Sources */,
 				5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */,
 				673B2E091DC6B68100147D8F /* SSZipArchive.m in Sources */,
+				51DFBA581DDCCF0D00DBF82D /* PlayViewController.m in Sources */,
 				11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */,
 				110E80C01B16863700DF989C /* GameCenterManager.m in Sources */,
 				110E80BE1B16863700DF989C /* Reachability.m in Sources */,
 				673B2E081DC6B68100147D8F /* zip.c in Sources */,
 				673B2E051DC6B68100147D8F /* ioapi.c in Sources */,
-				67B6CD131DC3FB940065E077 /* CreateLevelsViewController.m in Sources */,
-				67B6CD101DC3F7D90065E077 /* LevelSelectViewController.m in Sources */,
 				110E80BF1B16863700DF989C /* NSDataAES256.m in Sources */,
-				514D2A161DBEA57C00A96118 /* CollectionViewController.m in Sources */,
 				674643041DC16793006387A6 /* Puzzle.m in Sources */,
 				514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */,
 				110E80791B161B4000DF989C /* main.m in Sources */,
@@ -982,7 +970,7 @@
 				DEVELOPMENT_TEAM = 9Y9N8HRKV2;
 				INFOPLIST_FILE = Bowling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.yellowbrick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.yellow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1000,7 +988,7 @@
 				DEVELOPMENT_TEAM = 9Y9N8HRKV2;
 				INFOPLIST_FILE = Bowling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.yellowbrick;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.yellow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
