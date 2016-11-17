@@ -63,6 +63,8 @@
 		5157BF641DCA69ED00A73497 /* 38.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5E1DCA69ED00A73497 /* 38.plist */; };
 		5157BF651DCA69ED00A73497 /* 39.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF5F1DCA69ED00A73497 /* 39.plist */; };
 		5157BF661DCA69ED00A73497 /* 40.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157BF601DCA69ED00A73497 /* 40.plist */; };
+		518BFE701DDE445900322CD2 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 518BFE6F1DDE445900322CD2 /* LeftViewController.m */; };
+		518BFE731DDE456500322CD2 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 518BFE721DDE456500322CD2 /* RightViewController.m */; };
 		51C66CC81DD4D2BC004070B1 /* 44.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66CBE1DD4D2BB004070B1 /* 44.plist */; };
 		51C66CC91DD4D2BC004070B1 /* 45.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66CBF1DD4D2BB004070B1 /* 45.plist */; };
 		51C66CCA1DD4D2BC004070B1 /* 46.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66CC01DD4D2BB004070B1 /* 46.plist */; };
@@ -218,6 +220,10 @@
 		5157BF5E1DCA69ED00A73497 /* 38.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 38.plist; sourceTree = "<group>"; };
 		5157BF5F1DCA69ED00A73497 /* 39.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 39.plist; sourceTree = "<group>"; };
 		5157BF601DCA69ED00A73497 /* 40.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 40.plist; sourceTree = "<group>"; };
+		518BFE6E1DDE445900322CD2 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		518BFE6F1DDE445900322CD2 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		518BFE711DDE456500322CD2 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		518BFE721DDE456500322CD2 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		51C66CBE1DD4D2BB004070B1 /* 44.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 44.plist; sourceTree = "<group>"; };
 		51C66CBF1DD4D2BB004070B1 /* 45.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 45.plist; sourceTree = "<group>"; };
 		51C66CC01DD4D2BB004070B1 /* 46.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 46.plist; sourceTree = "<group>"; };
@@ -457,6 +463,10 @@
 				5107C9761DD2933000411FFA /* TutorialViewController.m */,
 				51DFBA561DDCCF0D00DBF82D /* PlayViewController.h */,
 				51DFBA571DDCCF0D00DBF82D /* PlayViewController.m */,
+				518BFE6E1DDE445900322CD2 /* LeftViewController.h */,
+				518BFE6F1DDE445900322CD2 /* LeftViewController.m */,
+				518BFE711DDE456500322CD2 /* RightViewController.h */,
+				518BFE721DDE456500322CD2 /* RightViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -822,6 +832,7 @@
 				5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */,
 				673B2E091DC6B68100147D8F /* SSZipArchive.m in Sources */,
 				51DFBA581DDCCF0D00DBF82D /* PlayViewController.m in Sources */,
+				518BFE731DDE456500322CD2 /* RightViewController.m in Sources */,
 				11C1BEF21B179AC200DF06A0 /* Shop.m in Sources */,
 				110E80C01B16863700DF989C /* GameCenterManager.m in Sources */,
 				110E80BE1B16863700DF989C /* Reachability.m in Sources */,
@@ -832,6 +843,7 @@
 				514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */,
 				110E80791B161B4000DF989C /* main.m in Sources */,
 				673B2E071DC6B68100147D8F /* unzip.c in Sources */,
+				518BFE701DDE445900322CD2 /* LeftViewController.m in Sources */,
 				673B2E061DC6B68100147D8F /* mztools.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
