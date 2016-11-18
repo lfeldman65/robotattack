@@ -10,8 +10,6 @@
 
 @interface RightViewController ()
 
-@property (nonatomic) float charVelocityX;
-@property (nonatomic) float charVelocityY;
 @property (nonatomic) CGPoint currentTouchPosition;
 @property (nonatomic) CGPoint rightActionCenter;
 @property (nonatomic) BOOL rightTouchActive;
@@ -49,8 +47,7 @@ double yDistanceR;
     self.currentTouchPosition = [aTouch locationInView:self.view];
     xDistanceR = self.currentTouchPosition.x - self.rightActionCenter.x;
     yDistanceR = self.currentTouchPosition.y - self.rightActionCenter.y;
-    self.charVelocityX = 0;
-    self.charVelocityY = 0;
+    
   //  NSLog(@"Touch Moved Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
 }
 
@@ -58,8 +55,6 @@ double yDistanceR;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     isInRight = false;
-    self.charVelocityX = 0;
-    self.charVelocityY = 0;
 }
 
 +(BOOL)isInRight

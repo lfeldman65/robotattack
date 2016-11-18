@@ -18,10 +18,11 @@
 
 @property (strong, nonatomic) IBOutlet UIView *leftView;
 @property (strong, nonatomic) IBOutlet UIView *rightView;
-@property (strong, nonatomic) IBOutlet UIView *character;
 @property (strong, nonatomic) IBOutlet UIImageView *ammoImage;
+@property (strong, nonatomic) IBOutlet UIImageView *character;
 
 @property (strong, nonatomic) NSTimer *gameTimer;
+@property (strong, nonatomic) NSTimer *ammoTimer;
 
 @property (nonatomic) float charVelocityX;
 @property (nonatomic) float charVelocityY;
@@ -37,7 +38,6 @@
 BOOL ammoInFlight;
 double screenWidth;
 double screenHeight;
-double actionSide;
 double charWidth;
 double charHeight;
 
@@ -52,10 +52,9 @@ double charHeight;
     self.leftView.multipleTouchEnabled = true;
     self.rightView.multipleTouchEnabled = true;
     self.view.multipleTouchEnabled = true;
-    actionSide = 130.0;
     self.character.center = CGPointMake(screenWidth/2, screenHeight/2);
     self.ammoImage.center = CGPointMake(screenWidth/2 + 40.0, screenHeight/2);
-    self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
+    self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
  
     ammoInFlight = false;
     
@@ -77,14 +76,7 @@ double charHeight;
         
     } else {
         
-        if (ammoInFlight)
-        {
-            self.ammoImage.hidden = true;
-            
-        } else {
-            
-            self.ammoImage.hidden = true;
-        }
+        self.ammoImage.hidden = true;
     }
 }
 
@@ -98,33 +90,35 @@ double charHeight;
     
     self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, self.character.center.y + self.charVelocityY);
     
-    if(self.character.center.x < charWidth/2)
+    if(self.character.center.x < 0)
     {
         self.charVelocityX = 0;
-        self.character.center = CGPointMake(charWidth/2, self.character.center.y + self.charVelocityY);
+        self.character.center = CGPointMake(screenWidth, self.character.center.y + self.charVelocityY);
     }
     
-    if(self.character.center.x > screenWidth - charWidth/2)
+    if(self.character.center.x > screenWidth)
     {
         self.charVelocityX = 0;
-        self.character.center = CGPointMake(screenWidth - charWidth/2, self.character.center.y + self.charVelocityY);
+        self.character.center = CGPointMake(0, self.character.center.y + self.charVelocityY);
     }
     
-    if(self.character.center.y < charHeight/2)
+    if(self.character.center.y < 0)
     {
         self.charVelocityY = 0;
-        self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, charHeight/2);
+        self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, screenHeight - 150.0);
     }
     
-    if(self.character.center.y > screenHeight - charHeight/2)
+    if(self.character.center.y > screenHeight - 150.0)
     {
         self.charVelocityY = 0;
-        self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, self.view.frame.size.height - self.character.frame.size.height/2);
+        self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, 0);
     }
 }
 
 -(void)shootGun
 {
+  //  self.ammoTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(gameGuts) userInfo:nil repeats:NO];
+
     if(ammoInFlight)
     {
         self.ammoImage.center = CGPointMake(self.ammoImage.center.x + self.ammoVelocityX, self.ammoImage.center.y + self.ammoVelocityY);
@@ -148,7 +142,7 @@ double charHeight;
         self.ammoImage.center = CGPointMake(self.ammoImage.center.x + self.ammoVelocityX, self.ammoImage.center.y + self.ammoVelocityY);
     }
     
-    if(self.ammoImage.center.x < -250)
+    if(self.ammoImage.center.x < 0)
     {
         self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
         ammoInFlight = false;
@@ -164,6 +158,11 @@ double charHeight;
     {
         self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
         ammoInFlight = false;
+    }
+    
+    if(self.ammoImage.center.y > screenHeight - 150.0)
+    {
+        self.ammoImage.hidden = YES;
     }
     
     if(self.ammoImage.center.y > screenHeight + 250)

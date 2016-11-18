@@ -10,8 +10,6 @@
 
 @interface LeftViewController ()
 
-@property (nonatomic) float charVelocityX;
-@property (nonatomic) float charVelocityY;
 @property (nonatomic) CGPoint currentTouchPosition;
 @property (nonatomic) CGPoint leftActionCenter;
 @property (nonatomic) BOOL leftTouchActive;
@@ -30,7 +28,7 @@ double yDistance;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.leftActionCenter = CGPointMake(65.0, 65.0);
+    self.leftActionCenter = CGPointMake(75.0, 75.0);
     isInLeft = false;
 }
 
@@ -51,8 +49,7 @@ double yDistance;
     self.currentTouchPosition = [aTouch locationInView:self.view];
     xDistance = self.currentTouchPosition.x - self.leftActionCenter.x;
     yDistance = self.currentTouchPosition.y - self.leftActionCenter.y;
-    self.charVelocityX = 0;
-    self.charVelocityY = 0;
+    isInLeft = true;
     NSLog(@"Touch Moved Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
 }
 
@@ -60,8 +57,6 @@ double yDistance;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    isInLeft = false;
-   self.charVelocityX = 0;
-   self.charVelocityY = 0;
 }
 
 +(BOOL)isInLeft

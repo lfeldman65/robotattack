@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qGm-wL-JDN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3se-qz-xqx">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG" translatesAutoresizingMaskIntoConstraints="NO" id="hhm-Fu-rko" userLabel="bg image">
@@ -133,7 +133,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Htr-hS-RJF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7IR-lg-j0I">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJ7-sF-dOB">
@@ -148,33 +148,35 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-OT-zRK">
-                                <frame key="frameInset" minX="434" minY="175" width="25" height="25"/>
+                                <frame key="frameInset" minX="300" minY="175" width="10" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qt2-j0-CAN">
-                                <frame key="frameInset" minX="340" minY="175" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vh2-KL-oeX">
+                            <containerView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vh2-KL-oeX">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="NJa-2g-4kZ"/>
-                                    <constraint firstAttribute="width" constant="130" id="Osw-wd-ICU"/>
+                                    <constraint firstAttribute="height" constant="150" id="NJa-2g-4kZ"/>
+                                    <constraint firstAttribute="width" constant="150" id="Osw-wd-ICU"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="FTU-1s-dJk" kind="embed" id="WOo-BX-wrr"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frx-sp-Xxd">
+                            <containerView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frx-sp-Xxd">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="99d-TY-LQm"/>
-                                    <constraint firstAttribute="height" constant="130" id="gaE-5Y-bHW"/>
+                                    <constraint firstAttribute="width" constant="150" id="99d-TY-LQm"/>
+                                    <constraint firstAttribute="height" constant="150" id="gaE-5Y-bHW"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Jd1-gx-MzB" kind="embed" id="MK7-ph-900"/>
                                 </connections>
                             </containerView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgX-14-X4d">
+                                <frame key="frameInset" minX="35" minY="116" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -188,12 +190,14 @@
                     </view>
                     <connections>
                         <outlet property="ammoImage" destination="CoV-OT-zRK" id="ftN-5a-DXD"/>
-                        <outlet property="character" destination="Qt2-j0-CAN" id="4YW-w3-yfD"/>
+                        <outlet property="character" destination="zgX-14-X4d" id="ODB-hk-s8g"/>
+                        <outlet property="leftView" destination="vh2-KL-oeX" id="Fj8-Qa-Nju"/>
+                        <outlet property="rightView" destination="Frx-sp-Xxd" id="AI4-qQ-UD5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8u-RX-ibG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="312.22826086956525" y="856.52173913043487"/>
+            <point key="canvasLocation" x="311.19999999999999" y="855.9220389805098"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="jCH-H6-sKN">
@@ -204,7 +208,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bP6-DT-QYh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OGj-DS-TXw">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG" translatesAutoresizingMaskIntoConstraints="NO" id="9QX-sl-DCm">
@@ -335,10 +339,13 @@
         <scene sceneID="rlb-fI-19K">
             <objects>
                 <viewController id="FTU-1s-dJk" customClass="LeftViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WSk-Xo-WrZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="7a9-PG-bvB"/>
+                    </layoutGuides>
                     <view key="view" alpha="0.20000000000000001" contentMode="scaleToFill" id="fD1-rn-bIE">
-                        <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Z5-wQ-Fk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -349,10 +356,13 @@
         <scene sceneID="BlV-tf-UcT">
             <objects>
                 <viewController id="Jd1-gx-MzB" customClass="RightViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qCe-2c-piG"/>
+                        <viewControllerLayoutGuide type="bottom" id="vqe-8B-sZP"/>
+                    </layoutGuides>
                     <view key="view" alpha="0.20000000000000001" contentMode="scaleToFill" id="qNG-EP-LFK">
-                        <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIz-ZZ-5JP" userLabel="First Responder" sceneMemberID="firstResponder"/>
