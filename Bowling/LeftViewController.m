@@ -39,7 +39,7 @@ double yDistance;
     xDistance = self.currentTouchPosition.x - self.leftActionCenter.x;
     yDistance = self.currentTouchPosition.y - self.leftActionCenter.y;
     isInLeft = true;
-    NSLog(@"Touch Began Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
+   // NSLog(@"Touch Began Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
 
 }
 
@@ -50,7 +50,7 @@ double yDistance;
     xDistance = self.currentTouchPosition.x - self.leftActionCenter.x;
     yDistance = self.currentTouchPosition.y - self.leftActionCenter.y;
     isInLeft = true;
-    NSLog(@"Touch Moved Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
+   // NSLog(@"Touch Moved Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
 }
 
 
@@ -72,6 +72,15 @@ double yDistance;
 +(double)findDistanceY
 {
     return yDistance;
+}
+
++(double)findRotationAngle
+{
+    double angle = atan2(yDistance, xDistance);
+    NSLog(@"xDistance = %f", xDistance);
+    NSLog(@"yDistance = %f", yDistance);
+    NSLog(@"angle = %f", angle*180/M_PI);
+    return angle + M_PI/2;
 }
 
 - (void)didReceiveMemoryWarning {

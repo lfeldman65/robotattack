@@ -13,5 +13,6 @@
 +(BOOL)isInLeft;
 +(double)findDistanceX;
 +(double)findDistanceY;
++(double)findRotationAngle;
 
 @end
