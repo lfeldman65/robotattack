@@ -8,8 +8,8 @@
 
 #import "PlayViewController.h"
 
-#define charSpeedScale 0.5
-#define ammoSpeedScale 100.0
+#define charSpeedScale 0.4
+#define ammoSpeedScale 40.0
 
 
 @interface PlayViewController ()
@@ -31,15 +31,16 @@
 
 @end
 
-
 @implementation PlayViewController
-
 
 BOOL ammoInFlight;
 double screenWidth;
 double screenHeight;
 double charWidth;
 double charHeight;
+
+
+CGPoint ammoLaunchPosition;
 
 
 - (void)viewDidLoad
@@ -117,13 +118,36 @@ double charHeight;
 
 -(void)shootGun
 {
-  //  self.ammoTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(gameGuts) userInfo:nil repeats:NO];
-
     if(ammoInFlight)
     {
         self.ammoImage.center = CGPointMake(self.ammoImage.center.x + self.ammoVelocityX, self.ammoImage.center.y + self.ammoVelocityY);
         
+        if(self.ammoImage.center.x < 0)
+        {
+            self.ammoImage.center = CGPointMake(screenWidth, self.ammoImage.center.y);
+
+        } else if (self.ammoImage.center.x > screenWidth)
+            
+        {
+            self.ammoImage.center = CGPointMake(0, self.ammoImage.center.y);
+        }
+        
+        if(self.ammoImage.center.y < 0)
+        {
+            self.ammoImage.center = CGPointMake(self.ammoImage.center.x, screenHeight - 150.0);
+            
+        } else if(self.ammoImage.center.y > screenHeight - 150.0)
+        {
+            self.ammoImage.center = CGPointMake(self.ammoImage.center.x, 0);
+        }
+        
     } else {
+        
+        ammoLaunchPosition.x = self.character.center.x;
+        ammoLaunchPosition.y = self.character.center.y;
+        
+        NSLog(@"2 ammo launch x = %f", ammoLaunchPosition.x);
+        NSLog(@"2 ammo launch y = %f", ammoLaunchPosition.y);
         
         ammoInFlight = true;
         
@@ -136,40 +160,19 @@ double charHeight;
         self.ammoVelocityX = ammoSpeedScale*distX;
         self.ammoVelocityY = ammoSpeedScale*distY;
         
-        NSLog(@"Ammo Velocity X = %f", self.ammoVelocityX);
-        NSLog(@"Ammo Velocity Y = %f", self.ammoVelocityY);
+      //  NSLog(@"Ammo Velocity X = %f", self.ammoVelocityX);
+      //  NSLog(@"Ammo Velocity Y = %f", self.ammoVelocityY);
         
-        self.ammoImage.center = CGPointMake(self.ammoImage.center.x + self.ammoVelocityX, self.ammoImage.center.y + self.ammoVelocityY);
-    }
-    
-    if(self.ammoImage.center.x < 0)
-    {
         self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
-        ammoInFlight = false;
+        
+        [self.ammoTimer invalidate];
+        self.ammoTimer = [NSTimer scheduledTimerWithTimeInterval:0.30 target:self selector:@selector(ammoStopped) userInfo:nil repeats:NO];
     }
-    
-    if(self.ammoImage.center.x > screenWidth + 250)
-    {
-        self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
-        ammoInFlight = false;
-    }
-    
-    if(self.ammoImage.center.y < -250)
-    {
-        self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
-        ammoInFlight = false;
-    }
-    
-    if(self.ammoImage.center.y > screenHeight - 150.0)
-    {
-        self.ammoImage.hidden = YES;
-    }
-    
-    if(self.ammoImage.center.y > screenHeight + 250)
-    {
-        self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
-        ammoInFlight = false;
-    }
+}
+
+-(void)ammoStopped
+{
+    ammoInFlight = false;
 }
 
 /*
