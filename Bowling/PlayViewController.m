@@ -10,7 +10,7 @@
 
 #define charSpeedScale 0.3
 #define ammoSpeedScale 50.0
-#define alien1SpeedScale 2.0
+#define alien1SpeedScale 4.0
 #define shield1SpeedScale 1.0
 
 
@@ -22,13 +22,15 @@
 @property (strong, nonatomic) IBOutlet UIView *rightView;
 @property (strong, nonatomic) IBOutlet UIImageView *ammoImage;
 @property (strong, nonatomic) IBOutlet UIImageView *character;
-@property (strong, nonatomic) IBOutlet UIImageView *alien1Image;
 @property (strong, nonatomic) IBOutlet UIImageView *shield1Image;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutlet UILabel *shieldLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *alien1Image;
 
 @property (strong, nonatomic) NSTimer *gameTimer;
 @property (strong, nonatomic) NSTimer *ammoTimer;
+@property (strong, nonatomic) IBOutlet UIButton *playButton;
+- (IBAction)playButtonPressed:(id)sender;
 
 @property (nonatomic) float charVelocityX;
 @property (nonatomic) float charVelocityY;
@@ -69,11 +71,7 @@ CGPoint shield1Vector;
     self.ammoImage.center = CGPointMake(screenWidth/2 + 40.0, screenHeight/2);
     self.alien1Image.center = CGPointMake(screenWidth + 40.0, 10.0);
     self.shield1Image.center = CGPointMake(screenWidth - 40.0, screenHeight + 20);
-
-    self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
- 
     ammoInFlight = false;
-    
     self.charVelocityX = 0;
     self.charVelocityY = 0;
     score = 0;
@@ -81,6 +79,30 @@ CGPoint shield1Vector;
     self.scoreLabel.text = @"Score: 0";
     self.shieldLabel.text = @"Shield: 100";
     self.ammoImage.hidden = true;
+    
+  /*  UIImageView *dot =[[UIImageView alloc] initWithFrame:CGRectMake(50,50,60,30)];
+    dot.image=[UIImage imageNamed:@"ufo.png"];
+    [self.view addSubview:dot];
+    
+    self.ammoImage = [[UIImageView alloc] initWithFrame:CGRectMake(50,50,60,30)];
+    self.ammoImage.image=[UIImage imageNamed:@"ufo.png"];
+    [self.view addSubview:dot]; */
+
+    //  dot.hidden = true;
+}
+
+- (IBAction)playButtonPressed:(id)sender
+{
+    score = 0;
+    shield = 100;
+    self.scoreLabel.text = @"Score: 0";
+    self.shieldLabel.text = @"Shield: 100";
+    self.playButton.hidden = true;
+    self.character.hidden = false;
+    self.character.transform = CGAffineTransformMakeRotation(0.0);
+    self.character.alpha = 1.0;
+    self.character.center = CGPointMake(screenWidth/2, screenHeight/2);
+    self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
 }
 
 -(void)gameGuts
@@ -100,8 +122,8 @@ CGPoint shield1Vector;
         self.ammoImage.hidden = true;
     }
     
-  //  [self moveAlien1];
-  //  [self moveShield1];
+    [self moveAlien1];
+    [self moveShield1];
     [self collisionBetweenCharAndAliens];
     [self collisionBetweenAmmoAndAliens];
     [self collisionBetweenCharAndShield];
@@ -118,7 +140,7 @@ CGPoint shield1Vector;
     
     self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, self.character.center.y + self.charVelocityY);
     self.character.transform = CGAffineTransformMakeRotation([LeftViewController findRotationAngle]);
-    
+
     if(self.character.center.x < 0)
     {
         self.charVelocityX = 0;
@@ -232,16 +254,23 @@ CGPoint shield1Vector;
 {
     if(CGRectIntersectsRect(self.character.frame, self.alien1Image.frame))
     {
-        self.character.alpha = shield/100.0;
         NSLog(@"char alpha = %.0f", shield/100);
         self.alien1Image.center = CGPointMake(-40.0, 10.0);
         shield = shield - 10.0;
-        self.shieldLabel.text = [NSString stringWithFormat:@"Shield: %.0f", shield];
         
-        if (shield <= 0)
+        self.character.alpha = .007*shield + 0.30;
+        
+        if (shield <= -10)
         {
-            [self gameOver];
+      //      [self gameOver];
         }
+        
+        if(shield <= 0)
+        {
+            shield = 0;
+        }
+        
+        self.shieldLabel.text = [NSString stringWithFormat:@"Shield: %.0f", shield];
     }
 }
 
@@ -274,6 +303,8 @@ CGPoint shield1Vector;
 -(void)gameOver
 {
     [self.gameTimer invalidate];
+    self.playButton.hidden = false;
+    self.character.hidden = true;
 }
 
 
@@ -297,5 +328,6 @@ CGPoint shield1Vector;
 {
     [super didReceiveMemoryWarning];
 }
+
 
 @end

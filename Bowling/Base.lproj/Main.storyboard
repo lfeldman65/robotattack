@@ -136,6 +136,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nightSky" translatesAutoresizingMaskIntoConstraints="NO" id="hlw-QX-0is"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJ7-sF-dOB">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="faB-Ju-dPK"/>
@@ -152,20 +153,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0T-c4-txs">
-                                <frame key="frameInset" minX="67" minY="351" width="60" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo" translatesAutoresizingMaskIntoConstraints="NO" id="x0T-c4-txs">
+                                <frame key="frameInset" minX="45" minY="129" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4p-rH-f0H">
-                                <frame key="frameInset" minX="168" minY="210" width="51" height="55"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shield" translatesAutoresizingMaskIntoConstraints="NO" id="X4p-rH-f0H">
+                                <frame key="frameInset" minX="29" minY="441" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.50588235290000005" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgX-14-X4d">
-                                <frame key="frameInset" minX="35" minY="116" width="30" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spaceShip" translatesAutoresizingMaskIntoConstraints="NO" id="zgX-14-X4d">
+                                <frame key="frameInset" minX="167" minY="301" width="30" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.77126923250000001" green="1" blue="0.49241373830000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="49m-xS-87L" userLabel="Bottom View">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -209,13 +207,30 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYv-B5-dCG">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="lgS-RJ-wjI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="VHj-Sn-THK" eventType="touchUpInside" id="xIH-ir-fCV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="hlw-QX-0is" firstAttribute="top" secondItem="7IR-lg-j0I" secondAttribute="top" id="44y-qF-dn9"/>
+                            <constraint firstItem="HYv-B5-dCG" firstAttribute="top" secondItem="vPB-81-hKN" secondAttribute="bottom" constant="150" id="61f-Xa-ydy"/>
+                            <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="hlw-QX-0is" secondAttribute="bottom" id="AvQ-ea-ABz"/>
                             <constraint firstItem="kJ7-sF-dOB" firstAttribute="leading" secondItem="7IR-lg-j0I" secondAttribute="leading" constant="10" id="Dvg-xK-i3z"/>
                             <constraint firstItem="kJ7-sF-dOB" firstAttribute="top" secondItem="K4W-fy-MoX" secondAttribute="bottom" constant="2" id="FV6-TV-XIe"/>
                             <constraint firstItem="vPB-81-hKN" firstAttribute="top" secondItem="K4W-fy-MoX" secondAttribute="bottom" constant="5" id="Gjd-Do-B2D"/>
+                            <constraint firstItem="hlw-QX-0is" firstAttribute="leading" secondItem="7IR-lg-j0I" secondAttribute="leading" id="HRg-US-72U"/>
                             <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="Frx-sp-Xxd" secondAttribute="bottom" id="KxE-MG-fPJ"/>
+                            <constraint firstAttribute="trailing" secondItem="hlw-QX-0is" secondAttribute="trailing" id="Lbs-W7-ESr"/>
                             <constraint firstAttribute="trailing" secondItem="49m-xS-87L" secondAttribute="trailing" id="PTH-hN-h85"/>
                             <constraint firstItem="49m-xS-87L" firstAttribute="leading" secondItem="7IR-lg-j0I" secondAttribute="leading" id="S4t-2c-pTr"/>
                             <constraint firstItem="uaf-ck-XR1" firstAttribute="top" secondItem="K4W-fy-MoX" secondAttribute="bottom" constant="5" id="XaS-xA-p57"/>
@@ -223,15 +238,17 @@
                             <constraint firstItem="vh2-KL-oeX" firstAttribute="leading" secondItem="7IR-lg-j0I" secondAttribute="leading" id="r2G-Kl-VyJ"/>
                             <constraint firstAttribute="trailing" secondItem="uaf-ck-XR1" secondAttribute="trailing" constant="16" id="t6r-uj-LhW"/>
                             <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="vh2-KL-oeX" secondAttribute="bottom" id="t8g-jE-csh"/>
+                            <constraint firstItem="HYv-B5-dCG" firstAttribute="centerX" secondItem="7IR-lg-j0I" secondAttribute="centerX" id="v8X-4e-hLU"/>
                             <constraint firstItem="vPB-81-hKN" firstAttribute="centerX" secondItem="7IR-lg-j0I" secondAttribute="centerX" id="wTJ-oS-Mo5"/>
                             <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="49m-xS-87L" secondAttribute="bottom" id="yaD-Zp-Q1z"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="alien1Image" destination="x0T-c4-txs" id="FvA-2E-sLW"/>
+                        <outlet property="alien1Image" destination="x0T-c4-txs" id="293-Mt-3wK"/>
                         <outlet property="ammoImage" destination="CoV-OT-zRK" id="ftN-5a-DXD"/>
                         <outlet property="character" destination="zgX-14-X4d" id="ODB-hk-s8g"/>
                         <outlet property="leftView" destination="vh2-KL-oeX" id="Fj8-Qa-Nju"/>
+                        <outlet property="playButton" destination="HYv-B5-dCG" id="sN5-Vd-gq1"/>
                         <outlet property="rightView" destination="Frx-sp-Xxd" id="AI4-qQ-UD5"/>
                         <outlet property="scoreLabel" destination="vPB-81-hKN" id="SbA-GV-ucg"/>
                         <outlet property="shield1Image" destination="X4p-rH-f0H" id="H7i-RG-oND"/>
@@ -415,5 +432,9 @@
     </scenes>
     <resources>
         <image name="blueBG" width="768" height="1024"/>
+        <image name="nightSky" width="1920" height="1279"/>
+        <image name="shield" width="720" height="720"/>
+        <image name="spaceShip" width="468" height="597"/>
+        <image name="ufo" width="960" height="499"/>
     </resources>
 </document>
