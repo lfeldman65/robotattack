@@ -77,9 +77,9 @@ double yDistance;
 +(double)findRotationAngle
 {
     double angle = atan2(yDistance, xDistance);
-    NSLog(@"xDistance = %f", xDistance);
-    NSLog(@"yDistance = %f", yDistance);
-    NSLog(@"angle = %f", angle*180/M_PI);
+ //   NSLog(@"xDistance = %f", xDistance);
+ //   NSLog(@"yDistance = %f", yDistance);
+ //   NSLog(@"angle = %f", angle*180/M_PI);
     return angle + M_PI/2;
 }
 
