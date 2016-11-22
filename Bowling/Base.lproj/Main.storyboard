@@ -157,8 +157,8 @@
                                 <frame key="frameInset" minX="45" minY="129" width="80" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo" translatesAutoresizingMaskIntoConstraints="NO" id="e4R-6l-897">
-                                <frame key="frameInset" minX="16" minY="175" width="60" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo4" translatesAutoresizingMaskIntoConstraints="NO" id="e4R-6l-897">
+                                <frame key="frameInset" minX="16" minY="175" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo3" translatesAutoresizingMaskIntoConstraints="NO" id="BXF-sG-5Af">
@@ -491,6 +491,7 @@
         <image name="ufo" width="960" height="499"/>
         <image name="ufo2" width="960" height="487"/>
         <image name="ufo3" width="2400" height="1938"/>
+        <image name="ufo4" width="600" height="600"/>
         <image name="windrose1" width="1969" height="1969"/>
     </resources>
 </document>
