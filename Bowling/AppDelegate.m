@@ -26,18 +26,13 @@ AppDelegate* theAppDelegate()
 {
     [[SKPaymentQueue defaultQueue]addTransactionObserver:self];
     
-    NSMutableDictionary *defaultsDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary *defaultsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:false], @"wasGameLaunched",
-                                  [NSNumber numberWithInt:1], @"levelNumber",
+                                  [NSNumber numberWithInt:0], @"highScore",
                                   [NSNumber numberWithBool:false], @"fullVersion",
+                                  [NSNumber numberWithInt:0], @"highPlasma",
                                   [NSNumber numberWithBool:true], @"soundOn",
                                   nil];
-    
-    for (int i = 1; i <= numFullLevels; i++)
-    {
-        NSString *bestTimeKey = [NSString stringWithFormat:@"bestTime%d", i];
-        [defaultsDict setObject:[NSNumber numberWithInt:infinity] forKey:bestTimeKey];
-    }
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
     return YES;

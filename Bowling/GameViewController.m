@@ -14,24 +14,16 @@
 - (IBAction)soundSwitchChanged:(id)sender;
 - (IBAction)fullVersionPressed:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UISwitch* createLevelsSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
-@property (strong, nonatomic) UISwipeGestureRecognizer *leftSwipe;
-@property (strong, nonatomic) IBOutlet UILabel *levelCreationLabel;
 @property (retain, nonatomic) AVAudioPlayer *ambientPlayer;
-
+@property (strong, nonatomic) IBOutlet UILabel *highScoreLabel;
 
 @end
 
 
 @implementation GameViewController
 
-int numLeftSwipes = 0;
 
-- (IBAction)createGameModeChanged:(id)sender
-{
-    theAppDelegate().createLevelsMode = self.createLevelsSwitch.on;
-}
 
 - (void)viewDidLoad {
     
@@ -81,22 +73,6 @@ int numLeftSwipes = 0;
     }
     
     [[GKLocalPlayer localPlayer] authenticateHandler];
-    
-    self.leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeDetected)];
-    self.leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:self.leftSwipe];
-    
-}
-
--(void)leftSwipeDetected
-{
-    NSLog(@"here");
-    numLeftSwipes++;
-    if(numLeftSwipes >= 3)
-    {
-        self.levelCreationLabel.hidden = false;
-        self.createLevelsSwitch.hidden = false;
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -117,11 +93,15 @@ int numLeftSwipes = 0;
     
     if (!wasLaunched)
     {
-        NSString *infoString = @"Create a Golden Trail that connects tiles horizontally and vertically. Tap on the Tutorial to learn how to play. As with all good puzzles, it's easy to learn and hard to master!";
-        [self showAlertWithTitle:@"Welcome!" message:infoString];
+        NSString *infoString = @"blah blah";
+        [self showAlertWithTitle:@"Prepare for Lift Off" message:infoString];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"wasGameLaunched"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+    int currentHSInt = [currentHighScore intValue];
+    self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %d", currentHSInt];
 }
 
 
@@ -159,7 +139,6 @@ int numLeftSwipes = 0;
         }
     }
 }
-
 
 
 # pragma mark - Game Center

@@ -12,7 +12,7 @@
 #define ammoSpeedScale 50.0
 #define controlHeight 150.0
 #define maxMinSpeed 20
-
+#define bfgCount 10
 
 
 @interface PlayViewController ()
@@ -23,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIView *rightView;
 @property (strong, nonatomic) IBOutlet UIImageView *ammoImage;
 @property (strong, nonatomic) IBOutlet UIImageView *ammo2Image;
+@property (strong, nonatomic) IBOutlet UIImageView *ammo3Image;
+
 @property (strong, nonatomic) IBOutlet UIImageView *character;
 @property (strong, nonatomic) IBOutlet UIImageView *shield1Image;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -104,8 +106,6 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     self.alien3Image.hidden = false;
     self.alien4Image.hidden = false;
     self.shield1Image.hidden = false;
-    self.ammoImage.hidden = false;
-    self.ammo2Image.hidden = false;
     self.fireball.hidden = false;
     self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
 }
@@ -122,8 +122,6 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     self.character.transform = CGAffineTransformMakeRotation(0.0);
     self.character.alpha = 1.0;
     self.character.center = CGPointMake(screenWidth/2, (screenHeight - controlHeight)/2);
-    self.ammoImage.center = CGPointMake(screenWidth/2, screenHeight/2);
-    self.ammo2Image.center = CGPointMake(screenWidth/2, screenHeight/2);
 
     CGPoint start = [self chooseRegion];
     self.alien1Image.center = CGPointMake(start.x, start.y);
@@ -138,8 +136,7 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     self.charVelocityX = 0;
     self.charVelocityY = 0;
     
-    self.ammoImage.center = CGPointMake(100000, 100000);
-    self.ammo2Image.center = CGPointMake(100000, 100000);
+    [self moveAmmoAway];
 
     self.alien1Image.hidden = true;
     self.alien2Image.hidden = true;
@@ -171,6 +168,7 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
         
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.ammo2Image.center = CGPointMake(100000, 100000);
+        self.ammo3Image.center = CGPointMake(100000, 100000);
     }
     
     [self moveAlien1];
@@ -189,9 +187,6 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
 {
     self.charVelocityX = charSpeedScale*[LeftViewController findDistanceX];
     self.charVelocityY = charSpeedScale*[LeftViewController findDistanceY];
-    
-  //  NSLog(@"Velocity X = %f", self.charVelocityX);
-  //  NSLog(@"Velocity Y = %f", self.charVelocityY);
     
     self.character.center = CGPointMake(self.character.center.x + self.charVelocityX, self.character.center.y + self.charVelocityY);
     self.character.transform = CGAffineTransformMakeRotation([LeftViewController findRotationAngle]);
@@ -227,18 +222,20 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     {
         [self moveAmmo1];
         
-        if(fireballCount >= 10)
+        if(fireballCount >= bfgCount)
         {
             [self moveAmmo2];
+            [self moveAmmo3];
         }
         
     } else {
         
         [self initAmmo1];
         
-        if(fireballCount >= 10)
+        if(fireballCount >= bfgCount)
         {
-            [self initAmmo2];
+            self.ammo2Image.center = CGPointMake(self.character.center.x, self.character.center.y);
+            self.ammo3Image.center = CGPointMake(self.character.center.x, self.character.center.y);
         }
     }
 }
@@ -269,13 +266,13 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
 
 -(void)moveAmmo2
 {
-    self.ammo2Image.center = CGPointMake(self.ammo2Image.center.x - self.ammoVelocityX, self.ammo2Image.center.y - self.ammoVelocityY);
+    self.ammo2Image.center = CGPointMake(self.ammo2Image.center.x - self.ammoVelocityY, self.ammo2Image.center.y + self.ammoVelocityX);
     
     if(self.ammo2Image.center.x < 0)
     {
         self.ammo2Image.center = CGPointMake(screenWidth, self.ammo2Image.center.y);
         
-    } else if (self.ammoImage.center.x > screenWidth)
+    } else if (self.ammo2Image.center.x > screenWidth)
         
     {
         self.ammo2Image.center = CGPointMake(0, self.ammo2Image.center.y);
@@ -291,6 +288,29 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     }
 }
 
+-(void)moveAmmo3
+{
+    self.ammo3Image.center = CGPointMake(self.ammo3Image.center.x + self.ammoVelocityY, self.ammo3Image.center.y - self.ammoVelocityX);
+    
+    if(self.ammo3Image.center.x < 0)
+    {
+        self.ammo3Image.center = CGPointMake(screenWidth, self.ammo3Image.center.y);
+        
+    } else if (self.ammo3Image.center.x > screenWidth)
+        
+    {
+        self.ammo3Image.center = CGPointMake(0, self.ammo3Image.center.y);
+    }
+    
+    if(self.ammo3Image.center.y < 0)
+    {
+        self.ammo3Image.center = CGPointMake(self.ammo3Image.center.x, screenHeight - 150.0);
+        
+    } else if(self.ammo3Image.center.y > screenHeight - controlHeight)
+    {
+        self.ammo3Image.center = CGPointMake(self.ammo3Image.center.x, 0);
+    }
+}
 
 
 -(void)initAmmo1
@@ -317,12 +337,6 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     [self.ammoTimer invalidate];
     self.ammoTimer = [NSTimer scheduledTimerWithTimeInterval:0.30 target:self selector:@selector(ammoStopped) userInfo:nil repeats:NO];
 
-}
-
-
--(void)initAmmo2
-{
-    self.ammo2Image.center = CGPointMake(self.character.center.x, self.character.center.y);
 }
 
 
@@ -551,8 +565,48 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
         self.ammo2Image.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
     }
-
+    
+    if(CGRectIntersectsRect(self.ammo2Image.frame, self.alien4Image.frame))
+    {
+        score = score + 200;
+        self.alien4Image.center = CGPointMake(screenWidth + [self randomValue], screenHeight + [self randomValue]);
+        self.ammo2Image.center = CGPointMake(100000, 100000);
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
+    }
+    
+    if(CGRectIntersectsRect(self.ammo3Image.frame, self.alien1Image.frame))
+    {
+        score = score + 50;
+        self.alien1Image.center = CGPointMake(-[self randomValue], screenHeight+[self randomValue]);
+        self.ammo3Image.center = CGPointMake(100000, 100000);
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
+    }
+    
+    if(CGRectIntersectsRect(self.ammo3Image.frame, self.alien2Image.frame))
+    {
+        score = score + 100;
+        self.alien2Image.center = CGPointMake(screenWidth + [self randomValue], -[self randomValue]);
+        self.ammo3Image.center = CGPointMake(100000, 100000);
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
+    }
+    
+    if(CGRectIntersectsRect(self.ammo3Image.frame, self.alien3Image.frame))
+    {
+        score = score + 150;
+        self.alien3Image.center = CGPointMake(-[self randomValue], -[self randomValue]);
+        self.ammo3Image.center = CGPointMake(100000, 100000);
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
+    }
+    
+    if(CGRectIntersectsRect(self.ammo3Image.frame, self.alien4Image.frame))
+    {
+        score = score + 200;
+        self.alien4Image.center = CGPointMake(screenWidth + [self randomValue], screenHeight + [self randomValue]);
+        self.ammo3Image.center = CGPointMake(100000, 100000);
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
+    }
 }
+
 
 -(void)collisionBetweenCharAndShield
 {
@@ -580,9 +634,24 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     }
 }
 
+-(void)moveAmmoAway
+{
+    self.ammoImage.center = CGPointMake(100000, 100000);
+    self.ammo2Image.center = CGPointMake(100000, 100000);
+    self.ammo3Image.center = CGPointMake(100000, 100000);
+}
 
 -(void)gameOver
 {
+    NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+    int currentHSInt = [currentHighScore intValue];
+    
+    if(score > currentHSInt)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     [self.gameTimer invalidate];
     self.shieldLabel.text = @"0";
     self.playButton.hidden = false;
@@ -592,9 +661,8 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     self.alien3Image.hidden = true;
     self.alien4Image.hidden = true;
     self.shield1Image.hidden = true;
-    self.ammoImage.hidden = true;
-    self.ammo2Image.hidden = true;
     self.fireball.hidden = true;
+    [self moveAmmoAway];
 }
 
 -(double)randomSpeed
@@ -707,10 +775,18 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
 {
     [self.gameTimer invalidate];
 
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"What do you want to do, Space Cowboy?" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *home = [UIAlertAction actionWithTitle:@"Home" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
+    UIAlertAction *home = [UIAlertAction actionWithTitle:@"Go Home" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
     {
+        NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+        int currentHSInt = [currentHighScore intValue];
+        
+        if(score > currentHSInt)
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -721,6 +797,14 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     
     UIAlertAction *startOver = [UIAlertAction actionWithTitle:@"Start Over" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
     {
+        NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+        int currentHSInt = [currentHighScore intValue];
+        
+        if(score > currentHSInt)
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
         [self playButtonPressed:nil];
     }];
     
