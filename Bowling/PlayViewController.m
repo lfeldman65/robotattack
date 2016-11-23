@@ -643,16 +643,9 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
 
 -(void)gameOver
 {
-    NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
-    int currentHSInt = [currentHighScore intValue];
-    
-    if(score > currentHSInt)
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
     
     [self.gameTimer invalidate];
+    [self highScores];
     self.shieldLabel.text = @"0";
     self.playButton.hidden = false;
     self.character.hidden = true;
@@ -779,14 +772,6 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     
     UIAlertAction *home = [UIAlertAction actionWithTitle:@"Go Home" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
     {
-        NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
-        int currentHSInt = [currentHighScore intValue];
-        
-        if(score > currentHSInt)
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -797,14 +782,6 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     
     UIAlertAction *startOver = [UIAlertAction actionWithTitle:@"Start Over" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
     {
-        NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
-        int currentHSInt = [currentHighScore intValue];
-        
-        if(score > currentHSInt)
-        {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
         [self playButtonPressed:nil];
     }];
     
@@ -813,6 +790,30 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     [alert addAction:startOver];
 
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)highScores
+{
+    NSNumber *currentHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+    int currentHSInt = [currentHighScore intValue];
+    
+    if(score > currentHSInt)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[GameCenterManager sharedManager] saveAndReportScore:score leaderboard:@"com.lfeldman.ufo.score1" sortOrder:GameCenterSortOrderHighToLow];
+    }
+    
+    if(score > 10000)
+    {
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement1" percentComplete:100.00 shouldDisplayNotification:true];
+        
+    } else if (score > 20000)
+        
+    {
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement2" percentComplete:100.00 shouldDisplayNotification:true];
+    }
 }
 
 - (void)didReceiveMemoryWarning

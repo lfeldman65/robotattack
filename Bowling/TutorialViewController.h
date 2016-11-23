@@ -9,11 +9,6 @@
 #import "AppDelegate.h"
 
 
-@interface TutorialViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
-
-@property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
-@property (strong, nonatomic) IBOutlet UILabel *tilesRemainingLabel;
-@property (assign,nonatomic)  int currentLevel;
-
+@interface TutorialViewController : UIViewController
 
 @end

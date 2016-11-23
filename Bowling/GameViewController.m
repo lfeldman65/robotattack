@@ -7,9 +7,9 @@
 //
 
 #import "GameViewController.h"
-#import "AppDelegate.h"
 
 @interface GameViewController ()
+
 - (IBAction)gameCenterPressed:(id)sender;
 - (IBAction)soundSwitchChanged:(id)sender;
 - (IBAction)fullVersionPressed:(id)sender;
@@ -22,7 +22,6 @@
 
 
 @implementation GameViewController
-
 
 
 - (void)viewDidLoad {
@@ -57,10 +56,6 @@
         self.ambientPlayer.currentTime = 0;
         self.ambientPlayer.volume = 1.0;
     }
-
-    
-   // self.levelCreationLabel.hidden = true;
-   // self.createLevelsSwitch.hidden = true;
     
     // Game Center
     
