@@ -57,11 +57,6 @@ int step;
 
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    NSString *info2 = @"Create a continuous Golden Trail by adding and connecting yellow tiles horizontally and vertically. Each puzzle tells you exactly how many tiles to add.";
-    [self showAlertWithTitle:@"How to Play" message:info2];
-}
 
 -(void) showAlertWithTitle:(NSString*) title message:(NSString*) msg
 {
