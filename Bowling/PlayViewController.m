@@ -338,7 +338,7 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
         if (fireMag < 10)
         {
             fireballInFlight = false;
-            self.fireball.center = CGPointMake(-1*[self randomWidth], [self randomHeight]);
+            self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
         }
     
         self.fireballVelocityX = [self randomSpeed]*fireballVector.x/fireMag;
@@ -481,7 +481,7 @@ CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, 
     if(CGRectIntersectsRect(self.character.frame, self.fireball.frame))
     {
         fireballCount = fireballCount + 1;
-        self.fireball.center = CGPointMake(-3*[self randomWidth], [self randomHeight]);
+        self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
         self.fireballLabel.text = [NSString stringWithFormat:@"%d", fireballCount];
     }
 }

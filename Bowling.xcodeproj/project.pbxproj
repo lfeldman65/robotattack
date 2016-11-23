@@ -982,7 +982,7 @@
 				DEVELOPMENT_TEAM = 9Y9N8HRKV2;
 				INFOPLIST_FILE = Bowling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.yellow;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.asteroids;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1000,7 +1000,7 @@
 				DEVELOPMENT_TEAM = 9Y9N8HRKV2;
 				INFOPLIST_FILE = Bowling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.yellow;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfeldman.asteroids;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
