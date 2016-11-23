@@ -11,6 +11,8 @@
 #define charSpeedScale 0.3
 #define ammoSpeedScale 50.0
 #define controlHeight 150.0
+#define maxMinSpeed 20
+
 
 
 @interface PlayViewController ()
@@ -28,6 +30,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *alien2Image;
 @property (strong, nonatomic) IBOutlet UIImageView *alien3Image;
 @property (strong, nonatomic) IBOutlet UIImageView *alien4Image;
+@property (strong, nonatomic) IBOutlet UIImageView *fireball;
+@property (strong, nonatomic) IBOutlet UILabel *fireballLabel;
 
 @property (strong, nonatomic) NSTimer *gameTimer;
 @property (strong, nonatomic) NSTimer *ammoTimer;
@@ -50,11 +54,15 @@
 @property (nonatomic) float shield1VelocityX;
 @property (nonatomic) float shield1VelocityY;
 
+@property (nonatomic) float fireballVelocityX;
+@property (nonatomic) float fireballVelocityY;
+
 @end
 
 @implementation PlayViewController
 
 BOOL ammoInFlight;
+BOOL fireballInFlight;
 double screenWidth;
 double screenHeight;
 double charWidth;
@@ -62,11 +70,11 @@ double charHeight;
 double ufoSpeed;
 double minSpeed;
 int score;
-float shield;
+int shield;
+int fireballCount;
 
-CGPoint ammoLaunchPosition;
-CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector;
-CGPoint shield1Vector;
+CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, shield1Vector, ammoLaunchPosition, fireballEnd;
+
 
 - (void)viewDidLoad
 {
@@ -93,6 +101,8 @@ CGPoint shield1Vector;
     self.alien3Image.hidden = false;
     self.alien4Image.hidden = false;
     self.shield1Image.hidden = false;
+    self.ammoImage.hidden = false;
+    self.fireball.hidden = false;
     self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
 }
 
@@ -100,7 +110,8 @@ CGPoint shield1Vector;
 {
     score = 0;
     shield = 100;
-    minSpeed = 0.3;
+    minSpeed = 1.0;
+    fireballCount = 0;
     self.scoreLabel.text = @"Score: 0";
     self.shieldLabel.text = @"100";
     self.character.transform = CGAffineTransformMakeRotation(0.0);
@@ -110,13 +121,14 @@ CGPoint shield1Vector;
     
     CGPoint start = [self chooseRegion];
     self.alien1Image.center = CGPointMake(start.x, start.y);
-    self.alien2Image.center = CGPointMake(2*screenWidth + [self randomValue], 2*screenHeight + [self randomValue]);
+    self.alien2Image.center = CGPointMake(1.5*screenWidth + [self randomValue], 1.5*screenHeight + [self randomValue]);
     self.alien3Image.center = CGPointMake(5*screenWidth + [self randomValue], 5*screenHeight + [self randomValue]);
     self.alien4Image.center = CGPointMake(8*screenWidth + [self randomValue], 8*screenHeight + [self randomValue]);
-    
     self.shield1Image.center = CGPointMake(4*screenWidth + [self randomValue], 4*screenHeight + [self randomValue]);
+    self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
 
     ammoInFlight = false;
+    fireballInFlight = false;
     self.charVelocityX = 0;
     self.charVelocityY = 0;
     self.ammoImage.center = CGPointMake(100000, 100000);
@@ -126,11 +138,17 @@ CGPoint shield1Vector;
     self.alien3Image.hidden = true;
     self.alien4Image.hidden = true;
     self.shield1Image.hidden = true;
+    self.fireball.hidden = true;
 }
 
 -(void)gameGuts
 {
     minSpeed = minSpeed + 0.001;
+    
+    if(minSpeed >= maxMinSpeed)
+    {
+        minSpeed = maxMinSpeed;
+    }
     
     if ([LeftViewController isInLeft])
     {
@@ -151,9 +169,11 @@ CGPoint shield1Vector;
     [self moveAlien3];
     [self moveAlien4];
     [self moveShields];
+    [self moveFireball];
     [self collisionBetweenCharAndAliens];
     [self collisionBetweenAmmoAndAliens];
     [self collisionBetweenCharAndShield];
+    [self collisionBetweenCharAndFireball];
 }
 
 -(void)movePlayer
@@ -307,6 +327,32 @@ CGPoint shield1Vector;
     self.shield1Image.center = CGPointMake(self.shield1Image.center.x + self.shield1VelocityX, self.shield1Image.center.y + self.shield1VelocityY);
 }
 
+-(void)moveFireball
+{
+    if(fireballInFlight)
+    {
+        fireballVector.x = fireballEnd.x -  self.fireball.center.x;
+        fireballVector.y = fireballEnd.y - self.fireball.center.y;
+        double fireMag = sqrt(fireballVector.x*fireballVector.x + fireballVector.y*fireballVector.y);
+        
+        if (fireMag < 10)
+        {
+            fireballInFlight = false;
+            self.fireball.center = CGPointMake(-1*[self randomWidth], [self randomHeight]);
+        }
+    
+        self.fireballVelocityX = [self randomSpeed]*fireballVector.x/fireMag;
+        self.fireballVelocityY = [self randomSpeed]*fireballVector.y/fireMag;
+        self.fireball.center = CGPointMake(self.fireball.center.x + self.fireballVelocityX, self.fireball.center.y + self.fireballVelocityY);
+        
+    } else {
+        
+        fireballEnd.x = screenWidth + 30;
+        fireballEnd.y = [self randomHeight] + 30;
+        fireballInFlight = true;
+    }
+}
+
 
 -(void)collisionBetweenCharAndAliens
 {
@@ -322,7 +368,7 @@ CGPoint shield1Vector;
             self.alien1Image.center = CGPointMake(alien1Start.x, alien1Start.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
-            self.shieldLabel.text = [NSString stringWithFormat:@"%.0f", shield];
+            self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
         }
     }
     
@@ -339,7 +385,7 @@ CGPoint shield1Vector;
             NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
-            self.shieldLabel.text = [NSString stringWithFormat:@"%.0f", shield];
+            self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
         }
     }
     
@@ -356,7 +402,7 @@ CGPoint shield1Vector;
             NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
-            self.shieldLabel.text = [NSString stringWithFormat:@"%.0f", shield];
+            self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
         }
     }
     
@@ -373,7 +419,7 @@ CGPoint shield1Vector;
             NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
-            self.shieldLabel.text = [NSString stringWithFormat:@"%.0f", shield];
+            self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
         }
     }
 }
@@ -426,7 +472,17 @@ CGPoint shield1Vector;
         }
         CGPoint point = [self chooseRegion];
         self.shield1Image.center = CGPointMake(point.x, point.y);
-        self.shieldLabel.text = [NSString stringWithFormat:@"%.0f", shield];
+        self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
+    }
+}
+
+-(void)collisionBetweenCharAndFireball
+{
+    if(CGRectIntersectsRect(self.character.frame, self.fireball.frame))
+    {
+        fireballCount = fireballCount + 1;
+        self.fireball.center = CGPointMake(-3*[self randomWidth], [self randomHeight]);
+        self.fireballLabel.text = [NSString stringWithFormat:@"%d", fireballCount];
     }
 }
 
@@ -442,6 +498,8 @@ CGPoint shield1Vector;
     self.alien3Image.hidden = true;
     self.alien4Image.hidden = true;
     self.shield1Image.hidden = true;
+    self.ammoImage.hidden = true;
+    self.fireball.hidden = true;
 }
 
 -(double)randomSpeed
@@ -449,9 +507,26 @@ CGPoint shield1Vector;
     return arc4random()%4 + minSpeed;
 }
 
--(double)randomValue  // Delta away from screen bounds
+-(int)randomValue  // Delta outside of screen bounds
 {
     return arc4random()%100 + 50.0;
+}
+
+
+-(int)randomHeight
+{
+    int minY = -20;
+    int maxY = screenHeight + 20;
+    int rangeY = maxY - minY;
+    return (arc4random() % rangeY) + minY;
+}
+
+-(int)randomWidth
+{
+    int minY = -20;
+    int maxY = screenWidth + 20;
+    int rangeY = maxY - minY;
+    return (arc4random() % rangeY) + minY;
 }
 
 -(CGPoint)chooseRegion
@@ -535,6 +610,7 @@ CGPoint shield1Vector;
 
 - (IBAction)backPressed:(id)sender
 {
+  //  [self.gameTimer invalidate];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
