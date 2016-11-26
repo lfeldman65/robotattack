@@ -14,6 +14,7 @@
 #define maxMinSpeed 20
 #define bfgCount 10
 #define testSpeed 0
+#define bottomAchieve 20000
 
 @interface PlayViewController ()
 
@@ -35,6 +36,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *alien4Image;
 @property (strong, nonatomic) IBOutlet UIImageView *fireball;
 @property (strong, nonatomic) IBOutlet UILabel *fireballLabel;
+
+@property (retain, nonatomic) AVAudioPlayer *ammoPlayer;
 
 @property (strong, nonatomic) NSTimer *gameTimer;
 @property (strong, nonatomic) NSTimer *ammoTimer;
@@ -71,6 +74,7 @@ BOOL fireballInFlight;
 BOOL alien1InFlight;
 BOOL alien2InFlight;
 BOOL alien3InFlight;
+BOOL soundIsOn;
 
 double screenWidth;
 double screenHeight;
@@ -82,6 +86,7 @@ double timePassed;
 int score;
 int shield;
 int fireballCount;
+int deviceScaler;
 
 CGPoint alien1Vector, alien2Vector, alien3Vector, alien4Vector, fireballVector, shield1Vector, ammoLaunchPosition, fireballEnd;
 CGPoint alien1End, alien2End, alien3End;
@@ -101,6 +106,36 @@ CGPoint alien1End, alien2End, alien3End;
     self.view.multipleTouchEnabled = true;
     [self initGame];
     [self playButtonPressed:nil];
+    NSNumber* soundOn = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
+    soundIsOn = [soundOn boolValue];
+    
+    // Ammo sound
+    
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/Cosmic.mp3"];
+    NSLog(@"Path to play: %@", resourcePath);
+    NSError* err;
+    
+    self.ammoPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.ammoPlayer.delegate = self;
+        self.ammoPlayer.numberOfLoops = 0;
+        self.ammoPlayer.currentTime = 0;
+        self.ammoPlayer.volume = 1.0;
+    }
+    
+    deviceScaler = 1;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        deviceScaler = 2;
+    }
 }
 
 - (IBAction)playButtonPressed:(id)sender
@@ -118,6 +153,20 @@ CGPoint alien1End, alien2End, alien3End;
     self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (fireballCount > 0)
+    {
+        self.alien1Image.center = CGPointMake(-50, [self randomHeight]);
+        self.alien2Image.center = CGPointMake(screenWidth + 50, [self randomHeight]);
+        self.alien3Image.center = CGPointMake([self randomWidth], -screenHeight - 50);
+        self.alien4Image.center = CGPointMake([self randomWidth], screenHeight + 50);
+        fireballCount--;
+        self.fireballLabel.text = [NSString stringWithFormat:@"%d", fireballCount];
+    }
+    
+}
+
 -(void)initGame
 {
     score = 0;
@@ -131,12 +180,6 @@ CGPoint alien1End, alien2End, alien3End;
     self.character.alpha = 1.0;
     self.character.center = CGPointMake(screenWidth/2, (screenHeight - controlHeight)/2);
 
-  /*CGPoint start = [self chooseRegion];
-    self.alien1Image.center = CGPointMake(start.x, start.y);
-    self.alien2Image.center = CGPointMake(1.5*screenWidth + [self randomValue], 1.5*screenHeight + [self randomValue]);
-    self.alien3Image.center = CGPointMake(5*screenWidth + [self randomValue], 5*screenHeight + [self randomValue]);
-    self.alien4Image.center = CGPointMake(8*screenWidth + [self randomValue], 8*screenHeight + [self randomValue]);*/
-    
     self.alien1Image.center = CGPointMake(-50, [self randomHeight]);
     self.alien2Image.center = CGPointMake(1.5*screenWidth, [self randomHeight]);
     self.alien3Image.center = CGPointMake([self randomWidth], -5*screenHeight);
@@ -169,8 +212,6 @@ CGPoint alien1End, alien2End, alien3End;
 {
     timePassed = timePassed + .05;
     
-   // self.character.transform = CGAffineTransformMakeRotation(3*timePassed);
-
     minSpeed = minSpeed + 0.001;
     
     if(minSpeed >= maxMinSpeed)
@@ -183,7 +224,7 @@ CGPoint alien1End, alien2End, alien3End;
         [self movePlayer];
     }
     
-    if ([RightViewController isInRight])
+    if ([RightViewController isInRight] || ammoInFlight)
     {
         [self shootGun];
         
@@ -245,21 +286,9 @@ CGPoint alien1End, alien2End, alien3End;
     {
         [self moveAmmo1];
         
-        if(fireballCount >= bfgCount)
-        {
-            [self moveAmmo2];
-            [self moveAmmo3];
-        }
-        
     } else {
         
         [self initAmmo1];
-        
-        if(fireballCount >= bfgCount)
-        {
-            self.ammo2Image.center = CGPointMake(self.character.center.x, self.character.center.y);
-            self.ammo3Image.center = CGPointMake(self.character.center.x, self.character.center.y);
-        }
     }
 }
 
@@ -544,8 +573,7 @@ CGPoint alien1End, alien2End, alien3End;
             
         } else {
         
-            CGPoint alien1Start = [self chooseRegion];
-            self.alien1Image.center = CGPointMake(alien1Start.x, alien1Start.y);
+            self.alien1Image.center = CGPointMake(-50, [self randomHeight]);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
             self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
@@ -560,8 +588,7 @@ CGPoint alien1End, alien2End, alien3End;
             
         } else {
         
-            CGPoint alien2Start = [self chooseRegion];
-            self.alien2Image.center = CGPointMake(alien2Start.x, alien2Start.y);
+            self.alien2Image.center = CGPointMake(screenWidth + 50, [self randomHeight]);
             NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
@@ -577,9 +604,7 @@ CGPoint alien1End, alien2End, alien3End;
             
         } else {
         
-            CGPoint alien3Start = [self chooseRegion];
-            self.alien3Image.center = CGPointMake(alien3Start.x, alien3Start.y);
-            NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
+            self.alien3Image.center = CGPointMake([self randomWidth], -screenHeight - 50);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
             self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
@@ -594,8 +619,7 @@ CGPoint alien1End, alien2End, alien3End;
             
         } else {
         
-            CGPoint alien4Start = [self chooseRegion];
-            self.alien4Image.center = CGPointMake(alien4Start.x, alien4Start.y);
+            self.alien4Image.center = CGPointMake([self randomWidth], screenHeight + 50);
             NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
@@ -610,7 +634,7 @@ CGPoint alien1End, alien2End, alien3End;
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien1Image.frame))
     {
         score = score + 50;
-        self.alien1Image.center = CGPointMake(-30, [self randomHeight]);
+        self.alien1Image.center = CGPointMake(-50, [self randomHeight]);
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
     }
@@ -618,7 +642,7 @@ CGPoint alien1End, alien2End, alien3End;
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien2Image.frame))
     {
         score = score + 100;
-        self.alien2Image.center = CGPointMake(screenWidth + [self randomValue], -[self randomValue]);
+        self.alien2Image.center = CGPointMake(screenWidth + 50, [self randomHeight]);
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
     }
@@ -626,7 +650,7 @@ CGPoint alien1End, alien2End, alien3End;
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien3Image.frame))
     {
         score = score + 150;
-        self.alien3Image.center = CGPointMake([self randomWidth], -50);
+        self.alien3Image.center = CGPointMake([self randomWidth], -screenHeight - 50);
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
     }
@@ -634,7 +658,7 @@ CGPoint alien1End, alien2End, alien3End;
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien4Image.frame))
     {
         score = score + 200;
-        self.alien4Image.center = CGPointMake(screenWidth + [self randomValue], screenHeight + [self randomValue]);
+        self.alien4Image.center = CGPointMake([self randomWidth], screenHeight + 50);
         self.ammo2Image.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
     }
@@ -728,6 +752,11 @@ CGPoint alien1End, alien2End, alien3End;
         fireballCount = fireballCount + 1;
         self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
         self.fireballLabel.text = [NSString stringWithFormat:@"%d", fireballCount];
+        if(soundIsOn)
+        {
+            NSLog(@"sound");
+            [self.ammoPlayer play];
+        }
     }
 }
 
@@ -902,15 +931,29 @@ CGPoint alien1End, alien2End, alien3End;
         [[GameCenterManager sharedManager] saveAndReportScore:score leaderboard:@"com.lfeldman.ufo.score1" sortOrder:GameCenterSortOrderHighToLow];
     }
     
-    if(score > 10000)
+    if(score >= 4*bottomAchieve)
     {
-        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement1" percentComplete:100.00 shouldDisplayNotification:true];
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement4" percentComplete:100.00 shouldDisplayNotification:true];
+    
+    } else if(score >= 3*bottomAchieve)
         
-    } else if (score > 20000)
+    {
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement3" percentComplete:100.00 shouldDisplayNotification:true];
+        
+    } else if (score >= 2*bottomAchieve)
         
     {
         [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement2" percentComplete:100.00 shouldDisplayNotification:true];
     }
+    
+    else if (score >= bottomAchieve)
+        
+    {
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement1" percentComplete:100.00 shouldDisplayNotification:true];
+    }
+
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

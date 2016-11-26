@@ -53,6 +53,7 @@ BOOL alien2InFlight2;
 BOOL alien3InFlight2;
 BOOL alien4InFlight2;
 BOOL shieldInFlight;
+int deviceScaler;
 
 double timePassed2;
 
@@ -77,7 +78,7 @@ double screenHeight2;
     BOOL soundIsOn = [soundOn boolValue];
     
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-    resourcePath = [resourcePath stringByAppendingString:@"/stream.mp3"];
+    resourcePath = [resourcePath stringByAppendingString:@"/alienBG.mp3"];
     NSLog(@"Path to play: %@", resourcePath);
     NSError* err;
     
@@ -97,7 +98,7 @@ double screenHeight2;
         }
         self.ambientPlayer.numberOfLoops = -1;
         self.ambientPlayer.currentTime = 0;
-        self.ambientPlayer.volume = 1.0;
+        self.ambientPlayer.volume = 0.3;
     }
     
     // Game Center
@@ -111,6 +112,13 @@ double screenHeight2;
     }
     
     [[GKLocalPlayer localPlayer] authenticateHandler];
+    
+    deviceScaler = 1;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        deviceScaler = 2;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -150,8 +158,8 @@ double screenHeight2;
     
     if (!wasLaunched)
     {
-        NSString *infoString = @"blah blah";
-        [self showAlertWithTitle:@"Prepare for Lift Off" message:infoString];
+     //   NSString *infoString = @"blah blah";
+     //   [self showAlertWithTitle:@"Prepare for Lift Off" message:infoString];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:true] forKey:@"wasGameLaunched"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
@@ -185,8 +193,8 @@ double screenHeight2;
             self.alien1Image.center = CGPointMake(-50, [self randomHeight]);
         }
         
-        self.alien1VelocityX = 4*alien1Vector2.x/Mag;
-        self.alien1VelocityY = 4*alien1Vector2.y/Mag;
+        self.alien1VelocityX = 4*deviceScaler*alien1Vector2.x/Mag;
+        self.alien1VelocityY = 4*deviceScaler*alien1Vector2.y/Mag;
         self.alien1Image.center = CGPointMake(self.alien1Image.center.x + self.alien1VelocityX, self.alien1Image.center.y + self.alien1VelocityY);
         
     } else {
@@ -208,8 +216,8 @@ double screenHeight2;
             self.alien2Image.center = CGPointMake(screenWidth2 + 50, [self randomHeight]);
         }
         
-        self.alien2VelocityX = 4*alien2Vector2.x/Mag;
-        self.alien2VelocityY = 4*alien2Vector2.y/Mag;
+        self.alien2VelocityX = 4*deviceScaler*alien2Vector2.x/Mag;
+        self.alien2VelocityY = 4*deviceScaler*alien2Vector2.y/Mag;
         self.alien2Image.center = CGPointMake(self.alien2Image.center.x + self.alien2VelocityX, self.alien2Image.center.y + self.alien2VelocityY);
         
     } else {
@@ -231,8 +239,8 @@ double screenHeight2;
             self.alien3Image.center = CGPointMake([self randomWidth], -screenHeight2 - 50);
         }
         
-        self.alien3VelocityX = 4*alien3Vector2.x/Mag;
-        self.alien3VelocityY = 4*alien3Vector2.y/Mag;
+        self.alien3VelocityX = 4*deviceScaler*alien3Vector2.x/Mag;
+        self.alien3VelocityY = 4*deviceScaler*alien3Vector2.y/Mag;
         self.alien3Image.center = CGPointMake(self.alien3Image.center.x + self.alien3VelocityX, self.alien3Image.center.y + self.alien3VelocityY);
         
     } else {
@@ -254,8 +262,8 @@ double screenHeight2;
             self.alien4Image.center = CGPointMake([self randomWidth], screenHeight2 + 50);
         }
         
-        self.alien4VelocityX = 4*alien4Vector2.x/Mag;
-        self.alien4VelocityY = 4*alien4Vector2.y/Mag;
+        self.alien4VelocityX = 4*deviceScaler*alien4Vector2.x/Mag;
+        self.alien4VelocityY = 4*deviceScaler*alien4Vector2.y/Mag;
         self.alien4Image.center = CGPointMake(self.alien4Image.center.x + self.alien4VelocityX, self.alien4Image.center.y + self.alien4VelocityY);
         
     } else {
@@ -278,8 +286,8 @@ double screenHeight2;
             self.fireball.center = CGPointMake(-50, [self randomHeight]);
         }
         
-        self.fireballVelocityX = 4*fireballVector2.x/Mag;
-        self.fireballVelocityY = 4*fireballVector2.y/Mag;
+        self.fireballVelocityX = 4*deviceScaler*fireballVector2.x/Mag;
+        self.fireballVelocityY = 4*deviceScaler*fireballVector2.y/Mag;
         self.fireball.center = CGPointMake(self.fireball.center.x + self.fireballVelocityX, self.fireball.center.y + self.fireballVelocityY);
         
     } else {
@@ -302,8 +310,8 @@ double screenHeight2;
             self.shield1Image.center = CGPointMake(screenWidth2 + 50, [self randomHeight]);
         }
         
-        self.shield1VelocityX = 4*shield1Vector2.x/Mag;
-        self.shield1VelocityY = 4*shield1Vector2.y/Mag;
+        self.shield1VelocityX = 4*deviceScaler*shield1Vector2.x/Mag;
+        self.shield1VelocityY = 4*deviceScaler*shield1Vector2.y/Mag;
         self.shield1Image.center = CGPointMake(self.shield1Image.center.x + self.shield1VelocityX, self.shield1Image.center.y + self.shield1VelocityY);
         
     } else {

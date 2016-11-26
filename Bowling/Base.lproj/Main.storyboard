@@ -98,7 +98,7 @@
                                     <constraint firstAttribute="width" constant="200" id="2EL-a5-R0a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Tutorial">
+                                <state key="normal" title="How to Play">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -128,7 +128,7 @@
                             <constraint firstItem="YeJ-6C-YHb" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Fwl-ut-V0z"/>
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="nY6-A2-HMe" secondAttribute="bottom" constant="20" id="Jaa-Xr-9iu"/>
                             <constraint firstItem="dFI-ZA-c4F" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Mgw-I4-Opg"/>
-                            <constraint firstAttribute="trailing" secondItem="hnb-8M-gNw" secondAttribute="trailing" constant="25" id="Mid-rI-mrZ"/>
+                            <constraint firstAttribute="trailing" secondItem="hnb-8M-gNw" secondAttribute="trailing" constant="20" id="Mid-rI-mrZ"/>
                             <constraint firstItem="mzG-C7-dQs" firstAttribute="top" secondItem="tfv-Aq-VX1" secondAttribute="bottom" constant="20" id="RLi-6I-aHK"/>
                             <constraint firstItem="tfv-Aq-VX1" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="S79-Qk-jou"/>
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="hnb-8M-gNw" secondAttribute="bottom" constant="20" id="UdI-y3-gma"/>
@@ -139,7 +139,7 @@
                             <constraint firstItem="qGm-wL-JDN" firstAttribute="top" secondItem="hhm-Fu-rko" secondAttribute="bottom" id="gzd-rI-i5N"/>
                             <constraint firstAttribute="trailing" secondItem="hhm-Fu-rko" secondAttribute="trailing" id="lr6-ME-Yn8"/>
                             <constraint firstItem="S6Z-eH-7gY" firstAttribute="leading" secondItem="nY6-A2-HMe" secondAttribute="trailing" constant="12" id="pWR-Ag-Gb7"/>
-                            <constraint firstItem="nY6-A2-HMe" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="20" id="tJU-OG-bqs"/>
+                            <constraint firstItem="nY6-A2-HMe" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="15" id="tJU-OG-bqs"/>
                             <constraint firstItem="hhm-Fu-rko" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="tae-W4-vQc"/>
                             <constraint firstItem="mzG-C7-dQs" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vbm-p1-odP"/>
                             <constraint firstItem="nkW-OT-9br" firstAttribute="top" secondItem="0zT-8N-ont" secondAttribute="bottom" constant="40" id="zC8-iU-PVa"/>
@@ -495,26 +495,31 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fly into the plasma for smart bombs!  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfF-2F-ohM">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Fly your rocket in any direction. Press and slide thumb for best results!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fut-oq-53k">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Fly your rocket in any direction. Press and slide thumb for best results!" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fut-oq-53k">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="KVh-gu-hcB"/>
+                                    <constraint firstAttribute="height" constant="70" id="KVh-gu-hcB"/>
                                     <constraint firstAttribute="width" constant="240" id="cDH-Jq-fcr"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Shoot ammo.  Press and hold for rapid automatic firing!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O2B-L1-hDZ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Shoot ammo in any direction.  Press and slide thumb for rapid automatic firing!" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2B-L1-hDZ">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="67z-X3-z5k"/>
+                                    <constraint firstAttribute="height" constant="70" id="67z-X3-z5k"/>
                                     <constraint firstAttribute="width" constant="240" id="dgh-wC-cYB"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Fly into the plasma to gather smart bombs. Tap the screen to detonate!" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPA-P8-m8G">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="lRD-DX-802"/>
+                                    <constraint firstAttribute="height" constant="50" id="qFj-ic-Y0q"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -541,7 +546,7 @@
                             <constraint firstItem="BDx-xA-1tv" firstAttribute="centerX" secondItem="0mH-f3-pej" secondAttribute="centerX" id="Kbd-3w-Ukz"/>
                             <constraint firstItem="O2B-L1-hDZ" firstAttribute="leading" secondItem="tY4-XG-yCM" secondAttribute="trailing" constant="14" id="P90-0w-Mgb"/>
                             <constraint firstItem="fKe-14-zNe" firstAttribute="top" secondItem="B3l-3q-KkG" secondAttribute="bottom" constant="16" id="QEG-Tg-Whf"/>
-                            <constraint firstItem="rfF-2F-ohM" firstAttribute="leading" secondItem="fKe-14-zNe" secondAttribute="trailing" constant="26" id="SyL-QJ-pf5"/>
+                            <constraint firstItem="fKe-14-zNe" firstAttribute="centerY" secondItem="NPA-P8-m8G" secondAttribute="centerY" id="QLA-ti-aLe"/>
                             <constraint firstItem="8B6-5P-T5a" firstAttribute="leading" secondItem="BDx-xA-1tv" secondAttribute="trailing" constant="26" id="TFh-NB-B2c"/>
                             <constraint firstItem="0mH-f3-pej" firstAttribute="top" secondItem="BDx-xA-1tv" secondAttribute="bottom" constant="20" id="VjY-du-mtQ"/>
                             <constraint firstItem="bfK-7G-VE3" firstAttribute="leading" secondItem="Fsy-Fb-prU" secondAttribute="trailing" constant="26" id="XbB-DH-eEl"/>
@@ -553,9 +558,9 @@
                             <constraint firstItem="Fsy-Fb-prU" firstAttribute="centerX" secondItem="B3l-3q-KkG" secondAttribute="centerX" id="g8t-x5-E1h"/>
                             <constraint firstItem="B3l-3q-KkG" firstAttribute="centerY" secondItem="ua3-E1-rD1" secondAttribute="centerY" id="ghL-Kr-kXB"/>
                             <constraint firstItem="n2P-wg-zoP" firstAttribute="top" secondItem="qsI-k8-Acj" secondAttribute="bottom" id="hhp-7s-sNG"/>
+                            <constraint firstItem="NPA-P8-m8G" firstAttribute="leading" secondItem="fKe-14-zNe" secondAttribute="trailing" constant="19" id="jf6-fY-0P9"/>
                             <constraint firstItem="9QX-sl-DCm" firstAttribute="top" secondItem="OGj-DS-TXw" secondAttribute="top" id="jrq-iC-ZaR"/>
                             <constraint firstItem="ua3-E1-rD1" firstAttribute="leading" secondItem="B3l-3q-KkG" secondAttribute="trailing" constant="26" id="l68-PU-BEu"/>
-                            <constraint firstItem="fKe-14-zNe" firstAttribute="centerY" secondItem="rfF-2F-ohM" secondAttribute="centerY" id="oc4-re-Jev"/>
                             <constraint firstItem="0mH-f3-pej" firstAttribute="centerY" secondItem="jJz-jA-Tpf" secondAttribute="centerY" id="rAC-N5-e7Y"/>
                             <constraint firstAttribute="trailing" secondItem="9QX-sl-DCm" secondAttribute="trailing" id="rmo-98-FoL"/>
                             <constraint firstItem="tY4-XG-yCM" firstAttribute="top" secondItem="2L0-Jk-Ej7" secondAttribute="bottom" constant="20" id="sNz-WZ-lhh"/>

@@ -23,6 +23,8 @@
 		11C1BEF41B179AF300DF06A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C1BEF31B179AF300DF06A0 /* StoreKit.framework */; };
 		5107C9771DD2933000411FFA /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107C9761DD2933000411FFA /* TutorialViewController.m */; };
 		5107C9851DD3746100411FFA /* tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5107C9841DD3746100411FFA /* tutorial.plist */; };
+		512BC0561DE90A8B0018FD71 /* alienBG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 512BC0541DE90A8B0018FD71 /* alienBG.mp3 */; };
+		512BC0571DE90A8B0018FD71 /* Cosmic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 512BC0551DE90A8B0018FD71 /* Cosmic.mp3 */; };
 		514D2A191DBEA59900A96118 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D2A181DBEA59900A96118 /* CollectionViewCell.m */; };
 		5157839F1DCA24BE00FB7A97 /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5157837F1DCA24BE00FB7A97 /* 2.plist */; };
 		515783A01DCA24BE00FB7A97 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515783801DCA24BE00FB7A97 /* 3.plist */; };
@@ -175,6 +177,8 @@
 		5107C9751DD2933000411FFA /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		5107C9761DD2933000411FFA /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		5107C9841DD3746100411FFA /* tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tutorial.plist; sourceTree = "<group>"; };
+		512BC0541DE90A8B0018FD71 /* alienBG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alienBG.mp3; sourceTree = "<group>"; };
+		512BC0551DE90A8B0018FD71 /* Cosmic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cosmic.mp3; sourceTree = "<group>"; };
 		514D2A171DBEA59900A96118 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		514D2A181DBEA59900A96118 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		5157837F1DCA24BE00FB7A97 /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2.plist; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 		674642FA1DC15ED3006387A6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				512BC0541DE90A8B0018FD71 /* alienBG.mp3 */,
+				512BC0551DE90A8B0018FD71 /* Cosmic.mp3 */,
 				110E808A1B161B4100DF989C /* LaunchScreen.xib */,
 				110E80851B161B4100DF989C /* Main.storyboard */,
 				51C66D131DD52523004070B1 /* iPad.storyboard */,
@@ -724,6 +730,7 @@
 				51C66D0A1DD51308004070B1 /* 72.plist in Resources */,
 				51FD791F1DDB633C00C676BE /* 89.plist in Resources */,
 				51C66CFA1DD50F7F004070B1 /* 66.plist in Resources */,
+				512BC0561DE90A8B0018FD71 /* alienBG.mp3 in Resources */,
 				51FD79181DDB633C00C676BE /* 82.plist in Resources */,
 				51C66CF71DD50F7F004070B1 /* 63.plist in Resources */,
 				51C66D0C1DD51308004070B1 /* 74.plist in Resources */,
@@ -755,6 +762,7 @@
 				51C66D101DD51308004070B1 /* 78.plist in Resources */,
 				51FD79211DDB633C00C676BE /* 91.plist in Resources */,
 				110E80891B161B4100DF989C /* Images.xcassets in Resources */,
+				512BC0571DE90A8B0018FD71 /* Cosmic.mp3 in Resources */,
 				515783BB1DCA24BE00FB7A97 /* 31.plist in Resources */,
 				51C66CD41DD4DB5D004070B1 /* 41.plist in Resources */,
 				51C66D0E1DD51308004070B1 /* 76.plist in Resources */,

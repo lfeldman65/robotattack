@@ -11,7 +11,7 @@
 #import "RightViewController.h"
 #import "AppDelegate.h"
 
-@interface PlayViewController : UIViewController
+@interface PlayViewController : UIViewController <AVAudioPlayerDelegate>
 
 
 
