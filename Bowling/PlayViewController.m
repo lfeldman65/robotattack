@@ -38,6 +38,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *fireballLabel;
 
 @property (retain, nonatomic) AVAudioPlayer *ammoPlayer;
+@property (retain, nonatomic) AVAudioPlayer *overPlayer;
+@property (retain, nonatomic) AVAudioPlayer *whooshPlayer;
 
 @property (strong, nonatomic) NSTimer *gameTimer;
 @property (strong, nonatomic) NSTimer *ammoTimer;
@@ -130,6 +132,44 @@ CGPoint alien1End, alien2End, alien3End;
         self.ammoPlayer.volume = 1.0;
     }
     
+    // Game Over sound
+    
+    resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/gameOver.mp3"];
+    
+    self.overPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.overPlayer.delegate = self;
+        self.overPlayer.numberOfLoops = 0;
+        self.overPlayer.currentTime = 0;
+        self.overPlayer.volume = 1.0;
+    }
+    
+    // Whoosh sound
+    
+    resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/whoosh.mp3"];
+    
+    self.whooshPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.whooshPlayer.delegate = self;
+        self.whooshPlayer.numberOfLoops = 0;
+        self.whooshPlayer.currentTime = 0;
+        self.whooshPlayer.volume = 1.0;
+    }
+
     deviceScaler = 1;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -736,6 +776,11 @@ CGPoint alien1End, alien2End, alien3End;
 {
     if(CGRectIntersectsRect(self.character.frame, self.shield1Image.frame))
     {
+        if(soundIsOn)
+        {
+            [self.whooshPlayer play];
+        }
+        
         shield = shield + 10;
         
         if (shield > 100)
@@ -752,6 +797,11 @@ CGPoint alien1End, alien2End, alien3End;
 {
     if(CGRectIntersectsRect(self.character.frame, self.fireball.frame))
     {
+        if(soundIsOn)
+        {
+            [self.whooshPlayer play];
+        }
+        
         fireballCount = fireballCount + 1;
         self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
         self.fireballLabel.text = [NSString stringWithFormat:@"%d", fireballCount];
@@ -770,6 +820,10 @@ CGPoint alien1End, alien2End, alien3End;
     
     [self.gameTimer invalidate];
     [self highScores];
+    if(soundIsOn)
+    {
+        [self.overPlayer play];
+    }
     self.shieldLabel.text = @"0";
     self.playButton.hidden = false;
     self.character.hidden = true;
@@ -929,12 +983,7 @@ CGPoint alien1End, alien2End, alien3End;
         [[GameCenterManager sharedManager] saveAndReportScore:score leaderboard:@"com.lfeldman.ufo.score1" sortOrder:GameCenterSortOrderHighToLow];
     }
     
-    if(score >= 4*bottomAchieve)
-    {
-        [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement4" percentComplete:100.00 shouldDisplayNotification:true];
-    
-    } else if(score >= 3*bottomAchieve)
-        
+    if(score >= 3*bottomAchieve)
     {
         [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement3" percentComplete:100.00 shouldDisplayNotification:true];
         
