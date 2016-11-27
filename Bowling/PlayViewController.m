@@ -778,7 +778,7 @@ CGPoint alien1End, alien2End, alien3End;
     {
         if(soundIsOn)
         {
-            [self.whooshPlayer play];
+         //   [self.whooshPlayer play];
         }
         
         shield = shield + 10;
@@ -799,7 +799,7 @@ CGPoint alien1End, alien2End, alien3End;
     {
         if(soundIsOn)
         {
-            [self.whooshPlayer play];
+         //   [self.whooshPlayer play];
         }
         
         fireballCount = fireballCount + 1;
