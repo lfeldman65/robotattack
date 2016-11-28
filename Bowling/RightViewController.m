@@ -53,7 +53,7 @@ BOOL soundIsOn3;
         self.ambientPlayer.delegate = self;
         self.ambientPlayer.numberOfLoops = -1;
         self.ambientPlayer.currentTime = 0;
-        self.ambientPlayer.volume = 1.0;
+        self.ambientPlayer.volume = 0.3;
     }
 
 }

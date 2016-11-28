@@ -11,10 +11,14 @@
 #define charSpeedScale 0.3
 #define ammoSpeedScale 50.0
 #define controlHeight 150.0
-#define maxMinSpeed 20
+#define maxMinSpeed 10
 #define bfgCount 10
 #define testSpeed 0
 #define bottomAchieve 20000
+#define ufo1Score 100
+#define ufo2Score 200
+#define ufo3Score 300
+#define ufo4Score 400
 
 @interface PlayViewController ()
 
@@ -236,7 +240,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     self.alien4Image.center = CGPointMake([self randomWidth], 5*screenHeight);
 
     self.shield1Image.center = CGPointMake(7*screenWidth, [self randomHeight]);
-    self.bigShield.center = CGPointMake(-16*screenWidth, [self randomHeight]);
+    self.bigShield.center = CGPointMake(-18*screenWidth, [self randomHeight]);
     self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
 
     ammoInFlight = false;
@@ -263,7 +267,6 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
 -(void)gameGuts
 {
     timePassed = timePassed + .05;
-    
     minSpeed = minSpeed + 0.001;
     
     if(minSpeed >= deviceScaler*maxMinSpeed)
@@ -387,9 +390,6 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     self.ammoVelocityX = deviceScaler*ammoSpeedScale*distX;
     self.ammoVelocityY = deviceScaler*ammoSpeedScale*distY;
     
-    //  NSLog(@"Ammo Velocity X = %f", self.ammoVelocityX);
-    //  NSLog(@"Ammo Velocity Y = %f", self.ammoVelocityY);
-    
     self.ammoImage.center = CGPointMake(self.character.center.x, self.character.center.y);
     
     [self.ammoTimer invalidate];
@@ -410,16 +410,16 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     {
         alien1Vector.x = alien1End.x -  self.alien1Image.center.x;
         alien1Vector.y = alien1End.y - self.alien1Image.center.y;
-        double Mag = sqrt(alien1Vector.x*alien1Vector.x + alien1Vector.y*alien1Vector.y);
+        double mag = [self magnitude:alien1Vector];
         
-        if (Mag < 10)
+        if (mag < 10)
         {
             alien1InFlight = false;
             self.alien1Image.center = CGPointMake(-100, [self randomHeight]);
         }
         
-        self.alien1VelocityX = deviceScaler*[self randomSpeed]*alien1Vector.x/Mag;
-        self.alien1VelocityY = deviceScaler*[self randomSpeed]*alien1Vector.y/Mag;
+        self.alien1VelocityX = deviceScaler*[self randomSpeed]*alien1Vector.x/mag;
+        self.alien1VelocityY = deviceScaler*[self randomSpeed]*alien1Vector.y/mag;
         self.alien1Image.center = CGPointMake(self.alien1Image.center.x + self.alien1VelocityX, self.alien1Image.center.y + self.alien1VelocityY);
         
     } else {
@@ -436,16 +436,16 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     {
         alien2Vector.x = alien2End.x -  self.alien2Image.center.x;
         alien2Vector.y = alien2End.y - self.alien2Image.center.y;
-        double Mag = sqrt(alien2Vector.x*alien2Vector.x + alien2Vector.y*alien2Vector.y);
+        double mag = [self magnitude:alien2Vector];
         
-        if (Mag < 10)
+        if (mag < 10)
         {
             alien2InFlight = false;
             self.alien2Image.center = CGPointMake(screenWidth + 100, [self randomHeight]);
         }
         
-        self.alien2VelocityX = deviceScaler*[self randomSpeed]*alien2Vector.x/Mag;
-        self.alien2VelocityY = deviceScaler*[self randomSpeed]*alien2Vector.y/Mag;
+        self.alien2VelocityX = deviceScaler*[self randomSpeed]*alien2Vector.x/mag;
+        self.alien2VelocityY = deviceScaler*[self randomSpeed]*alien2Vector.y/mag;
         self.alien2Image.center = CGPointMake(self.alien2Image.center.x + self.alien2VelocityX, self.alien2Image.center.y + self.alien2VelocityY);
         
     } else {
@@ -463,16 +463,16 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     {
         alien3Vector.x = alien3End.x -  self.alien3Image.center.x;
         alien3Vector.y = alien3End.y - self.alien3Image.center.y;
-        double Mag = sqrt(alien3Vector.x*alien3Vector.x + alien3Vector.y*alien3Vector.y);
+        double mag = [self magnitude:alien3Vector];
         
-        if (Mag < 10)
+        if (mag < 10)
         {
             alien3InFlight = false;
             self.alien3Image.center = CGPointMake([self randomWidth], -100);
         }
         
-        self.alien3VelocityX = deviceScaler*[self randomSpeed]*alien3Vector.x/Mag;
-        self.alien3VelocityY = deviceScaler*[self randomSpeed]*alien3Vector.y/Mag;
+        self.alien3VelocityX = deviceScaler*[self randomSpeed]*alien3Vector.x/mag;
+        self.alien3VelocityY = deviceScaler*[self randomSpeed]*alien3Vector.y/mag;
         self.alien3Image.center = CGPointMake(self.alien3Image.center.x + self.alien3VelocityX, self.alien3Image.center.y + self.alien3VelocityY);
         
     } else {
@@ -490,16 +490,16 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     {
         alien4Vector.x = alien4End.x -  self.alien4Image.center.x;
         alien4Vector.y = alien4End.y - self.alien4Image.center.y;
-        double Mag = sqrt(alien4Vector.x*alien4Vector.x + alien4Vector.y*alien4Vector.y);
+        double mag = [self magnitude:alien4Vector];
         
-        if (Mag < 10)
+        if (mag < 10)
         {
             alien4InFlight = false;
             self.alien4Image.center = CGPointMake([self randomWidth], screenHeight + 100);
         }
         
-        self.alien4VelocityX = deviceScaler*[self randomSpeed]*alien4Vector.x/Mag;
-        self.alien4VelocityY = deviceScaler*[self randomSpeed]*alien4Vector.y/Mag;
+        self.alien4VelocityX = deviceScaler*[self randomSpeed]*alien4Vector.x/mag;
+        self.alien4VelocityY = deviceScaler*[self randomSpeed]*alien4Vector.y/mag;
         self.alien4Image.center = CGPointMake(self.alien4Image.center.x + self.alien4VelocityX, self.alien4Image.center.y + self.alien4VelocityY);
         
     } else {
@@ -516,9 +516,9 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     self.shield1Image.transform = CGAffineTransformMakeRotation(5*timePassed);
     shield1Vector.x = self.character.center.x -  self.shield1Image.center.x;
     shield1Vector.y = self.character.center.y - self.shield1Image.center.y;
-    double shield1Mag = sqrt(shield1Vector.x*shield1Vector.x + shield1Vector.y*shield1Vector.y);
-    self.shield1VelocityX = deviceScaler*[self randomSpeed]*shield1Vector.x/shield1Mag;
-    self.shield1VelocityY = deviceScaler*[self randomSpeed]*shield1Vector.y/shield1Mag;
+    double Mag = [self magnitude:shield1Vector];
+    self.shield1VelocityX = deviceScaler*[self randomSpeed]*shield1Vector.x/Mag;
+    self.shield1VelocityY = deviceScaler*[self randomSpeed]*shield1Vector.y/Mag;
     self.shield1Image.center = CGPointMake(self.shield1Image.center.x + self.shield1VelocityX, self.shield1Image.center.y + self.shield1VelocityY);
 }
 
@@ -527,7 +527,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
 {
     bigShieldVector.x = self.character.center.x -  self.bigShield.center.x;
     bigShieldVector.y = self.character.center.y - self.bigShield.center.y;
-    double Mag = sqrt(bigShieldVector.x*bigShieldVector.x + bigShieldVector.y*bigShieldVector.y);
+    double Mag = [self magnitude:bigShieldVector];
     self.bigShieldVelocityX = deviceScaler*[self randomSpeed]*bigShieldVector.x/Mag;
     self.bigShieldVelocityY = deviceScaler*[self randomSpeed]*bigShieldVector.y/Mag;
     self.bigShield.center = CGPointMake(self.bigShield.center.x + self.bigShieldVelocityX, self.bigShield.center.y + self.bigShieldVelocityY);
@@ -540,16 +540,16 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
         self.fireball.transform = CGAffineTransformMakeRotation(5*timePassed);
         fireballVector.x = fireballEnd.x -  self.fireball.center.x;
         fireballVector.y = fireballEnd.y - self.fireball.center.y;
-        double fireMag = sqrt(fireballVector.x*fireballVector.x + fireballVector.y*fireballVector.y);
+        double mag = [self magnitude:fireballVector];
         
-        if (fireMag < 10)
+        if (mag < 10)
         {
             fireballInFlight = false;
             self.fireball.center = CGPointMake(-4*screenWidth, [self randomHeight]);
         }
     
-        self.fireballVelocityX = deviceScaler*[self randomSpeed]*fireballVector.x/fireMag;
-        self.fireballVelocityY = deviceScaler*[self randomSpeed]*fireballVector.y/fireMag;
+        self.fireballVelocityX = deviceScaler*[self randomSpeed]*fireballVector.x/mag;
+        self.fireballVelocityY = deviceScaler*[self randomSpeed]*fireballVector.y/mag;
         self.fireball.center = CGPointMake(self.fireball.center.x + self.fireballVelocityX, self.fireball.center.y + self.fireballVelocityY);
         
     } else {
@@ -631,7 +631,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
 {
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien1Image.frame))
     {
-        score = score + 50;
+        score = score + ufo1Score;
         self.alien1Image.center = CGPointMake(-100, [self randomHeight]);
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
@@ -639,7 +639,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien2Image.frame))
     {
-        score = score + 100;
+        score = score + ufo2Score;
         self.alien2Image.center = CGPointMake(screenWidth + 100, [self randomHeight]);
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
@@ -647,7 +647,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien3Image.frame))
     {
-        score = score + 150;
+        score = score + ufo3Score;
         self.alien3Image.center = CGPointMake([self randomWidth], -screenHeight - 100);
         self.ammoImage.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
@@ -655,7 +655,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     
     if(CGRectIntersectsRect(self.ammoImage.frame, self.alien4Image.frame))
     {
-        score = score + 200;
+        score = score + ufo4Score;
         self.alien4Image.center = CGPointMake([self randomWidth], screenHeight + 100);
         self.ammo2Image.center = CGPointMake(100000, 100000);
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
@@ -676,6 +676,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
 
         self.shield1Image.center = CGPointMake(7*screenWidth, [self randomHeight]);
         self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
+        self.character.alpha = .007*shield + 0.30;
     }
 }
 
@@ -691,8 +692,9 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
             shield = 100;
         }
         
-        self.bigShield.center = CGPointMake(-16*screenWidth, [self randomHeight]);
+        self.bigShield.center = CGPointMake(-18*screenWidth, [self randomHeight]);
         self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
+        self.character.alpha = .007*shield + 0.30;
     }
 }
 
@@ -737,6 +739,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
 
 -(double)randomSpeed
 {
+    NSLog(@"speed = %f", minSpeed);
     return arc4random()%4 + minSpeed + testSpeed;
 }
 
@@ -748,18 +751,18 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
 
 -(int)randomHeight
 {
-    int minY = -20;
+    int minY = 0;
     int maxY = screenHeight - controlHeight;
-    int rangeY = maxY - minY;
-    return (arc4random() % rangeY) + minY;
+    int range = maxY - minY;
+    return (arc4random() % range) + minY;
 }
 
 -(int)randomWidth
 {
-    int minY = -100;
-    int maxY = screenWidth + 100;
-    int rangeY = maxY - minY;
-    return (arc4random() % rangeY) + minY;
+    int minX = 0;
+    int maxX = screenWidth;
+    int range = maxX - minX;
+    return (arc4random() % range) + minX;
 }
 
 - (IBAction)backPressed:(id)sender
@@ -818,10 +821,14 @@ CGPoint alien1End, alien2End, alien3End, alien4End;
     {
         [[GameCenterManager sharedManager] saveAndReportAchievement:@"com.lfeldman.ufo.achievement1" percentComplete:100.00 shouldDisplayNotification:true];
     }
-
-    
-    
 }
+
+-(double)magnitude:(CGPoint)point
+{
+    return sqrt(point.x*point.x + point.y*point.y);
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

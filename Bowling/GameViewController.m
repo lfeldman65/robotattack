@@ -98,7 +98,7 @@ double screenHeight2;
         }
         self.ambientPlayer.numberOfLoops = -1;
         self.ambientPlayer.currentTime = 0;
-        self.ambientPlayer.volume = 0.3;
+        self.ambientPlayer.volume = 0.1;
     }
     
     // Game Center
