@@ -109,6 +109,8 @@
 		51C66D111DD51308004070B1 /* 79.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D071DD51308004070B1 /* 79.plist */; };
 		51C66D121DD51308004070B1 /* 80.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D081DD51308004070B1 /* 80.plist */; };
 		51C66D141DD52523004070B1 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C66D131DD52523004070B1 /* iPad.storyboard */; };
+		51DA09711DEBA7E500D951D3 /* rocketFlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51DA09701DEBA7E500D951D3 /* rocketFlight.mp3 */; };
+		51DA09731DEBA90B00D951D3 /* shooting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51DA09721DEBA90B00D951D3 /* shooting.mp3 */; };
 		51DFBA581DDCCF0D00DBF82D /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DFBA571DDCCF0D00DBF82D /* PlayViewController.m */; };
 		51FD79171DDB633C00C676BE /* 81.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79031DDB633C00C676BE /* 81.plist */; };
 		51FD79181DDB633C00C676BE /* 82.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51FD79041DDB633C00C676BE /* 82.plist */; };
@@ -268,6 +270,8 @@
 		51C66D071DD51308004070B1 /* 79.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 79.plist; sourceTree = "<group>"; };
 		51C66D081DD51308004070B1 /* 80.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 80.plist; sourceTree = "<group>"; };
 		51C66D131DD52523004070B1 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		51DA09701DEBA7E500D951D3 /* rocketFlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rocketFlight.mp3; sourceTree = "<group>"; };
+		51DA09721DEBA90B00D951D3 /* shooting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shooting.mp3; sourceTree = "<group>"; };
 		51DFBA561DDCCF0D00DBF82D /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		51DFBA571DDCCF0D00DBF82D /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		51FD79031DDB633C00C676BE /* 81.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 81.plist; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 		674642FA1DC15ED3006387A6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				51DA09721DEBA90B00D951D3 /* shooting.mp3 */,
+				51DA09701DEBA7E500D951D3 /* rocketFlight.mp3 */,
 				512BC05A1DEA5AD30018FD71 /* whoosh.mp3 */,
 				512BC0581DEA51F30018FD71 /* gameOver.mp3 */,
 				512BC0541DE90A8B0018FD71 /* alienBG.mp3 */,
@@ -749,6 +755,7 @@
 				512BC0591DEA51F30018FD71 /* gameOver.mp3 in Resources */,
 				515783BC1DCA24BE00FB7A97 /* 32.plist in Resources */,
 				515783A91DCA24BE00FB7A97 /* 13.plist in Resources */,
+				51DA09711DEBA7E500D951D3 /* rocketFlight.mp3 in Resources */,
 				515783B71DCA24BE00FB7A97 /* 27.plist in Resources */,
 				515783A31DCA24BE00FB7A97 /* 6.plist in Resources */,
 				51C66D111DD51308004070B1 /* 79.plist in Resources */,
@@ -810,6 +817,7 @@
 				51C66CCE1DD4D2BC004070B1 /* 50.plist in Resources */,
 				51FD791A1DDB633C00C676BE /* 84.plist in Resources */,
 				51C66CE91DD4DFEB004070B1 /* 59.plist in Resources */,
+				51DA09731DEBA90B00D951D3 /* shooting.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

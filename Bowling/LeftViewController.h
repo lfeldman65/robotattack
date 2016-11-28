@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface LeftViewController : UIViewController
+@interface LeftViewController : UIViewController <AVAudioPlayerDelegate>
 
 +(BOOL)isInLeft;
 +(double)findDistanceX;

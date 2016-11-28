@@ -13,6 +13,7 @@
 @property (nonatomic) CGPoint currentTouchPosition;
 @property (nonatomic) CGPoint leftActionCenter;
 @property (nonatomic) BOOL leftTouchActive;
+@property (retain, nonatomic) AVAudioPlayer *ambientPlayer;
 
 
 @end
@@ -23,6 +24,7 @@
 BOOL isInLeft;
 double xDistance;
 double yDistance;
+BOOL soundIsOn2;
 
 
 - (void)viewDidLoad
@@ -30,6 +32,31 @@ double yDistance;
     [super viewDidLoad];
     self.leftActionCenter = CGPointMake(75.0, 75.0);
     isInLeft = false;
+    
+    // Flight sound
+    
+    NSNumber* soundOn = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
+    soundIsOn2 = [soundOn boolValue];
+
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    resourcePath = [resourcePath stringByAppendingString:@"/rocketFlight.mp3"];
+    NSLog(@"Path to play: %@", resourcePath);
+    NSError* err;
+    
+    self.ambientPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
+    
+    if(err)
+    {
+        NSLog(@"Failed with reason: %@", [err localizedDescription]);
+    }
+    else
+    {
+        self.ambientPlayer.delegate = self;
+        self.ambientPlayer.numberOfLoops = -1;
+        self.ambientPlayer.currentTime = 0;
+        self.ambientPlayer.volume = 1.0;
+    }
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -39,8 +66,10 @@ double yDistance;
     xDistance = self.currentTouchPosition.x - self.leftActionCenter.x;
     yDistance = self.currentTouchPosition.y - self.leftActionCenter.y;
     isInLeft = true;
-   // NSLog(@"Touch Began Position =(%f, %f)", self.currentTouchPosition.x, self.currentTouchPosition.y);
-
+    if(soundIsOn2)
+    {
+        [self.ambientPlayer play];
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -56,7 +85,11 @@ double yDistance;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   isInLeft = false;
+    isInLeft = false;
+    if(soundIsOn2)
+    {
+        [self.ambientPlayer pause];
+    }
 }
 
 +(BOOL)isInLeft
