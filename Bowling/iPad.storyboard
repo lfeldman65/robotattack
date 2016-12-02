@@ -192,15 +192,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo4" translatesAutoresizingMaskIntoConstraints="NO" id="Ovv-v3-4Gl">
-                                <frame key="frameInset" minX="55" minY="238" width="120" height="120"/>
+                                <frame key="frameInset" minX="55" minY="238" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo3" translatesAutoresizingMaskIntoConstraints="NO" id="kTs-Po-G1Y">
-                                <frame key="frameInset" minX="320" minY="333" width="100" height="50"/>
+                                <frame key="frameInset" minX="320" minY="333" width="120" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo" translatesAutoresizingMaskIntoConstraints="NO" id="CYH-SU-aJ8">
-                                <frame key="frameInset" minX="49" minY="397" width="80" height="40"/>
+                                <frame key="frameInset" minX="49" minY="397" width="90" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shield" translatesAutoresizingMaskIntoConstraints="NO" id="uPp-sG-axq">
@@ -211,7 +211,7 @@
                                 <frame key="frameInset" minX="374" minY="552" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spaceShip" translatesAutoresizingMaskIntoConstraints="NO" id="ind-Sx-PUL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spaceShipStill" translatesAutoresizingMaskIntoConstraints="NO" id="ind-Sx-PUL">
                                 <frame key="frameInset" minX="214" minY="443" width="60" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -293,13 +293,13 @@
                                     <action selector="playButtonPressed:" destination="rqw-pd-7WG" eventType="touchUpInside" id="3QV-p7-Vud"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="windrose1" translatesAutoresizingMaskIntoConstraints="NO" id="O2F-F7-OvZ" userLabel="arrows left">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compass" translatesAutoresizingMaskIntoConstraints="NO" id="O2F-F7-OvZ" userLabel="arrows left">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="JHy-le-s9H"/>
                                     <constraint firstAttribute="width" constant="200" id="nw8-LH-XLB"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="windrose1" translatesAutoresizingMaskIntoConstraints="NO" id="bnL-zO-sKc" userLabel="arrows right">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compass" translatesAutoresizingMaskIntoConstraints="NO" id="bnL-zO-sKc" userLabel="arrows right">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="5nm-Yn-ELd"/>
                                     <constraint firstAttribute="width" constant="200" id="a6J-zU-iXl"/>
@@ -334,6 +334,10 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shield2" translatesAutoresizingMaskIntoConstraints="NO" id="4JP-nS-y9O">
                                 <frame key="frameInset" minX="358" minY="784" width="160" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ufo2" translatesAutoresizingMaskIntoConstraints="NO" id="1in-pT-CVd">
+                                <frame key="frameInset" minX="587" minY="238" width="160" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -381,6 +385,7 @@
                         <outlet property="alien2Image" destination="Ovv-v3-4Gl" id="yAf-Yh-oPv"/>
                         <outlet property="alien3Image" destination="kTs-Po-G1Y" id="g3U-tY-Uxi"/>
                         <outlet property="alien4Image" destination="CYH-SU-aJ8" id="gjn-Ee-B4a"/>
+                        <outlet property="alien5Image" destination="1in-pT-CVd" id="dGb-eD-1H4"/>
                         <outlet property="ammo2Image" destination="WC3-W9-zZF" id="YAl-OD-lV3"/>
                         <outlet property="ammo3Image" destination="1ZY-4w-yPT" id="yfA-WQ-m87"/>
                         <outlet property="ammoImage" destination="vYZ-lE-bfD" id="WnJ-hO-sU0"/>
@@ -642,11 +647,13 @@
     </scenes>
     <resources>
         <image name="ammo" width="300" height="300"/>
+        <image name="compass" width="593" height="593"/>
         <image name="fireball" width="341" height="340"/>
         <image name="nightSky" width="1920" height="1279"/>
         <image name="shield" width="720" height="720"/>
         <image name="shield2" width="640" height="720"/>
         <image name="spaceShip" width="468" height="597"/>
+        <image name="spaceShipStill" width="468" height="597"/>
         <image name="ufo" width="960" height="499"/>
         <image name="ufo2" width="960" height="487"/>
         <image name="ufo3" width="2400" height="1938"/>
