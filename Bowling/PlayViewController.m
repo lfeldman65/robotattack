@@ -205,6 +205,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
     self.alien4Image.hidden = false;
     self.alien5Image.hidden = false;
     self.shield1Image.hidden = false;
+    self.bigShield.hidden = false;
     self.fireball.hidden = false;
     timePassed = 0;
     self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(gameGuts) userInfo:nil repeats:YES];
@@ -218,7 +219,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
         self.alien2Image.center = CGPointMake(screenWidth + 200, [self randomHeight]);
         self.alien3Image.center = CGPointMake([self randomWidth], -screenHeight - 200);
         self.alien4Image.center = CGPointMake([self randomWidth], screenHeight + 200);
-        self.alien5Image.center = CGPointMake(200, [self randomHeight]);
+        self.alien5Image.center = CGPointMake(screenWidth + 200, [self randomHeight]);
         fireballCount--;
         self.fireballLabel.text = [NSString stringWithFormat:@"%d", fireballCount];
      //   score = score + ufo1Score + ufo2Score + ufo3Score + ufo4Score + ufo1Score;
@@ -246,7 +247,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
     self.alien2Image.center = CGPointMake(2*screenWidth, [self randomHeight]);
     self.alien3Image.center = CGPointMake([self randomWidth], -3*screenHeight);
     self.alien4Image.center = CGPointMake([self randomWidth], 5*screenHeight);
-    self.alien5Image.center = CGPointMake(10*screenWidth, [self randomHeight]);
+    self.alien5Image.center = CGPointMake(20*screenWidth, [self randomHeight]);
 
     self.shield1Image.center = CGPointMake(7*screenWidth, [self randomHeight]);
     self.bigShield.center = CGPointMake(-18*screenWidth, [self randomHeight]);
@@ -755,7 +756,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
             shield = 100;
         }
 
-        self.shield1Image.center = CGPointMake(7*screenWidth, [self randomHeight]);
+        self.shield1Image.center = CGPointMake(6*screenWidth, [self randomHeight]);
         self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
         self.character.alpha = .007*shield + 0.30;
     }
@@ -815,6 +816,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
     self.alien4Image.hidden = true;
     self.alien5Image.hidden = true;
     self.shield1Image.hidden = true;
+    self.bigShield.hidden = true;
     self.fireball.hidden = true;
     
     [self moveAmmoAway];
