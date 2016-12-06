@@ -131,7 +131,6 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
     
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
     resourcePath = [resourcePath stringByAppendingString:@"/Cosmic.mp3"];
-    NSLog(@"Path to play: %@", resourcePath);
     NSError* err;
     
     self.ammoPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:resourcePath] error:&err];
@@ -399,7 +398,10 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
     
     double distX = [RightViewController findDistanceX];
     double distY = [RightViewController findDistanceY];
-    double mag = sqrt(distX*distX + distY*distY);
+    
+    CGPoint distAmmo = CGPointMake(distX, distY);
+    double mag = [self magnitude:distAmmo];
+    
     distX = distX/mag;
     distY = distY/mag;
     
@@ -637,7 +639,6 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
         } else {
         
             self.alien2Image.center = CGPointMake(screenWidth + 100, [self randomHeight]);
-            NSLog(@"random = (%f, %f)", self.alien2Image.center.x, self.alien2Image.center.y);
             shield = shield - 10.0;
             self.character.alpha = .007*shield + 0.30;
             self.shieldLabel.text = [NSString stringWithFormat:@"%d", shield];
@@ -824,7 +825,7 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
 
 -(double)randomSpeed
 {
-    NSLog(@"speed = %f", minSpeed);
+  //  NSLog(@"speed = %f", minSpeed);
     return arc4random()%4 + minSpeed + testSpeed;
 }
 
@@ -910,9 +911,13 @@ CGPoint alien1End, alien2End, alien3End, alien4End, alien5End;
 
 -(double)magnitude:(CGPoint)point
 {
-    return sqrt(point.x*point.x + point.y*point.y);
+    double mag = sqrt(point.x*point.x + point.y*point.y);
+    if (mag == 0)
+    {
+        mag = .001;
+    }
+    return mag;
 }
-
 
 
 - (void)didReceiveMemoryWarning

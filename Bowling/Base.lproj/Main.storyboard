@@ -305,12 +305,12 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Za-0u-ang">
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shoot" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQx-wD-fe6">
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -336,17 +336,16 @@
                             <constraint firstItem="vPB-81-hKN" firstAttribute="centerX" secondItem="7IR-lg-j0I" secondAttribute="centerX" constant="-50" id="1iz-mq-w9b"/>
                             <constraint firstItem="hlw-QX-0is" firstAttribute="top" secondItem="7IR-lg-j0I" secondAttribute="top" id="44y-qF-dn9"/>
                             <constraint firstAttribute="trailing" secondItem="uaf-ck-XR1" secondAttribute="trailing" constant="12" id="6EP-Kp-R88"/>
-                            <constraint firstItem="wQx-wD-fe6" firstAttribute="top" secondItem="Frx-sp-Xxd" secondAttribute="bottom" constant="-30" id="6kk-Ba-Xox"/>
                             <constraint firstItem="HYv-B5-dCG" firstAttribute="top" secondItem="K4W-fy-MoX" secondAttribute="bottom" constant="173" id="72V-X3-tCT"/>
                             <constraint firstItem="hlw-QX-0is" firstAttribute="top" secondItem="724-kR-gWB" secondAttribute="bottom" constant="-46" id="88M-xB-7by"/>
                             <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="hlw-QX-0is" secondAttribute="bottom" id="AvQ-ea-ABz"/>
                             <constraint firstItem="kJ7-sF-dOB" firstAttribute="leading" secondItem="7IR-lg-j0I" secondAttribute="leading" constant="6" id="Dvg-xK-i3z"/>
                             <constraint firstItem="kJ7-sF-dOB" firstAttribute="top" secondItem="K4W-fy-MoX" secondAttribute="bottom" id="FV6-TV-XIe"/>
                             <constraint firstItem="hlw-QX-0is" firstAttribute="leading" secondItem="7IR-lg-j0I" secondAttribute="leading" id="HRg-US-72U"/>
-                            <constraint firstItem="5Za-0u-ang" firstAttribute="top" secondItem="vh2-KL-oeX" secondAttribute="bottom" constant="-30" id="IzH-zy-0sc"/>
                             <constraint firstItem="uaf-ck-XR1" firstAttribute="leading" secondItem="724-kR-gWB" secondAttribute="trailing" id="Jmy-Bg-cyz"/>
                             <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="Frx-sp-Xxd" secondAttribute="bottom" id="KxE-MG-fPJ"/>
                             <constraint firstAttribute="trailing" secondItem="hlw-QX-0is" secondAttribute="trailing" id="Lbs-W7-ESr"/>
+                            <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="wQx-wD-fe6" secondAttribute="bottom" constant="5" id="OAR-2u-imb"/>
                             <constraint firstItem="724-kR-gWB" firstAttribute="centerY" secondItem="uaf-ck-XR1" secondAttribute="centerY" id="ORj-6r-G0i"/>
                             <constraint firstAttribute="trailing" secondItem="49m-xS-87L" secondAttribute="trailing" id="PTH-hN-h85"/>
                             <constraint firstItem="HYv-B5-dCG" firstAttribute="centerX" secondItem="7IR-lg-j0I" secondAttribute="centerX" id="RGx-ch-Nco"/>
@@ -355,6 +354,7 @@
                             <constraint firstItem="Bde-Ai-9kQ" firstAttribute="centerX" secondItem="7IR-lg-j0I" secondAttribute="centerX" constant="25" id="W5T-Ib-h7a"/>
                             <constraint firstItem="PvM-qm-qbn" firstAttribute="centerX" secondItem="vh2-KL-oeX" secondAttribute="centerX" id="Y50-vR-97J"/>
                             <constraint firstItem="Bde-Ai-9kQ" firstAttribute="centerY" secondItem="box-ex-Hc7" secondAttribute="centerY" id="Zz9-N0-9pK"/>
+                            <constraint firstItem="Htr-hS-RJF" firstAttribute="top" secondItem="5Za-0u-ang" secondAttribute="bottom" constant="5" id="b2c-qw-FLw"/>
                             <constraint firstAttribute="trailing" secondItem="Frx-sp-Xxd" secondAttribute="trailing" id="bRM-Pa-BAx"/>
                             <constraint firstItem="3dO-f5-cu7" firstAttribute="centerY" secondItem="Frx-sp-Xxd" secondAttribute="centerY" id="hAW-z2-198"/>
                             <constraint firstItem="3dO-f5-cu7" firstAttribute="centerX" secondItem="Frx-sp-Xxd" secondAttribute="centerX" id="ipf-Sk-HLk"/>
