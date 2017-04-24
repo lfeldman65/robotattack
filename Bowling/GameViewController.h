@@ -11,6 +11,5 @@
 
 @interface GameViewController : UIViewController <GameCenterManagerDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
 
-@property (nonatomic) Shop *ourNewShop;
 
 @end

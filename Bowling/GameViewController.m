@@ -12,7 +12,6 @@
 
 - (IBAction)gameCenterPressed:(id)sender;
 - (IBAction)soundSwitchChanged:(id)sender;
-- (IBAction)fullVersionPressed:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
 @property (retain, nonatomic) AVAudioPlayer *ambientPlayer;
@@ -341,41 +340,6 @@ double screenHeight2;
 }
 
 
-- (void)shoppingDone:(NSNotification *)notification
-{
-    NSLog(@"shopping done");
-}
-
-- (Shop *)ourNewShop {
-    
-    if (!_ourNewShop) {
-        _ourNewShop = [[Shop alloc] init];
-        _ourNewShop.delegate = self;
-    }
-    return _ourNewShop;
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    switch (buttonIndex) {
-        case 0: {
-            [self.ourNewShop makeThePurchase];
-            break;
-            
-        }
-            
-        case 1: {
-            [self.ourNewShop restoreThePurchase];
-            break;
-            
-        }
-            
-        default: {
-            break;
-        }
-    }
-}
-
 
 # pragma mark - Game Center
 
@@ -478,25 +442,6 @@ double screenHeight2;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (IBAction)fullVersionPressed:(id)sender {
-    
-    NSLog(@"offer purchase");
-    [self.ourNewShop validateProductIdentifiers];
-
-}
-
--(void) showAlertWithTitle:(NSString*) title message:(NSString*) msg
-{
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:msg
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {}];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 
 @end
